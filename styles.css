@@ -1,0 +1,118 @@
+:root {
+  color-scheme: dark;
+  --bg: #15121a;
+  --panel: #241f2b;
+  --text: #f4ecff;
+  --accent: #c9a7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #2d2440 0%, var(--bg) 65%);
+  color: var(--text);
+}
+
+.app {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.topbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw + 0.8rem, 2rem);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: color-mix(in srgb, var(--panel) 88%, black);
+  border: 1px solid #433657;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+}
+
+#mute-btn {
+  border: 1px solid #5f4e7b;
+  background: #332845;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+
+#mute-btn[aria-pressed="true"] {
+  opacity: 0.7;
+}
+
+.map-wrapper {
+  margin-top: 1rem;
+  background: color-mix(in srgb, var(--panel) 80%, black);
+  border: 1px solid #4b3b62;
+  border-radius: 14px;
+  padding: 0.8rem;
+}
+
+.map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hotspot {
+  position: absolute;
+  border: 1px solid #d8c0ff;
+  background: color-mix(in srgb, #b78dff 30%, transparent);
+  color: #fff;
+  backdrop-filter: blur(1px);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 160ms ease;
+  padding: 0.2rem 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.hotspot:hover,
+.hotspot:focus-visible {
+  background: color-mix(in srgb, #b78dff 50%, transparent);
+}
+
+.status {
+  opacity: 0.9;
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 680px) {
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #volume {
+    width: 130px;
+  }
+}
