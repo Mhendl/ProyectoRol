@@ -1,0 +1,537 @@
+/* ── Variables ───────────────────────────────────────── */
+:root {
+  --bg: #0d0d0f;
+  --bg-card: #1c1c1e;
+  --bg-section: #252528;
+  --bg-input: rgba(255,255,255,0.05);
+  --border: #c9a84c;
+  --border-dim: #5a5040;
+  --border-faint: #3a362e;
+  --gold: #c9a84c;
+  --gold-bright: #e8d48b;
+  --gold-glow: rgba(201,168,76,0.15);
+  --text: #e0d6c2;
+  --text-dim: #9a8e78;
+  --text-label: #b8a882;
+  --green: #5cb85c;
+  --red: #d9534f;
+}
+
+/* ── Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ── Toolbar ────────────────────────────────────────── */
+.toolbar {
+  position: fixed; top: 16px; right: 16px; z-index: 100;
+}
+.toolbar button {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  padding: 8px 18px;
+  border: 1px solid var(--gold);
+  background: var(--bg-card);
+  color: var(--gold);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.toolbar button:hover { background: var(--gold); color: var(--bg); }
+
+@media print { .no-print { display: none !important; } }
+
+/* ── App container ──────────────────────────────────── */
+.app {
+  width: 100%;
+  max-width: 780px;
+  margin-top: 20px;
+}
+
+/* ── Progress bar ───────────────────────────────────── */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--border-faint);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.step-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border-faint);
+  transition: background 0.3s;
+}
+.step-dot.active { background: var(--gold); box-shadow: 0 0 6px var(--gold-glow); }
+.step-dot.done { background: var(--green); }
+
+/* ── Step container ─────────────────────────────────── */
+.step-container {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-dim);
+  border-radius: 10px;
+  padding: 28px 24px;
+  min-height: 400px;
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--gold-bright);
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+.step-subtitle {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* ── Navigation buttons ─────────────────────────────── */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 10px 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1.5px solid var(--gold);
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--bg);
+}
+.btn-primary:hover { background: var(--gold-bright); }
+.btn-secondary {
+  background: transparent;
+  color: var(--gold);
+}
+.btn-secondary:hover { background: var(--gold-glow); }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── Form elements ──────────────────────────────────── */
+.form-group {
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-label);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--gold);
+}
+.form-group textarea { resize: vertical; min-height: 60px; }
+.form-group select { cursor: pointer; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── Class cards ────────────────────────────────────── */
+.class-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.class-card {
+  background: var(--bg-section);
+  border: 1.5px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.class-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.class-card.selected {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+.class-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold-bright);
+  margin-bottom: 3px;
+}
+.class-card .class-role {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.class-card .class-stats {
+  font-size: 0.72rem;
+  color: var(--text-label);
+}
+.class-card .class-stats span {
+  display: inline-block;
+  background: var(--bg-input);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin: 1px 2px;
+}
+
+/* ── Attribute boxes ────────────────────────────────── */
+.attr-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.attr-card {
+  background: var(--bg-section);
+  border: 2px solid var(--border-dim);
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px 4px;
+  position: relative;
+}
+.attr-card.key-attr { border-color: var(--gold); }
+.attr-card .attr-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.attr-card input {
+  width: 40px;
+  text-align: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: 'EB Garamond', serif;
+}
+.attr-card input:focus { border-color: var(--gold); }
+.attr-card .attr-mod {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  margin-top: 4px;
+}
+.attr-card .attr-hint {
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.points-remaining {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.points-remaining.over { color: var(--red); }
+
+.method-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.method-tab {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  padding: 6px 16px;
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.method-tab.active { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+
+/* ── Subclass cards ─────────────────────────────────── */
+.subclass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.subclass-card {
+  background: var(--bg-section);
+  border: 1.5px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.subclass-card:hover { border-color: var(--gold); }
+.subclass-card.selected {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+.subclass-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold-bright);
+  margin-bottom: 4px;
+}
+.subclass-card p { font-size: 0.8rem; color: var(--text-dim); }
+
+/* ── Skills ─────────────────────────────────────────── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  padding: 3px 0;
+}
+.skill-item input[type="checkbox"] {
+  accent-color: var(--gold);
+  width: 14px; height: 14px;
+}
+.skill-item .skill-attr { color: var(--text-dim); font-size: 0.72rem; }
+.skills-count {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.skills-count.over { color: var(--red); }
+
+/* ── Equipment shop ─────────────────────────────────── */
+.shop-budget {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.shop-budget.over { color: var(--red); }
+
+.shop-section h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin: 10px 0 6px;
+  border-bottom: 1px solid var(--border-faint);
+  padding-bottom: 3px;
+}
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+.shop-item {
+  display: grid;
+  grid-template-columns: 1fr 70px 30px;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: var(--bg-section);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.shop-item .item-name { color: var(--text); }
+.shop-item .item-price { color: var(--text-label); text-align: right; font-size: 0.75rem; }
+.shop-item input[type="number"] {
+  width: 36px;
+  text-align: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-dim);
+  border-radius: 3px;
+  color: var(--text);
+  font-family: 'EB Garamond', serif;
+  padding: 2px;
+  font-size: 0.8rem;
+}
+
+/* ── Summary sheet ──────────────────────────────────── */
+.summary-sheet {
+  background: var(--bg-section);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px;
+}
+.summary-header {
+  text-align: center;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gold);
+}
+.summary-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--gold-bright);
+  letter-spacing: 0.1em;
+}
+.summary-header p {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-attrs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.summary-attr-box {
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  text-align: center;
+  padding: 4px 2px;
+  background: var(--bg-card);
+}
+.summary-attr-box .sa-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+.summary-attr-box .sa-score {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.summary-attr-box .sa-mod {
+  font-size: 0.75rem;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+.summary-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.summary-stat {
+  border: 1.5px solid var(--border-dim);
+  border-radius: 6px;
+  text-align: center;
+  padding: 8px 4px;
+  background: var(--bg-card);
+}
+.summary-stat .ss-val {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+.summary-stat .ss-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  color: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summary-section {
+  border: 1px solid var(--border-faint);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: var(--bg-card);
+}
+.summary-section h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border-faint);
+  padding-bottom: 3px;
+}
+.summary-section ul {
+  list-style: none;
+  padding: 0;
+}
+.summary-section li {
+  font-size: 0.82rem;
+  padding: 2px 0;
+  color: var(--text);
+}
+.summary-section li::before {
+  content: '▸ ';
+  color: var(--gold);
+}
+.summary-section p {
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.summary-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .class-grid, .subclass-grid { grid-template-columns: 1fr; }
+  .attr-grid { grid-template-columns: repeat(3, 1fr); }
+  .form-row, .form-row-3 { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .summary-stats-strip { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creador de Personaje — Mistborn D20</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="creador.css" />
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button onclick="location.href='/'">← Volver</button>
+</div>
+
+<div class="app" id="app">
+
+  <!-- ── Progress bar ── -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="step-indicators" id="step-indicators"></div>
+
+  <!-- ── Step container ── -->
+  <div class="step-container" id="step-container"></div>
+
+  <!-- ── Navigation ── -->
+  <div class="nav-buttons">
+    <button id="btn-prev" class="btn btn-secondary" onclick="prevStep()">← Anterior</button>
+    <button id="btn-next" class="btn btn-primary" onclick="nextStep()">Siguiente →</button>
+  </div>
+
+</div>
+
+<script src="creador.js"></script>
+</body>
+</html>

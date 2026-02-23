@@ -941,6 +941,18 @@ function renderHomeRoutes(sections) {
     <span class="tag tag-danger">Jugador</span>
   `;
   target.appendChild(sheetCard);
+
+  // Character creator card
+  const creadorCard = document.createElement("a");
+  creadorCard.className = "card route-card";
+  creadorCard.href = "/creador/";
+  creadorCard.innerHTML = `
+    <p class="card-num">⚔️</p>
+    <h3>Creador de Personaje</h3>
+    <p class="card-desc">Wizard paso a paso: clase, atributos, nivel, habilidades y equipo.</p>
+    <span class="tag tag-danger">Jugador</span>
+  `;
+  target.appendChild(creadorCard);
 }
 
 function renderSectionPage(section) {
