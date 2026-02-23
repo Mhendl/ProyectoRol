@@ -182,6 +182,110 @@ const CLASSES = [
   }
 ];
 
+// ── Data: Ability details (extracted from PDF) ──────────────────
+const ABILITY_DETAILS = {
+  // ── Bruto de Peltre ──
+  "Encender Peltre":{costo:"1 RM, bonus action",tirada:"Sin tirada",alcance:"Dura 1 min o hasta cortar",efecto:"+2 daño melee 1 vez por turno y ventaja en pruebas de FUE para romper/empujar.",notas:"No suma defensa absurda; el valor está en aguante + presencia."},
+  "Aguante Brutal":{costo:"1 RM, reacción",tirada:"Sin tirada o CON save DC variable",alcance:"Cuando recibís daño",efecto:"Reducís daño en 1d8 + CON (min 1). A nivel 9 sube a 1d10 + CON. También podés usarlo para evitar ser derribado.",notas:"Momento clutch defensivo."},
+  "Sobrecarga de Peltre":{costo:"2 RM, bonus action",tirada:"Sin tirada",alcance:"1 asalto",efecto:"Ventaja en ataques melee ese turno y +1d8 daño adicional en el primer impacto. Al terminar, CON save DC 12 o sufrís 1 nivel de fatiga leve.",notas:"Pico de poder con costo."},
+  "Cuerpo de Hierro":{costo:"Pasivo con Peltre activo",tirada:"Sin tirada",alcance:"Permanente",efecto:"Resistencia a daño no mágico contundente/cortante/perforante mientras Peltre esté activo.",notas:"Durabilidad del tanque."},
+  "Interposicion Violenta":{costo:"1 RM, reacción",tirada:"Sin tirada",alcance:"Aliado a 1,5 m recibe golpe",efecto:"Te movés a casilla adyacente y recibís vos el daño. Luego podés hacer un ataque de oportunidad simple.",notas:"Heroico y táctico."},
+  "Furia de Peltre":{costo:"1 RM por golpe especial",tirada:"Ataque normal",alcance:"En impacto melee",efecto:"Al impactar, elegí: empujar 3 m (FUE save), derribar (DES/FUE save), o romper cobertura (sin save si es objeto no mágico).",notas:"Control además de daño."},
+  "Imparable":{costo:"Pasivo con Peltre activo",tirada:"Sin tirada",alcance:"Mientras tengas RM y Peltre activo",efecto:"Ignorás terreno difícil no mágico y tenés ventaja contra miedo y ser reducido/empujado.",notas:"Capstone temático."},
+
+  // ── Tirador de Acero ──
+  "Tiro Preciso":{costo:"Pasivo",tirada:"Ataque a distancia d20 + DES + comp",alcance:"Si no te moviste más de la mitad",efecto:"Ignorá media cobertura o sumá +1d4 al daño del impacto.",notas:"Premia juego táctico."},
+  "Empuje de Acero":{costo:"1 RM, bonus action o parte de movimiento",tirada:"DES (Acrobacias) DC 12 opcional",alcance:"Cada turno",efecto:"Reposicionate hasta 1,5 m sin provocar OA si terminás en cobertura, o empujá un objeto metálico chico para distraer.",notas:"Control de posición, no solo daño."},
+  "Cadencia de Fuego":{costo:"1 RM",tirada:"Ataque adicional o mejora de disparo",alcance:"1/turno",efecto:"Si usás acción Atacar con arma a distancia, hacés un disparo extra con -2 al ataque o sumás +1d8 al daño del primero.",notas:"Elegí según build/arma."},
+  "Ojo de Trayectorias":{costo:"Pasivo + 1 RM opcional",tirada:"Investigación/Percepción (INT/SAB)",alcance:"Escenas tácticas",efecto:"Detectás líneas de tiro, rebotes, puntos de vigilancia. Gastando 1 RM, un aliado gana ventaja en su próximo ataque a distancia.",notas:"Brilla fuera y dentro de combate."},
+  "Rebote Tactico":{costo:"1 RM",tirada:"Ataque contra CA 10 de objeto/estructura",alcance:"Al usar un elemento metálico del mapa",efecto:"Generás distracción, soltás carga, rompés linterna, etc. Si el tiro entra, 1 enemigo hace DES save o queda sin reacción.",notas:"Cine puro en mesa."},
+  "Salva de Acero":{costo:"2 RM",tirada:"Ataque normal + save según efecto",alcance:"1/descanso corto",efecto:"Tras impactar, aplicás uno: desarmar (FUE save), clavado al suelo (DES save, velocidad 0), empuje 3 m (FUE save). Daño +1d8.",notas:"Pico de control y daño."},
+  "Dominio del Terreno":{costo:"Pasivo",tirada:"Sin tirada",alcance:"Si tenés altura/cobertura",efecto:"+2 a iniciativa y +1 CA contra ataques a distancia; primer disparo del combate suma +1d6 daño.",notas:"Capstone de posicionamiento."},
+
+  // ── Atractor de Hierro ──
+  "Tiron de Hierro":{costo:"1 RM, acción bonus o acción",tirada:"d20 + comp + INT vs FUE/DES del objetivo",alcance:"Hasta 9 m y línea de efecto",efecto:"Atraés un objeto metálico suelto automáticamente. Contra arma equipada: FUE save vs DC clase; si falla, se desarma.",notas:"No funciona igual en objetivos sin metal."},
+  "Mano Lejana":{costo:"1 RM",tirada:"Herramientas de ladrón / INT (Invest.) según caso",alcance:"Exploración",efecto:"Manipulás cadenas, llaves, pestillos o bolsas con piezas metálicas a distancia. DC 10-16 según complejidad.",notas:"Gran valor en heists y puzzles."},
+  "Tiron Potente":{costo:"2 RM",tirada:"DC clase contra objetivo o chequeo de FUE",alcance:"Acción",efecto:"Mover/atraer objeto pesado (portón, cadena, carro chico) o jalar enemigo con mucho metal 1,5-3 m si falla FUE save.",notas:"Usalo para cambiar mapas, no solo para daño."},
+  "Sentido del Metal":{costo:"Pasivo",tirada:"Percepción/Investigación con ventaja o +PB",alcance:"Exploración",efecto:"Detectás compartimentos, trampas y alijos metálicos cercanos. El DM puede darte info sin tirada si hay tiempo.",notas:"Antifrustracion de investigación."},
+  "Tiron Defensivo":{costo:"1 RM, reacción",tirada:"Sin tirada o DC clase según maniobra",alcance:"Cuando atacan a un aliado",efecto:"Atraés objeto metálico intermedio para cubrir: reducís daño en 1d6 + PB, o imponés desventaja al ataque.",notas:"Control = defensa."},
+  "Vortice de Hierro":{costo:"2 RM",tirada:"DC clase (DES o FUE según enemigo)",alcance:"Área 3×3 m con chatarra metálica",efecto:"Objetos sueltos vuelan: terreno difícil y 1d6 daño cortante/perforante al entrar o empezar turno.",notas:"Control de zona táctico."},
+  "Maestro de la Atraccion":{costo:"Pasivo",tirada:"Sin tirada",alcance:"Siempre",efecto:"Tirón de Hierro / Mano Lejana cuestan 1 RM menos la primera vez por escena, y podés combinar un tirón menor con movimiento.",notas:"Capstone de consistencia y economía."},
+
+  // ── Acechador de Estaño ──
+  "Estaño Encendido":{costo:"1 RM, bonus action",tirada:"Sin tirada",alcance:"1 min",efecto:"Ganás +PB a Percepción y ventaja en iniciativa. En escenas de rastreo, el DM puede darte detalles sensoriales extra.",notas:"Core de scout."},
+  "Cazador de Sombras":{costo:"Pasivo",tirada:"Sigilo / Supervivencia (DES/SAB)",alcance:"Seguimiento",efecto:"Ventaja al seguir rastros recientes o evitar emboscadas en zonas urbanas.",notas:"Clase investigadora."},
+  "Reflejos de Estaño":{costo:"1 RM, reacción",tirada:"DES save o sin tirada según ataque",alcance:"Cuando sos objetivo",efecto:"Movete 1,5 m o reducí daño de área en 1d8 + DES. Si el ataque era de oportunidad, lo anulás.",notas:"Defensa por reflejos."},
+  "Lectura del Entorno":{costo:"Pasivo",tirada:"Investigación/Percepción DC 10-15",alcance:"Exploración",efecto:"Con 1 minuto de observación, obtenés 2-3 verdades del lugar (ruta de patrulla, coberturas, salida, zona peligrosa).",notas:"Excelente para grupos que investigan todo."},
+  "Enfoque Sensorial":{costo:"2 RM",tirada:"CON save DC 12 al final si se fuerza",alcance:"Escena corta",efecto:"Ignorás penalidades de niebla/ruido/oscuridad parcial y no sufrís desventaja por visión reducida común.",notas:"Brilla en Greyhaven y fundición."},
+  "Prediccion de Emboscada":{costo:"1 RM al inicio del combate",tirada:"Sin tirada",alcance:"Inicio de combate",efecto:"Elegí 1 enemigo visible: el primer ataque de cada aliado contra ese objetivo suma +1 al ataque hasta tu próximo turno.",notas:"Buff táctico liviano."},
+  "Depredador de Niebla":{costo:"Pasivo con RM ≥1",tirada:"Sin tirada",alcance:"Siempre que quede RM",efecto:"No pueden sorprenderte fácilmente; ventaja en Percepción pasiva contra trampas y emboscadas no mágicas.",notas:"Capstone de scout total."},
+
+  // ── Embaucador de Zinc/Latón ──
+  "Irritar o Calmar":{costo:"1 RM, acción bonus",tirada:"DC clase (SAB save del objetivo)",alcance:"A 9 m, 1 criatura consciente",efecto:"Aplicás un empujón emocional leve (miedo, irritación, calma). -1 al próximo ataque/chequeo o +1 a negociación social a tu favor, 1 ronda.",notas:"No es control mental total."},
+  "Lectura Emocional":{costo:"Pasivo",tirada:"Perspicacia (SAB) con ventaja o +PB",alcance:"Escena social",efecto:"Detectás emoción dominante (miedo, duda, ira, codicia) si tenés una mínima interacción.",notas:"Te ayuda a elegir tono correcto."},
+  "Onda Emocional":{costo:"2 RM, acción",tirada:"DC clase (SAB save)",alcance:"Pequeña área o grupo chico",efecto:"Afecta hasta 3 criaturas: reduce daño (calma) o penaliza concentración/ataques (irritación) por 1 ronda.",notas:"Control fuerte pero no absoluto."},
+  "Rumorista Nato":{costo:"Pasivo",tirada:"Persuasión/Engaño/Investigación (CAR/INT)",alcance:"Downtime y ciudad",efecto:"Conseguís info y contactos con menos tiempo o costo. El DM puede ofrecer rumor verdadero + rumor falso.",notas:"Brilla en campañas urbanas."},
+  "Quiebre de Voluntad":{costo:"2 RM",tirada:"DC clase (SAB) con desventaja si objetivo ya está asustado/herido grave",alcance:"1 objetivo vulnerable",efecto:"Le imponés duda, miedo o impulsividad: no puede acercarse, o debe elegir entre moverse o atacar en su turno.",notas:"Gran control en momento clave."},
+  "Teatro de Masas":{costo:"3 RM",tirada:"DC clase de grupo (SAB)",alcance:"Multitud / taberna / patio",efecto:"Cambiás el clima de una masa: pánico, calma, furia, silencio. El DM traduce en ventajas de huida, caos o apertura de negociación.",notas:"No funciona igual en tropas de élite."},
+  "Maestro del Pulso Social":{costo:"Pasivo",tirada:"Sin tirada al entrar en escena social",alcance:"Escenas sociales",efecto:"Recibís 3 datos tácticos sociales: quién lidera, quién duda, quién odia a quién, quién se puede comprar, etc.",notas:"Capstone narrativo poderoso."},
+
+  // ── Apagador de Cobre ──
+  "Nube de Cobre":{costo:"1 RM, acción bonus",tirada:"Sin tirada",alcance:"Área 3 m, 1 min",efecto:"Ocultás pulsos/uso metálico de aliados dentro del área y das +PB a Sigilo grupal contra detección especial.",notas:"Defensa de grupo."},
+  "Cobertura Mental":{costo:"1 RM, reacción",tirada:"Sin tirada o DC clase opuesta",alcance:"Cuando un aliado sufre presión/manipulación",efecto:"Da ventaja al aliado en SAB/CAR save contra miedo, intimidación o influencia metálica narrativa.",notas:"Soporte anti-control."},
+  "Cupula de Cobre":{costo:"2 RM",tirada:"Sin tirada",alcance:"Área 6 m, 1 min",efecto:"Versión mejorada de Nube: mayor radio/duración y +1 extra a chequeos de sigilo/infiltración del grupo.",notas:"Pico de clase en heists."},
+  "Ritmo de Silencio":{costo:"Pasivo",tirada:"Sigilo grupal con guía del personaje",alcance:"Tras 1 minuto coordinando",efecto:"Si el grupo te sigue, el peor chequeo de Sigilo se puede repetir 1 vez por escena.",notas:"Apoya a jugadores nuevos."},
+  "Anulacion Parcial":{costo:"2 RM, reacción",tirada:"Chequeo opuesto o save del enemigo vs DC clase",alcance:"Cuando detectan/leen a un aliado",efecto:"Negás o debilitás una detección puntual. Ej.: un rastreador pierde el pulso, un guardia duda.",notas:"Clutch de soporte."},
+  "Sombra de Banda":{costo:"3 RM",tirada:"Sin tirada",alcance:"Escena corta de infiltración/escape",efecto:"El grupo gana ventaja en su primer chequeo de Sigilo y no deja rastros obvios metálicos/sonoros por una secuencia corta.",notas:"Muy fuerte, limitado por costo."},
+  "Maestro del Velo":{costo:"Pasivo",tirada:"Sin tirada",alcance:"Siempre",efecto:"Tus velos duran +1 ronda/escena breve y cuestan -1 RM la primera vez por encuentro.",notas:"Economía y fiabilidad."},
+
+  // ── Sabueso de Bronce ──
+  "Escuchar Pulsos":{costo:"1 RM, acción bonus",tirada:"Percepción (SAB) o Arcana/Investigación (INT)",alcance:"Radio 9-18 m según escena",efecto:"Percibís actividad metálica / pulsos cercanos. Info base: hay algo, dirección aproximada, intensidad.",notas:"No siempre revela identidad exacta."},
+  "Foco de Bronce":{costo:"1 RM",tirada:"Chequeo INT (Arcana/Invest.) DC 12-16",alcance:"Al analizar pulso activo",efecto:"Distinguís categoría: físico, emocional, ocultación, aparato, irregular.",notas:"Sube valor investigativo."},
+  "Lectura Profunda":{costo:"2 RM",tirada:"INT check DC 14-18",alcance:"Acción o 1 ronda de foco",efecto:"Obtenés origen, pulso dominante y posible estado (estable/inestable). Contra enemigos, podés revelar una resistencia/debilidad narrativa.",notas:"Fuerte si el jugador presta atención."},
+  "Oido de Laboratorio":{costo:"Pasivo",tirada:"Investigación/Percepción con ventaja",alcance:"Escenas técnicas",efecto:"Detectás nodos, vibraciones, conductos activos, trampas mecánicas.",notas:"Pensado para la fundición/laboratorio."},
+  "Interferencia de Bronce":{costo:"2 RM, reacción",tirada:"DC clase vs SAB/INT de quien detecta",alcance:"Respuesta a lectura enemiga",efecto:"Metés 'ruido' en una detección. El enemigo obtiene info falsa o incompleta por 1 ronda/escena.",notas:"No cancela todo, pero salva al grupo."},
+  "Mapa de Pulsos":{costo:"3 RM, acción",tirada:"Sin tirada; opcional INT check para detalle extra",alcance:"Escena corta",efecto:"Escaneás un área y marcás 2-4 puntos de actividad para el grupo (nodo, guardia con metal, fuente inestable, ruta segura).",notas:"Excelente en mapas complejos."},
+  "Perceptor Experto":{costo:"Pasivo con RM ≥1",tirada:"Sin tirada",alcance:"Siempre",efecto:"Actividad metálica importante cerca tuyo casi no pasa desapercibida. Reducís sorpresas y trampas técnicas.",notas:"Capstone de información."},
+
+  // ── Especialista Mundano ──
+  "Oficio de la Calle":{costo:"Sin RM",tirada:"Chequeos según oficio",alcance:"Siempre",efecto:"Elegís un oficio (cerrajero, contrabandista, estibador, matón, falsificador, chatarrero, curandero). Ganás competencia temática y 1 rasgo útil.",notas:"Clase para creatividad."},
+  "Contactos de Greyhaven":{costo:"Sin RM",tirada:"Persuasión/Investigación/Carisma",alcance:"Ciudad y downtime",efecto:"Tenés una red de favores. 1 vez por sesión podrías obtener un dato, refugio o presentación creíble a costo razonable.",notas:"Poder social/logístico consistente."},
+  "Recurso Improvisado":{costo:"Sin RM, 1/descanso corto",tirada:"Herramientas o INT/DES check DC 10-16",alcance:"Acción o corto tiempo de preparación",efecto:"Armas improvisadas mejores, traba de puerta, distracción, cable, aceite, gancho, etc. El DM define efecto moderado.",notas:"Pico creativo de la clase."},
+  "Yo Conozco a Alguien":{costo:"Sin RM, 1/sesión",tirada:"Sin tirada o CAR check según riesgo",alcance:"Ciudad",efecto:"Invocás un contacto plausible (reparador, estibador, corredor de apuestas, enfermera de barrio). No resuelve todo: abre una ruta.",notas:"Excelente para no trabar sesiones."},
+  "Instinto de Superviviente":{costo:"Pasivo + reacción",tirada:"DES o SAB save mejorado",alcance:"Emboscadas y retiradas",efecto:"Ventaja en checks para escapar, resistir pánico de calle y reaccionar a traiciones/emboscadas.",notas:"Muy temático para Greyhaven."},
+  "Maestro del Oficio":{costo:"Pasivo",tirada:"Sin tirada",alcance:"Siempre",efecto:"Tus acciones de oficio cuestan menos tiempo, tus herramientas improvisadas duran más y el DM debería premiar tus planes con ventajas reales.",notas:"Capstone de consistencia total."},
+  "Despertar Opcional":{costo:"Decisión de campaña",tirada:"Según opción",alcance:"Nivel 10",efecto:"Elegís: seguir mundano (rasgo grande de oficio), acceso a fragmento controlado (uso muy limitado) o inicio de despertar metálico básico.",notas:"Gancho para segunda temporada."},
+
+  // ── Genéricos ──
+  "Mejora de Atributo / Talento":{costo:"—",tirada:"—",alcance:"—",efecto:"+2 a un atributo (máx 20) o un talento a elección.",notas:"Se obtiene en niveles 4 y 8."},
+  "Especializacion":{costo:"Rasgo",tirada:"—",alcance:"Permanente",efecto:"Elegís tu subespecialización de clase.",notas:"Define tu estilo de juego."},
+
+  // ── Subespecializaciones (lookup by subclass name) ──
+  "Muro":{costo:"Rasgo pasivo",tirada:"Según opción",alcance:"Permanente",efecto:"Aliados adyacentes ganan +1 CA contra 1 enemigo que marques.",notas:"Estilo defensivo."},
+  "Rompedor":{costo:"Rasgo pasivo",tirada:"Según opción",alcance:"Permanente",efecto:"+1d6 daño a objetos/cobertura con Peltre activo.",notas:"Estilo ofensivo."},
+  "Perseguidor":{costo:"Rasgo pasivo",tirada:"Según opción",alcance:"Permanente",efecto:"+3 m de movimiento cuando perseguís o cargás.",notas:"Estilo móvil."},
+  "Francotirador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"+3 m alcance eficaz y crítico expande con 19-20, 1/descanso corto.",notas:"Daño preciso."},
+  "Hostigador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Tras impactar, movete 1,5 m gratis.",notas:"Movilidad agresiva."},
+  "Controlador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"En impacto, puede bajar velocidad del objetivo -3 m (CON save).",notas:"Control táctico."},
+  "Desarmador":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"+2 a intentos de desarme con Tirón de Hierro.",notas:"Especialista en desarme."},
+  "Control":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"Mover cobertura metálica chica 1,5 m como acción bonus.",notas:"Manipulación del campo."},
+  "Recuperador":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"Recuperar item metálico de aliado caído como acción bonus a 6 m.",notas:"Soporte táctico."},
+  "Rastreador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Mejor seguimiento y marca de objetivo; seguir fuentes móviles.",notas:"Explorador nato."},
+  "Centinela":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Bonus a detectar amenazas para aliados cercanos.",notas:"Vigía del grupo."},
+  "Infiltrador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"+PB a herramientas/sigilo en entradas clandestinas.",notas:"Acceso encubierto."},
+  "Instigador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Potencia penalizadores y caos emocional.",notas:"Control agresivo."},
+  "Pacificador":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Mejora desescalada y apoyo emocional a aliados.",notas:"Soporte social."},
+  "Mixto":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Cambia según situación con menor potencia pero mayor versatilidad.",notas:"Flexibilidad."},
+  "Guardador":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"Mejora protección a aliados cercanos con tu Nube de Cobre.",notas:"Escudo del grupo."},
+  "Contravigilante":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"Detecta intentos de rastreo y deja pistas falsas.",notas:"Contra-inteligencia."},
+  "Saboteador":{costo:"Rasgo",tirada:"Según opción",alcance:"Permanente",efecto:"Potencia infiltración y retirada silenciosa.",notas:"Especialista en sigilo."},
+  "Analista":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Entiende patrones y ritmos de pulsos metálicos.",notas:"Investigador de patrones."},
+  "Contradetective":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Detecta inconsistencias y cebos en detecciones enemigas.",notas:"Anti-engaño."},
+  "Operativo":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Combate callejero y aguante mejorados.",notas:"Peleador de calle."},
+  "Tecnico":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Sabotaje, trampas y herramientas mejoradas.",notas:"Ingeniero de campo."},
+  "Fantasma":{costo:"Rasgo",tirada:"Según subestilo",alcance:"Permanente",efecto:"Sigilo, escape y movimiento urbano mejorados.",notas:"Sombra urbana."},
+};
+
 // ── Data: Attributes ────────────────────────────────────────────
 const ATTR_NAMES = ["FUE","DES","CON","INT","SAB","CAR"];
 const ATTR_FULL  = {FUE:"Fuerza",DES:"Destreza",CON:"Constitución",INT:"Inteligencia",SAB:"Sabiduría",CAR:"Carisma"};
@@ -943,7 +1047,13 @@ function exportJSON(){
     bm, rm: getRM(cls, lvl, state.attrs), dc: getDC(cls, bm, state.attrs),
     saves: cls?cls.saves:[],
     skills: state.skillProfs,
-    abilities: getAbilitiesUpToLevel(cls, lvl).map(a=>a.name),
+    abilities: getAbilitiesUpToLevel(cls, lvl).map(a=>{
+      let name = a.name;
+      let detailKey = name;
+      if(name==="Especializacion"&&state.subclass){ name="Especialización: "+state.subclass; detailKey=state.subclass; }
+      const d=ABILITY_DETAILS[detailKey]||ABILITY_DETAILS[name]||{};
+      return {name, costo:d.costo||"", tirada:d.tirada||"", alcance:d.alcance||"", efecto:d.efecto||"", notas:d.notas||""};
+    }),
     equipment: Object.entries(state.equipment).filter(([,q])=>q>0).map(([id,q])=>{
       const item = EQUIPMENT.find(e=>e.id===id);
       return {name:item.name, qty:q};
@@ -981,8 +1091,14 @@ function fillSheet(){
     saves: cls ? cls.saves : [],
     skills: state.skillProfs,
     abilities: getAbilitiesUpToLevel(cls, lvl).map(a => {
-      if (a.name === "Especializacion" && state.subclass) return "Especialización: " + state.subclass;
-      return a.name;
+      let name = a.name;
+      let detailKey = name;
+      if (name === "Especializacion" && state.subclass) {
+        name = "Especialización: " + state.subclass;
+        detailKey = state.subclass;
+      }
+      const d = ABILITY_DETAILS[detailKey] || ABILITY_DETAILS[name] || {};
+      return { name, costo: d.costo||"", tirada: d.tirada||"", alcance: d.alcance||"", efecto: d.efecto||"", notas: d.notas||"" };
     }),
     equipment: Object.entries(state.equipment).filter(([,q]) => q > 0).map(([id, q]) => {
       const item = EQUIPMENT.find(e => e.id === id);

@@ -854,6 +854,61 @@
         </div>
       </div>
 
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1057,10 +1112,20 @@
   const abBox=findSection("Habilidades de Clase");
   if(abBox){
     const entries=abBox.querySelectorAll(".ability-entry");
-    (data.abilities||[]).forEach((name,i)=>{
+    const DETAIL_KEYS=["costo","tirada","alcance","efecto","notas"];
+    (data.abilities||[]).forEach((ab,i)=>{
       if(i>=entries.length) return;
-      const inp=entries[i].querySelector('input[type="text"]');
-      if(inp) inp.value=name;
+      const entry=entries[i];
+      // ab can be a string (legacy) or object {name,costo,tirada,alcance,efecto,notas}
+      const isObj=typeof ab==="object";
+      const nameInp=entry.querySelector('input[type="text"]');
+      if(nameInp) nameInp.value=isObj?ab.name:ab;
+      if(isObj){
+        const detailInputs=entry.querySelectorAll(".ability-detail input");
+        DETAIL_KEYS.forEach((k,j)=>{
+          if(detailInputs[j]&&ab[k]) detailInputs[j].value=ab[k];
+        });
+      }
     });
   }
 
