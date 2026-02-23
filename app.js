@@ -895,8 +895,8 @@ const SECTION_DESCRIPTIONS = {
   campana:    "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
 };
 
-// Sections shown in the home nav (in order). campana is rendered as locked.
-const HOME_SLUGS = ["jugador", "clases", "compendio", "campana"];
+// Sections shown in the home nav (in order). campana omitted intentionally.
+const HOME_SLUGS = ["jugador", "clases", "compendio"];
 
 function renderHomeRoutes(sections) {
   const target = document.getElementById("routes-grid");
