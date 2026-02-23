@@ -6,20 +6,36 @@
   <title>Hoja de Personaje — Mistborn D20</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
+    /* ── Variables ───────────────────────────────────────── */
+    :root {
+      --bg-sheet: #1c1c1e;
+      --bg-section: #252528;
+      --bg-input: rgba(255,255,255,0.04);
+      --border: #c9a84c;
+      --border-dim: #5a5040;
+      --border-faint: #3a362e;
+      --gold: #c9a84c;
+      --gold-bright: #e8d48b;
+      --text: #e0d6c2;
+      --text-dim: #9a8e78;
+      --text-label: #b8a882;
+      --text-heading: #e8d48b;
+    }
+
     /* ── Reset & Print ──────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     @page { size: A4 portrait; margin: 8mm; }
     @media print {
-      body { background: #fff !important; }
+      body { background: #000 !important; }
       .no-print { display: none !important; }
-      .sheet { box-shadow: none !important; border: none !important; page-break-after: always; }
+      .sheet { box-shadow: none !important; page-break-after: always; }
     }
 
     /* ── Body ───────────────────────────────────────────── */
     body {
       font-family: 'EB Garamond', Georgia, serif;
-      background: #1a1a2e;
-      color: #1a1a1a;
+      background: #0d0d0f;
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -40,38 +56,38 @@
       font-family: 'Cinzel', serif;
       font-size: 0.8rem;
       padding: 8px 18px;
-      border: 1px solid #c9a84c;
-      background: #16213e;
-      color: #c9a84c;
+      border: 1px solid var(--gold);
+      background: #111113;
+      color: var(--gold);
       border-radius: 6px;
       cursor: pointer;
       letter-spacing: 0.04em;
     }
     .toolbar button:hover {
-      background: #c9a84c;
-      color: #16213e;
+      background: var(--gold);
+      color: #111113;
     }
 
     /* ── Sheet ──────────────────────────────────────────── */
     .sheet {
       width: 210mm;
       min-height: 297mm;
-      background: #fdf6e3;
-      border: 2px solid #8b7d5e;
+      background: var(--bg-sheet);
+      border: 2px solid var(--border);
       border-radius: 4px;
       padding: 12mm 10mm;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 0 40px rgba(201,168,76,0.08), 0 4px 20px rgba(0,0,0,0.6);
       position: relative;
       overflow: hidden;
     }
 
-    /* Aged parchment effect */
+    /* Subtle corner glow */
     .sheet::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 80%, rgba(139,125,94,0.06) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 10% 5%, rgba(201,168,76,0.05) 0%, transparent 40%),
+                  radial-gradient(ellipse at 90% 95%, rgba(201,168,76,0.03) 0%, transparent 40%);
       pointer-events: none;
     }
 
@@ -81,18 +97,18 @@
       font-family: 'Cinzel', serif;
       font-size: 1.3rem;
       font-weight: 700;
-      color: #2c2520;
+      color: var(--gold-bright);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       padding-bottom: 6px;
-      border-bottom: 2px solid #8b7d5e;
+      border-bottom: 2px solid var(--gold);
       margin-bottom: 10px;
     }
     .sheet-title small {
       display: block;
       font-size: 0.55em;
       letter-spacing: 0.06em;
-      color: #6b5d4a;
+      color: var(--text-dim);
       font-weight: 400;
       margin-top: 2px;
     }
@@ -100,25 +116,28 @@
     /* ── Input fields ──────────────────────────────────── */
     input[type="text"], input[type="number"], textarea {
       border: none;
-      border-bottom: 1px solid #8b7d5e;
-      background: transparent;
+      border-bottom: 1px solid var(--border-dim);
+      background: var(--bg-input);
       font-family: 'EB Garamond', serif;
       font-size: 0.85rem;
-      color: #2c2520;
+      color: var(--text);
       outline: none;
       width: 100%;
-      padding: 1px 2px;
+      padding: 2px 4px;
     }
+    input:focus, textarea:focus { border-color: var(--gold); }
     input[type="number"] { width: 40px; text-align: center; -moz-appearance: textfield; }
     input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
     textarea {
-      border: 1px solid #c5b899;
+      border: 1px solid var(--border-dim);
       border-radius: 3px;
       resize: vertical;
       min-height: 50px;
       padding: 4px 6px;
       font-size: 0.8rem;
+      background: var(--bg-input);
     }
+    ::placeholder { color: var(--text-dim); opacity: 0.5; }
 
     /* ── Grid layout ───────────────────────────────────── */
     .top-row {
@@ -132,7 +151,7 @@
       font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #6b5d4a;
+      color: var(--text-label);
       font-weight: 700;
     }
 
@@ -150,12 +169,12 @@
       gap: 4px;
     }
     .attr-box {
-      border: 2px solid #8b7d5e;
+      border: 2px solid var(--gold);
       border-radius: 6px;
       text-align: center;
       padding: 3px 2px 6px;
       position: relative;
-      background: rgba(253,246,227,0.7);
+      background: var(--bg-section);
     }
     .attr-box .attr-name {
       font-family: 'Cinzel', serif;
@@ -163,13 +182,15 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #4a3f32;
+      color: var(--gold);
     }
     .attr-box .attr-score input {
       font-size: 1.3rem;
       font-weight: 700;
       border-bottom: none;
       width: 42px;
+      color: var(--text);
+      background: transparent;
     }
     .attr-box .attr-mod {
       position: absolute;
@@ -178,9 +199,9 @@
       transform: translateX(-50%);
       width: 28px;
       height: 22px;
-      border: 2px solid #8b7d5e;
+      border: 2px solid var(--gold);
       border-radius: 50%;
-      background: #fdf6e3;
+      background: var(--bg-sheet);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -190,14 +211,17 @@
       font-weight: 700;
       border-bottom: none;
       width: 24px;
+      color: var(--gold-bright);
+      background: transparent;
     }
 
     /* ── Section boxes ─────────────────────────────────── */
     .section-box {
-      border: 1.5px solid #8b7d5e;
+      border: 1.5px solid var(--border-dim);
       border-radius: 6px;
       padding: 6px 8px;
       margin-bottom: 6px;
+      background: var(--bg-section);
     }
     .section-box h3 {
       font-family: 'Cinzel', serif;
@@ -205,8 +229,8 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #4a3f32;
-      border-bottom: 1px solid #c5b899;
+      color: var(--gold);
+      border-bottom: 1px solid var(--border-faint);
       padding-bottom: 2px;
       margin-bottom: 4px;
     }
@@ -219,17 +243,19 @@
       margin-bottom: 8px;
     }
     .stat-circle {
-      border: 2px solid #8b7d5e;
+      border: 2px solid var(--gold);
       border-radius: 8px;
       text-align: center;
       padding: 6px 2px 4px;
-      background: rgba(201,168,76,0.06);
+      background: var(--bg-section);
     }
     .stat-circle .stat-val input {
       font-size: 1.2rem;
       font-weight: 700;
       border-bottom: none;
       width: 44px;
+      color: var(--gold-bright);
+      background: transparent;
     }
     .stat-circle .stat-label {
       font-family: 'Cinzel', serif;
@@ -237,7 +263,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: #6b5d4a;
+      color: var(--text-label);
     }
 
     /* ── RM tracker ────────────────────────────────────── */
@@ -249,12 +275,14 @@
     .rm-pip {
       width: 100%;
       aspect-ratio: 1;
-      border: 1.5px solid #8b7d5e;
+      border: 1.5px solid var(--gold);
       border-radius: 50%;
       background: transparent;
       cursor: pointer;
+      transition: background 0.15s;
     }
-    .rm-pip.filled { background: #c9a84c; }
+    .rm-pip:hover { background: rgba(201,168,76,0.2); }
+    .rm-pip.filled { background: var(--gold); box-shadow: 0 0 6px rgba(201,168,76,0.4); }
 
     /* ── Skills ─────────────────────────────────────────── */
     .skill-list {
@@ -268,15 +296,16 @@
       gap: 4px;
       font-size: 0.72rem;
       padding: 1px 0;
+      color: var(--text);
     }
-    .skill-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: #8b7d5e; }
+    .skill-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: var(--gold); }
     .skill-row input[type="text"] {
       width: 22px;
       text-align: center;
       font-size: 0.72rem;
-      border-bottom: 1px solid #c5b899;
+      border-bottom: 1px solid var(--border-dim);
     }
-    .skill-name { color: #4a3f32; }
+    .skill-row small { color: var(--text-dim); }
 
     /* ── Saves ──────────────────────────────────────────── */
     .save-list {
@@ -289,13 +318,14 @@
       align-items: center;
       gap: 3px;
       font-size: 0.72rem;
+      color: var(--text);
     }
-    .save-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: #8b7d5e; }
+    .save-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: var(--gold); }
     .save-row input[type="text"] {
       width: 22px;
       text-align: center;
       font-size: 0.72rem;
-      border-bottom: 1px solid #c5b899;
+      border-bottom: 1px solid var(--border-dim);
     }
 
     /* ── Attack table ──────────────────────────────────── */
@@ -308,13 +338,13 @@
       font-family: 'Cinzel', serif;
       font-size: 0.55rem;
       text-transform: uppercase;
-      color: #6b5d4a;
-      border-bottom: 1px solid #8b7d5e;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
       padding: 2px 3px;
       text-align: left;
     }
     .atk-table td {
-      border-bottom: 1px solid #ddd4c0;
+      border-bottom: 1px solid var(--border-faint);
       padding: 3px;
     }
     .atk-table input { font-size: 0.72rem; }
@@ -335,7 +365,7 @@
     .metal-row .metal-name {
       font-weight: 700;
       min-width: 56px;
-      color: #4a3f32;
+      color: var(--gold);
     }
     .metal-row input[type="text"] {
       flex: 1;
@@ -350,16 +380,17 @@
       text-align: center;
     }
     .fatigue-cell {
-      border: 1px solid #8b7d5e;
+      border: 1px solid var(--border-dim);
       border-radius: 4px;
       padding: 4px 2px;
       font-size: 0.6rem;
+      background: var(--bg-input);
     }
     .fatigue-cell .fat-level {
       font-family: 'Cinzel', serif;
       font-weight: 700;
       font-size: 0.55rem;
-      color: #6b5d4a;
+      color: var(--text-label);
     }
 
     /* ── Equipment & Notes ──────────────────────────────── */
@@ -389,9 +420,9 @@
       align-items: center;
       font-size: 0.72rem;
     }
-    .death-saves span { color: #6b5d4a; font-weight: 700; }
+    .death-saves span { color: var(--text-label); font-weight: 700; }
     .death-pips { display: flex; gap: 3px; }
-    .death-pips input[type="checkbox"] { width: 12px; height: 12px; accent-color: #8b7d5e; }
+    .death-pips input[type="checkbox"] { width: 12px; height: 12px; accent-color: var(--gold); }
 
     /* ── Page 2 ─────────────────────────────────────────── */
     .traits-grid {
@@ -407,18 +438,34 @@
       gap: 3px;
     }
     .ability-entry {
-      border: 1px solid #c5b899;
+      border: 1px solid var(--border-dim);
       border-radius: 4px;
       padding: 4px 6px;
+      background: rgba(201,168,76,0.03);
     }
-    .ability-entry input { font-weight: 700; margin-bottom: 2px; }
+    .ability-entry input { font-weight: 700; margin-bottom: 2px; color: var(--gold-bright); }
     .ability-entry .ability-detail {
       display: grid;
       grid-template-columns: 70px 1fr;
       gap: 1px 4px;
       font-size: 0.68rem;
     }
-    .ability-entry .ability-detail span { color: #6b5d4a; font-weight: 700; }
+    .ability-entry .ability-detail span { color: var(--text-label); font-weight: 700; }
+
+    /* ── Money labels ──────────────────────────────────── */
+    .money-label { font-weight: 700; min-width: 50px; color: var(--gold); }
+
+    /* ── Portrait placeholder ──────────────────────────── */
+    .portrait-box {
+      border: 1px dashed var(--border-dim);
+      border-radius: 6px;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
   </style>
 </head>
 <body>
@@ -826,7 +873,7 @@
   <div class="section-box" style="margin-top:8px;">
     <h3>Apariencia y Descripción Física</h3>
     <div style="display:grid; grid-template-columns: 1fr 2fr; gap:8px;">
-      <div style="border:1px dashed #c5b899; border-radius:6px; min-height:100px; display:flex; align-items:center; justify-content:center; color:#c5b899; font-size:0.75rem;">
+      <div class="portrait-box">
         Retrato
       </div>
       <div>
