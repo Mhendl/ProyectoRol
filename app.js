@@ -929,6 +929,18 @@ function renderHomeRoutes(sections) {
     }
     target.appendChild(card);
   });
+
+  // Character sheet card
+  const sheetCard = document.createElement("a");
+  sheetCard.className = "card route-card";
+  sheetCard.href = "/hoja/";
+  sheetCard.innerHTML = `
+    <p class="card-num">📝</p>
+    <h3>Hoja de Personaje</h3>
+    <p class="card-desc">Hoja rellenable e imprimible. Stats, RM, metales, equipo y habilidades.</p>
+    <span class="tag tag-danger">Jugador</span>
+  `;
+  target.appendChild(sheetCard);
 }
 
 function renderSectionPage(section) {

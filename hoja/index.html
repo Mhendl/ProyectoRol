@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoja de Personaje — Mistborn D20</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Print ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4 portrait; margin: 8mm; }
+    @media print {
+      body { background: #fff !important; }
+      .no-print { display: none !important; }
+      .sheet { box-shadow: none !important; border: none !important; page-break-after: always; }
+    }
+
+    /* ── Body ───────────────────────────────────────────── */
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #1a1a2e;
+      color: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    /* ── Print / Back buttons ───────────────────────────── */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+    }
+    .toolbar button {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      padding: 8px 18px;
+      border: 1px solid #c9a84c;
+      background: #16213e;
+      color: #c9a84c;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .toolbar button:hover {
+      background: #c9a84c;
+      color: #16213e;
+    }
+
+    /* ── Sheet ──────────────────────────────────────────── */
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fdf6e3;
+      border: 2px solid #8b7d5e;
+      border-radius: 4px;
+      padding: 12mm 10mm;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Aged parchment effect */
+    .sheet::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(139,125,94,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ── Title ──────────────────────────────────────────── */
+    .sheet-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2c2520;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #8b7d5e;
+      margin-bottom: 10px;
+    }
+    .sheet-title small {
+      display: block;
+      font-size: 0.55em;
+      letter-spacing: 0.06em;
+      color: #6b5d4a;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* ── Input fields ──────────────────────────────────── */
+    input[type="text"], input[type="number"], textarea {
+      border: none;
+      border-bottom: 1px solid #8b7d5e;
+      background: transparent;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.85rem;
+      color: #2c2520;
+      outline: none;
+      width: 100%;
+      padding: 1px 2px;
+    }
+    input[type="number"] { width: 40px; text-align: center; -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    textarea {
+      border: 1px solid #c5b899;
+      border-radius: 3px;
+      resize: vertical;
+      min-height: 50px;
+      padding: 4px 6px;
+      font-size: 0.8rem;
+    }
+
+    /* ── Grid layout ───────────────────────────────────── */
+    .top-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .top-row .field { display: flex; flex-direction: column; }
+    .top-row label, .field-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b5d4a;
+      font-weight: 700;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Attribute block ───────────────────────────────── */
+    .attr-column {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .attr-box {
+      border: 2px solid #8b7d5e;
+      border-radius: 6px;
+      text-align: center;
+      padding: 3px 2px 6px;
+      position: relative;
+      background: rgba(253,246,227,0.7);
+    }
+    .attr-box .attr-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4a3f32;
+    }
+    .attr-box .attr-score input {
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-bottom: none;
+      width: 42px;
+    }
+    .attr-box .attr-mod {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 22px;
+      border: 2px solid #8b7d5e;
+      border-radius: 50%;
+      background: #fdf6e3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .attr-box .attr-mod input {
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-bottom: none;
+      width: 24px;
+    }
+
+    /* ── Section boxes ─────────────────────────────────── */
+    .section-box {
+      border: 1.5px solid #8b7d5e;
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+    }
+    .section-box h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #4a3f32;
+      border-bottom: 1px solid #c5b899;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+    }
+
+    /* ── Combat strip ──────────────────────────────────── */
+    .combat-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .stat-circle {
+      border: 2px solid #8b7d5e;
+      border-radius: 8px;
+      text-align: center;
+      padding: 6px 2px 4px;
+      background: rgba(201,168,76,0.06);
+    }
+    .stat-circle .stat-val input {
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-bottom: none;
+      width: 44px;
+    }
+    .stat-circle .stat-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6b5d4a;
+    }
+
+    /* ── RM tracker ────────────────────────────────────── */
+    .rm-tracker {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 2px;
+    }
+    .rm-pip {
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1.5px solid #8b7d5e;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+    .rm-pip.filled { background: #c9a84c; }
+
+    /* ── Skills ─────────────────────────────────────────── */
+    .skill-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px 12px;
+    }
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      padding: 1px 0;
+    }
+    .skill-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: #8b7d5e; }
+    .skill-row input[type="text"] {
+      width: 22px;
+      text-align: center;
+      font-size: 0.72rem;
+      border-bottom: 1px solid #c5b899;
+    }
+    .skill-name { color: #4a3f32; }
+
+    /* ── Saves ──────────────────────────────────────────── */
+    .save-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px 8px;
+    }
+    .save-row {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.72rem;
+    }
+    .save-row input[type="checkbox"] { width: 11px; height: 11px; accent-color: #8b7d5e; }
+    .save-row input[type="text"] {
+      width: 22px;
+      text-align: center;
+      font-size: 0.72rem;
+      border-bottom: 1px solid #c5b899;
+    }
+
+    /* ── Attack table ──────────────────────────────────── */
+    .atk-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.72rem;
+    }
+    .atk-table th {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      color: #6b5d4a;
+      border-bottom: 1px solid #8b7d5e;
+      padding: 2px 3px;
+      text-align: left;
+    }
+    .atk-table td {
+      border-bottom: 1px solid #ddd4c0;
+      padding: 3px;
+    }
+    .atk-table input { font-size: 0.72rem; }
+
+    /* ── Metal grid ─────────────────────────────────────── */
+    .metal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 8px;
+    }
+    .metal-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      padding: 1px 0;
+    }
+    .metal-row .metal-name {
+      font-weight: 700;
+      min-width: 56px;
+      color: #4a3f32;
+    }
+    .metal-row input[type="text"] {
+      flex: 1;
+      font-size: 0.72rem;
+    }
+
+    /* ── Fatigue track ──────────────────────────────────── */
+    .fatigue-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      text-align: center;
+    }
+    .fatigue-cell {
+      border: 1px solid #8b7d5e;
+      border-radius: 4px;
+      padding: 4px 2px;
+      font-size: 0.6rem;
+    }
+    .fatigue-cell .fat-level {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.55rem;
+      color: #6b5d4a;
+    }
+
+    /* ── Equipment & Notes ──────────────────────────────── */
+    .equip-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .equip-line {
+      display: grid;
+      grid-template-columns: 1fr 60px 50px;
+      gap: 4px;
+      font-size: 0.72rem;
+    }
+    .equip-line input { font-size: 0.72rem; }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* ── Death saves ────────────────────────────────────── */
+    .death-saves {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.72rem;
+    }
+    .death-saves span { color: #6b5d4a; font-weight: 700; }
+    .death-pips { display: flex; gap: 3px; }
+    .death-pips input[type="checkbox"] { width: 12px; height: 12px; accent-color: #8b7d5e; }
+
+    /* ── Page 2 ─────────────────────────────────────────── */
+    .traits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .trait-box textarea { min-height: 60px; }
+
+    .abilities-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ability-entry {
+      border: 1px solid #c5b899;
+      border-radius: 4px;
+      padding: 4px 6px;
+    }
+    .ability-entry input { font-weight: 700; margin-bottom: 2px; }
+    .ability-entry .ability-detail {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 1px 4px;
+      font-size: 0.68rem;
+    }
+    .ability-entry .ability-detail span { color: #6b5d4a; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- Toolbar -->
+<div class="toolbar no-print">
+  <button onclick="window.print()">🖨️ Imprimir / PDF</button>
+  <button onclick="location.href='/'">← Volver</button>
+</div>
+
+<!-- ═══════════════ PAGE 1 ═══════════════ -->
+<div class="sheet" id="page1">
+
+  <div class="sheet-title">
+    Hoja de Personaje — Mistborn D20
+    <small>Sombras sobre Greyhaven</small>
+  </div>
+
+  <!-- Top identity row -->
+  <div class="top-row">
+    <div class="field"><label>Nombre del personaje</label><input type="text" /></div>
+    <div class="field"><label>Clase / Arquetipo</label><input type="text" /></div>
+    <div class="field"><label>Nivel</label><input type="text" /></div>
+    <div class="field"><label>Jugador</label><input type="text" /></div>
+    <div class="field"><label>Metal principal</label><input type="text" /></div>
+    <div class="field"><label>Subespecialización (N3)</label><input type="text" /></div>
+  </div>
+
+  <div class="main-grid">
+
+    <!-- ── Left: Attributes ── -->
+    <div class="attr-column">
+      <div class="attr-box">
+        <div class="attr-name">FUE</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="attr-box">
+        <div class="attr-name">DES</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="attr-box">
+        <div class="attr-name">CON</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="attr-box">
+        <div class="attr-name">INT</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="attr-box">
+        <div class="attr-name">SAB</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+      <div style="height:6px"></div>
+      <div class="attr-box">
+        <div class="attr-name">CAR</div>
+        <div class="attr-score"><input type="number" /></div>
+        <div class="attr-mod"><input type="text" /></div>
+      </div>
+    </div>
+
+    <!-- ── Center column ── -->
+    <div>
+      <!-- Saving throws -->
+      <div class="section-box">
+        <h3>Tiradas de Salvación</h3>
+        <div class="save-list">
+          <div class="save-row"><input type="checkbox" /><input type="text" /> FUE</div>
+          <div class="save-row"><input type="checkbox" /><input type="text" /> DES</div>
+          <div class="save-row"><input type="checkbox" /><input type="text" /> CON</div>
+          <div class="save-row"><input type="checkbox" /><input type="text" /> INT</div>
+          <div class="save-row"><input type="checkbox" /><input type="text" /> SAB</div>
+          <div class="save-row"><input type="checkbox" /><input type="text" /> CAR</div>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section-box">
+        <h3>Habilidades</h3>
+        <div class="skill-list">
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Acrobacias <small>(DES)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Atletismo <small>(FUE)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Engaño <small>(CAR)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Historia <small>(INT)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Intimidación <small>(CAR)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Investigación <small>(INT)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Juego de manos <small>(DES)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Medicina <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Naturaleza <small>(INT)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Percepción <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Perspicacia <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Persuasión <small>(CAR)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Sigilo <small>(DES)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Supervivencia <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Trato con animales <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Herrería/Oficio <small>(var)</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right column ── -->
+    <div>
+      <!-- Combat stats strip -->
+      <div class="combat-strip" style="grid-template-columns: repeat(3, 1fr); margin-bottom:6px;">
+        <div class="stat-circle">
+          <div class="stat-val"><input type="text" /></div>
+          <div class="stat-label">CA</div>
+        </div>
+        <div class="stat-circle">
+          <div class="stat-val"><input type="text" /></div>
+          <div class="stat-label">Iniciativa</div>
+        </div>
+        <div class="stat-circle">
+          <div class="stat-val"><input type="text" /></div>
+          <div class="stat-label">Velocidad</div>
+        </div>
+      </div>
+
+      <!-- HP -->
+      <div class="section-box">
+        <h3>Puntos de Golpe</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; text-align:center;">
+          <div>
+            <div class="field-label">HP Máx.</div>
+            <input type="text" style="text-align:center;" />
+          </div>
+          <div>
+            <div class="field-label">HP Actual</div>
+            <input type="text" style="text-align:center;" />
+          </div>
+          <div>
+            <div class="field-label">HP Temp.</div>
+            <input type="text" style="text-align:center;" />
+          </div>
+        </div>
+        <div style="margin-top:4px;">
+          <div class="field-label">Dado de vida: <input type="text" style="width:60px; display:inline;" /></div>
+        </div>
+        <!-- Death saves -->
+        <div style="margin-top:4px; border-top:1px solid #c5b899; padding-top:3px;">
+          <div class="death-saves">
+            <span>Éxitos</span>
+            <div class="death-pips"><input type="checkbox" /><input type="checkbox" /><input type="checkbox" /></div>
+            <span>Fallos</span>
+            <div class="death-pips"><input type="checkbox" /><input type="checkbox" /><input type="checkbox" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RM tracker -->
+      <div class="section-box">
+        <h3>Reservas Metálicas (RM)</h3>
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+          <div class="field-label">Máx: <input type="text" style="width:30px; display:inline; text-align:center;" /></div>
+          <div class="field-label">Actual: <input type="text" style="width:30px; display:inline; text-align:center;" /></div>
+          <div class="field-label">DC Clase: <input type="text" style="width:30px; display:inline; text-align:center;" /></div>
+        </div>
+        <div class="rm-tracker">
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+          <div class="rm-pip" onclick="this.classList.toggle('filled')"></div>
+        </div>
+        <div class="field-label" style="margin-top:3px;">Fórmula: <input type="text" style="width:60%; display:inline;" placeholder="ej: 3 + mod CON (min 3)" /></div>
+      </div>
+
+      <!-- Bono de Maestría & Comp -->
+      <div class="section-box">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div style="text-align:center;">
+            <div class="stat-val"><input type="text" style="text-align:center; width:40px;" /></div>
+            <div class="field-label">Bono Maestría</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="stat-val"><input type="text" style="text-align:center; width:40px;" /></div>
+            <div class="field-label">Percepción Pasiva</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fatigue -->
+      <div class="section-box">
+        <h3>Fatiga</h3>
+        <div class="fatigue-grid">
+          <div class="fatigue-cell"><div class="fat-level">1</div><input type="checkbox" /></div>
+          <div class="fatigue-cell"><div class="fat-level">2</div><input type="checkbox" /></div>
+          <div class="fatigue-cell"><div class="fat-level">3</div><input type="checkbox" /></div>
+          <div class="fatigue-cell"><div class="fat-level">4</div><input type="checkbox" /></div>
+          <div class="fatigue-cell"><div class="fat-level">5</div><input type="checkbox" /></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-grid -->
+
+  <!-- ── Attacks & Metals (below main grid) ── -->
+  <div class="two-cols">
+    <!-- Attacks -->
+    <div class="section-box">
+      <h3>Ataques y Hechizos</h3>
+      <table class="atk-table">
+        <thead>
+          <tr><th>Nombre</th><th>Bon. Atq</th><th>Daño</th><th>Tipo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
+          <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
+          <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
+          <tr><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td><td><input type="text" /></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Metals -->
+    <div class="section-box">
+      <h3>Metales y Cargas</h3>
+      <div class="metal-grid">
+        <div class="metal-row"><span class="metal-name">Hierro</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Acero</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Estaño</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Peltre</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Zinc</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Latón</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Cobre</span><input type="text" /></div>
+        <div class="metal-row"><span class="metal-name">Bronce</span><input type="text" /></div>
+      </div>
+      <div style="margin-top:4px;">
+        <div class="field-label">Metal especial/raro</div>
+        <input type="text" placeholder="ej: Kestium (trama)" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Equipment ── -->
+  <div class="section-box">
+    <h3>Equipo, Herramientas y Dinero</h3>
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:8px;">
+      <div class="equip-lines">
+        <div class="equip-line" style="margin-bottom:1px;">
+          <span class="field-label">Objeto</span>
+          <span class="field-label" style="text-align:center;">Cant.</span>
+          <span class="field-label" style="text-align:center;">Peso</span>
+        </div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+        <div class="equip-line"><input type="text" /><input type="text" /><input type="text" /></div>
+      </div>
+      <div>
+        <div class="field-label" style="margin-bottom:3px;">Dinero</div>
+        <div style="display:flex; flex-direction:column; gap:4px; font-size:0.78rem;">
+          <div style="display:flex; gap:4px; align-items:center;">
+            <span style="font-weight:700; min-width:50px;">Boxing:</span>
+            <input type="text" />
+          </div>
+          <div style="display:flex; gap:4px; align-items:center;">
+            <span style="font-weight:700; min-width:50px;">Clips:</span>
+            <input type="text" />
+          </div>
+        </div>
+        <div style="margin-top:6px;">
+          <div class="field-label">Competencias</div>
+          <textarea rows="3" placeholder="Idiomas, herramientas, armaduras..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page1 -->
+
+
+<!-- ═══════════════ PAGE 2 ═══════════════ -->
+<div class="sheet" id="page2">
+
+  <div class="sheet-title">
+    Hoja de Personaje — Página 2
+    <small>Trasfondo, Habilidades de Clase y Notas</small>
+  </div>
+
+  <!-- Traits -->
+  <div class="traits-grid" style="margin-bottom:8px;">
+    <div class="section-box">
+      <h3>Personalidad</h3>
+      <textarea rows="3"></textarea>
+    </div>
+    <div class="section-box">
+      <h3>Ideales</h3>
+      <textarea rows="3"></textarea>
+    </div>
+    <div class="section-box">
+      <h3>Vínculos</h3>
+      <textarea rows="3"></textarea>
+    </div>
+    <div class="section-box">
+      <h3>Defectos</h3>
+      <textarea rows="3"></textarea>
+    </div>
+  </div>
+
+  <!-- Background -->
+  <div class="section-box" style="margin-bottom:8px;">
+    <h3>Trasfondo / Historia</h3>
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px; margin-bottom:4px;">
+      <div><div class="field-label">Trasfondo</div><input type="text" /></div>
+      <div><div class="field-label">Crew / Banda</div><input type="text" /></div>
+      <div><div class="field-label">Rol en la Crew</div><input type="text" /></div>
+    </div>
+    <textarea rows="4" placeholder="Historia, contactos, deudas, marcas, secretos..."></textarea>
+  </div>
+
+  <!-- Class abilities -->
+  <div class="section-box" style="margin-bottom:8px;">
+    <h3>Habilidades de Clase</h3>
+    <div class="abilities-list">
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad (ej: Encender Peltre)" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+      <div class="ability-entry">
+        <input type="text" placeholder="Nombre de habilidad" />
+        <div class="ability-detail">
+          <span>Costo:</span><input type="text" />
+          <span>Tirada:</span><input type="text" />
+          <span>Alcance:</span><input type="text" />
+          <span>Efecto:</span><input type="text" />
+          <span>Notas:</span><input type="text" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notes & contacts -->
+  <div class="two-cols">
+    <div class="section-box">
+      <h3>Contactos y Favores</h3>
+      <textarea rows="6" placeholder="Nombre / relación / ubicación / deuda..."></textarea>
+    </div>
+    <div class="section-box">
+      <h3>Notas de Sesión</h3>
+      <textarea rows="6" placeholder="Pistas, objetivos, frases clave..."></textarea>
+    </div>
+  </div>
+
+  <!-- Appearance -->
+  <div class="section-box" style="margin-top:8px;">
+    <h3>Apariencia y Descripción Física</h3>
+    <div style="display:grid; grid-template-columns: 1fr 2fr; gap:8px;">
+      <div style="border:1px dashed #c5b899; border-radius:6px; min-height:100px; display:flex; align-items:center; justify-content:center; color:#c5b899; font-size:0.75rem;">
+        Retrato
+      </div>
+      <div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-bottom:4px;">
+          <div><div class="field-label">Edad</div><input type="text" /></div>
+          <div><div class="field-label">Altura</div><input type="text" /></div>
+          <div><div class="field-label">Peso</div><input type="text" /></div>
+          <div><div class="field-label">Ojos / Cabello</div><input type="text" /></div>
+        </div>
+        <textarea rows="2" placeholder="Marcas, cicatrices, vestimenta habitual..."></textarea>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page2 -->
+
+</body>
+</html>
