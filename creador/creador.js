@@ -822,9 +822,9 @@ function renderStep6(){
       </div>` : ""}
 
       <div class="summary-actions no-print">
-        <button class="btn btn-primary" onclick="printSummary()">🖨 Imprimir</button>
+        <button class="btn btn-primary" onclick="fillSheet()">📝 Exportar Hoja PDF</button>
         <button class="btn btn-secondary" onclick="exportJSON()">📥 Exportar JSON</button>
-        <button class="btn btn-secondary" onclick="fillSheet()">📝 Llenar Hoja</button>
+        <button class="btn btn-secondary" onclick="printSummary()">🖨 Imprimir Resumen</button>
       </div>
     </div>
   `;
@@ -958,17 +958,41 @@ function exportJSON(){
 }
 
 function fillSheet(){
-  // Navigate to hoja with query params for auto-fill
   const cls = getClass();
-  const params = new URLSearchParams();
-  params.set("name", state.name);
-  params.set("player", state.player);
-  params.set("class", cls?cls.name:"");
-  params.set("level", state.level);
-  params.set("sub", state.subclass||"");
-  params.set("metal", cls?cls.metal:"");
-  for(const a of ATTR_NAMES) params.set(a, state.attrs[a]);
-  window.open("/hoja/?"+params.toString(), "_blank");
+  const lvl = state.level;
+  const bm  = getBM(lvl);
+  const conMod = mod(state.attrs.CON);
+  const charData = {
+    name: state.name,
+    player: state.player,
+    background: state.background,
+    className: cls ? cls.name : "",
+    level: lvl,
+    subclass: state.subclass || "",
+    metal: cls ? cls.metal : "",
+    attrs: { ...state.attrs },
+    hp: getHP(cls, lvl, conMod),
+    ca: getCA(state.attrs, state.equipment),
+    init: mod(state.attrs.DES) + (cls && cls.id === "acechador" ? 2 : 0),
+    bm,
+    rm: getRM(cls, lvl, state.attrs),
+    dc: getDC(cls, bm, state.attrs),
+    dv: cls ? lvl + "d" + cls.dv : "",
+    saves: cls ? cls.saves : [],
+    skills: state.skillProfs,
+    abilities: getAbilitiesUpToLevel(cls, lvl).map(a => {
+      if (a.name === "Especializacion" && state.subclass) return "Especialización: " + state.subclass;
+      return a.name;
+    }),
+    equipment: Object.entries(state.equipment).filter(([,q]) => q > 0).map(([id, q]) => {
+      const item = EQUIPMENT.find(e => e.id === id);
+      return { name: item.name, qty: q, dmg: item.dmg, note: item.note, cat: item.cat };
+    }),
+    budgetRemaining: STARTING_BUDGET - totalSpent(),
+    rmFormula: cls ? (cls.rmBase + " + mod " + (cls.rmAttr || "—")) : "—"
+  };
+  localStorage.setItem("mistborn_character", JSON.stringify(charData));
+  window.open("/hoja/?autofill=1", "_blank");
 }
 
 // ── Helpers ─────────────────────────────────────────────────────

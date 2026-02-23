@@ -890,5 +890,184 @@
 
 </div><!-- /page2 -->
 
+<!-- ═══════════════ AUTO-FILL SCRIPT ═══════════════ -->
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  if(!params.has("autofill")) return;
+
+  let data;
+  try { data = JSON.parse(localStorage.getItem("mistborn_character")); if(!data) return; } catch(e){ return; }
+
+  // ── Helpers ──
+  function modVal(s){ return Math.floor((s-10)/2); }
+  function modStr(s){ const m=modVal(s); return m>=0?"+"+m:""+m; }
+  function findSection(text){
+    for(const box of document.querySelectorAll(".section-box")){
+      const h3=box.querySelector("h3");
+      if(h3 && h3.textContent.includes(text)) return box;
+    }
+    return null;
+  }
+
+  // ── Identity ──
+  const top = document.querySelectorAll(".top-row .field input");
+  if(top[0]) top[0].value = data.name||"";
+  if(top[1]) top[1].value = data.className||"";
+  if(top[2]) top[2].value = data.level||"";
+  if(top[3]) top[3].value = data.player||"";
+  if(top[4]) top[4].value = data.metal||"";
+  if(top[5]) top[5].value = data.subclass||"";
+
+  // ── Attributes ──
+  const ATTRS=["FUE","DES","CON","INT","SAB","CAR"];
+  const scores = document.querySelectorAll(".attr-box .attr-score input");
+  const mods   = document.querySelectorAll(".attr-box .attr-mod input");
+  ATTRS.forEach((a,i)=>{
+    const v=data.attrs[a];
+    if(scores[i]) scores[i].value=v;
+    if(mods[i])   mods[i].value=modStr(v);
+  });
+
+  // ── Saves ──
+  const saveRows = document.querySelectorAll(".save-row");
+  ATTRS.forEach((a,i)=>{
+    if(!saveRows[i]) return;
+    const cb=saveRows[i].querySelector('input[type="checkbox"]');
+    const txt=saveRows[i].querySelector('input[type="text"]');
+    const isProf=data.saves.includes(a);
+    const bonus=modVal(data.attrs[a])+(isProf?data.bm:0);
+    if(cb) cb.checked=isProf;
+    if(txt) txt.value=(bonus>=0?"+":"")+bonus;
+  });
+
+  // ── Skills ──
+  const SKILL_MAP={"Acrobacia":0,"Atletismo":1,"Engano":2,"Historia":3,"Intimidacion":4,"Investigacion":5,"Juego de Manos":6,"Medicina":7,"Percepcion":9,"Perspicacia":10,"Persuasion":11,"Sigilo":12,"Supervivencia":13,"Interpretacion":15};
+  const SKILL_ATTRS=["DES","FUE","CAR","INT","CAR","INT","DES","SAB","INT","SAB","SAB","CAR","DES","SAB","SAB","FUE"];
+  const profIdx=new Set();
+  (data.skills||[]).forEach(s=>{ if(SKILL_MAP[s]!==undefined) profIdx.add(SKILL_MAP[s]); });
+  const skillRows=document.querySelectorAll(".skill-row");
+  skillRows.forEach((row,i)=>{
+    const cb=row.querySelector('input[type="checkbox"]');
+    const txt=row.querySelector('input[type="text"]');
+    const attr=SKILL_ATTRS[i]||"INT";
+    const isProf=profIdx.has(i);
+    const bonus=modVal(data.attrs[attr])+(isProf?data.bm:0);
+    if(cb) cb.checked=isProf;
+    if(txt) txt.value=(bonus>=0?"+":"")+bonus;
+  });
+
+  // ── Combat strip ──
+  const combat=document.querySelectorAll(".stat-circle .stat-val input");
+  if(combat[0]) combat[0].value=data.ca;
+  if(combat[1]) combat[1].value=(data.init>=0?"+":"")+data.init;
+  if(combat[2]) combat[2].value="9 m";
+
+  // ── HP ──
+  const hpBox=findSection("Puntos de Golpe");
+  if(hpBox){
+    const hi=hpBox.querySelectorAll('input[type="text"]');
+    if(hi[0]) hi[0].value=data.hp;
+    if(hi[1]) hi[1].value=data.hp;
+    if(hi[3]) hi[3].value=data.dv;
+  }
+
+  // ── RM ──
+  const rmBox=findSection("Reservas");
+  if(rmBox){
+    const ri=rmBox.querySelectorAll('input[type="text"]');
+    if(ri[0]) ri[0].value=data.rm;
+    if(ri[1]) ri[1].value=data.rm;
+    if(ri[2]) ri[2].value=data.dc;
+    if(ri[3]) ri[3].value=data.rmFormula||"";
+    const pips=rmBox.querySelectorAll(".rm-pip");
+    pips.forEach((p,i)=>{ if(i<data.rm) p.classList.add("filled"); });
+  }
+
+  // ── BM & Percepción Pasiva ──
+  document.querySelectorAll(".field-label").forEach(label=>{
+    const t=label.textContent.trim();
+    if(t==="Bono Maestría"){
+      const inp=label.parentElement.querySelector("input");
+      if(inp) inp.value="+"+data.bm;
+    }
+    if(t.includes("Pasiva")){
+      const inp=label.parentElement.querySelector("input");
+      const perProf=(data.skills||[]).includes("Percepcion");
+      if(inp) inp.value=10+modVal(data.attrs.SAB)+(perProf?data.bm:0);
+    }
+  });
+
+  // ── Attacks table (from weapons in equipment) ──
+  const atkRows=document.querySelectorAll(".atk-table tbody tr");
+  let ai=0;
+  (data.equipment||[]).forEach(item=>{
+    if(ai>=4||!item.dmg||item.dmg==="-") return;
+    const cells=atkRows[ai]?.querySelectorAll("input");
+    if(!cells||cells.length<4) return;
+    const isMelee=item.cat&&item.cat.includes("CC");
+    const attrMod=isMelee?modVal(data.attrs.FUE):modVal(data.attrs.DES);
+    const atkBon=attrMod+data.bm;
+    const dm=item.dmg.match(/^(\d+d\d+)\s*(.*)$/);
+    const dice=dm?dm[1]:item.dmg;
+    const tipo=dm?dm[2]:"";
+    const dmgStr=attrMod!==0?dice+(attrMod>0?"+":"")+attrMod:dice;
+    cells[0].value=item.name;
+    cells[1].value=(atkBon>=0?"+":"")+atkBon;
+    cells[2].value=dmgStr;
+    cells[3].value=tipo;
+    ai++;
+  });
+
+  // ── Equipment lines ──
+  const eqBox=findSection("Equipo");
+  if(eqBox){
+    const lines=eqBox.querySelectorAll(".equip-line");
+    let li=0;
+    (data.equipment||[]).forEach(item=>{
+      const row=lines[li+1];
+      if(!row) return;
+      const inp=row.querySelectorAll("input");
+      if(inp[0]) inp[0].value=item.name;
+      if(inp[1]) inp[1].value=item.qty;
+      li++;
+    });
+    // Money
+    const rem=data.budgetRemaining||0;
+    eqBox.querySelectorAll("span").forEach(span=>{
+      if(span.textContent.includes("Boxing")){
+        const inp=span.parentElement.querySelector("input");
+        if(inp) inp.value=Math.floor(rem/10);
+      }
+      if(span.textContent.includes("Clips")){
+        const inp=span.parentElement.querySelector("input");
+        if(inp) inp.value=rem%10;
+      }
+    });
+  }
+
+  // ── Page 2: Background ──
+  const bgBox=findSection("Trasfondo / Historia");
+  if(bgBox && data.background){
+    const ta=bgBox.querySelector("textarea");
+    if(ta) ta.value=data.background;
+  }
+
+  // ── Page 2: Abilities ──
+  const abBox=findSection("Habilidades de Clase");
+  if(abBox){
+    const entries=abBox.querySelectorAll(".ability-entry");
+    (data.abilities||[]).forEach((name,i)=>{
+      if(i>=entries.length) return;
+      const inp=entries[i].querySelector('input[type="text"]');
+      if(inp) inp.value=name;
+    });
+  }
+
+  // ── Auto-print for PDF ──
+  setTimeout(()=>window.print(), 700);
+})();
+</script>
+
 </body>
 </html>
