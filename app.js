@@ -436,14 +436,7 @@ const TABLE_SCHEMAS = [
     rowStart: /^(Atacar|Poder metal|Poder utilitario|Da.o|Evitar fatiga)/ },
 
   // ── Compendio ─────────────────────────────────────────────────────────────────
-  { headers: ["Objeto", "Tipo", "Precio", "Daño", "Notas"], cols: 5,
-    rowStart: /^(Daga|Baston|Sable|Arco|Ballesta|Pistola|Municion|Virotes)/ },
-  { headers: ["Objeto", "Categoria", "Precio", "Efecto", "Notas"], cols: 5,
-    rowStart: /^(Chaqueta|Arnes|Ganzuas|Kit|Cuerda|Farol|Manta|Frasco)/ },
-  { headers: ["Objeto", "Precio", "Uso", "Notas"], cols: 4,
-    rowStart: /^(Vial|Aleaci[oó]n|Fragmento)/i },
-  { headers: ["Servicio", "Precio", "Notas"], cols: 3,
-    rowStart: /^(Habitacion|Comida|Informante|Soborno|Pasaje|Curandero|Falsificaci[oó]n|Alquiler)/i },
+  { headers: ["Item", "Danio / Efecto", "Costo", "Propiedades y detalles"], cols: 4 },
 
   // ── Campaña ───────────────────────────────────────────────────────────────────
   { headers: ["Reloj", "Se llena cuando...", "Efecto al completarse"], cols: 3 },
@@ -891,7 +884,7 @@ function renderAtlas() {
 const SECTION_DESCRIPTIONS = {
   jugador:    "Cómo jugar, estructura del turno, dados, reservas metálicas y referencia de combate.",
   clases:     "Los 5 arquetipos disponibles con habilidades, progresión nivel a nivel y subclases.",
-  compendio:  "Objetos, armas, viales, precios y servicios urbanos de Greyhaven.",
+  compendio:  "Armas, armaduras, herramientas, consumibles, viales y objetos de mundo.",
   campana:    "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
 };
 
