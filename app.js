@@ -416,6 +416,7 @@ const TABLE_SCHEMAS = [
   { headers: ["Tu turno (checklist)", "Recordatorio"], cols: 2 },
 
   // ── Combate ──────────────────────────────────────────────────────────────────
+  { headers: ["Nivel", "BM"], cols: 2, rowStart: /^\d+(-\d+)?$/ },
   { headers: ["Se mantiene (D&D)", "Se agrega / adapta (Mistborn D20)"], cols: 2,
     rowStart: /^(d20|CA,|Da.o|DC y|Accion \/)/ },
   { headers: ["Elemento", "Que permite", "Ejemplos"], cols: 3,
@@ -431,7 +432,7 @@ const TABLE_SCHEMAS = [
   { headers: ["Estado", "Efecto corto"], cols: 2,
     rowStart: /^(Derribado|Asustado|Aturdido leve|Sangrado|Fatigado)/ },
   { headers: ["Habilidad", "Que tira", "Exito", "Dano / Efecto", "RM"], cols: 5,
-    rowStart: /^(Golpe|Aguante|Furia|Tiro Preciso|Empuje|Salva|Tiron|Esta.o|Reflejos|Prediccion|Irritar|Lectura|Onda|Nube|Cobertura Mental|Cupula|Escuchar|Mapa de Pulsos|Oficio|Recurso Improvisado|Instinto)/ },
+    rowStart: /^(Golpe|Aguante|Furia|Tiro Preciso|Empuje|Cadencia|Salva|Tiron|Esta.o|Reflejos|Prediccion|Irritar|Destello|Lectura|Onda|Nube|Cobertura Mental|Cupula|Escuchar|Mapa de Pulsos|Oficio|Recurso Improvisado|Instinto)/ },
   { headers: ["Situacion", "Que se tira"], cols: 2,
     rowStart: /^(Atacar|Poder metal|Poder utilitario|Da.o|Evitar fatiga)/ },
 
