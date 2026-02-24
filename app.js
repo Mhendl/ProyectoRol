@@ -47,6 +47,24 @@ const CLASS_PROGRESSION = [
     ]
   },
   {
+    name: "Atractor de Hierro",
+    role: "Control del campo / desarme / utilidades",
+    dv: "d8", hpBase: 18, hpPerLevel: 5, keyAttr: "INT/DES", metal: "Hierro",
+    subclasses: ["Desarmador", "Ingeniero de Campo"],
+    levels: [
+      { n:1,  bm:2, rm:4, hp:18, gains:["Tirón de Hierro (Control)","Mano Lejana (Utilidad)","Empuje Magnético (Daño indirecto)","Sentido del Metal básico (pasivo)"], note:"Control y utilidad desde nivel 1." },
+      { n:2,  bm:2, rm:4, hp:23, gains:["Agarre a Distancia (+manipulación táctica mejorada)"], note:"Mejor interacción con el entorno." },
+      { n:3,  bm:2, rm:5, hp:28, gains:["Subclase: Desarmador o Ingeniero de Campo","Habilidad de subclase"], note:"Desarme especializado vs control de terreno." },
+      { n:4,  bm:2, rm:5, hp:33, gains:["+2 atributos o 1 talento"], note:"Primera personalización." },
+      { n:5,  bm:3, rm:6, hp:38, gains:["Tirón Potente (mover objetos pesados / jalar enemigos)"], note:"Spike de control de campo." },
+      { n:6,  bm:3, rm:6, hp:43, gains:["Habilidad de subclase (N6)"], note:"Desarme avanzado o manipulación de terreno." },
+      { n:7,  bm:3, rm:7, hp:48, gains:["Tirón Defensivo (reacción: cubrir aliados con metal)"], note:"Defensa reactiva usando el entorno." },
+      { n:8,  bm:3, rm:7, hp:53, gains:["+2 atributos o 1 talento"], note:"Segunda optimización del build." },
+      { n:9,  bm:4, rm:8, hp:58, gains:["Vórtice de Hierro (zona de control con chatarra)","Habilidad de subclase (N9)"], note:"Control total de zona." },
+      { n:10, bm:4, rm:8, hp:63, gains:["Maestro de la Atracción (habilidad firma)","Mejora final de subclase"], note:"Economía y alcance superiores." },
+    ]
+  },
+  {
     name: "Infiltrado de Estaño",
     role: "Sigilo / exploración / precisión / scouting",
     dv: "d8", hpBase: 18, hpPerLevel: 5, keyAttr: "DES/SAB", metal: "Estaño",
@@ -98,6 +116,24 @@ const CLASS_PROGRESSION = [
       { n:8,  bm:3, rm:7, hp:53, gains:["+2 atributos o 1 talento"], note:"Consolida el rol de especialista." },
       { n:9,  bm:4, rm:8, hp:58, gains:["Mapa Invisible (técnica icónica)","Habilidad de subclase (N9)"], note:"Ventaja táctica enorme para el grupo." },
       { n:10, bm:4, rm:8, hp:63, gains:["Señor de los Pulsos (habilidad firma)","Mejora final de subclase"], note:"Excelente cierre para campaña con metales raros." },
+    ]
+  },
+  {
+    name: "Especialista Mundano",
+    role: "Versatilidad / oficio / calle / heist",
+    dv: "d8", hpBase: 18, hpPerLevel: 5, keyAttr: "Variable", metal: "Ninguno",
+    subclasses: ["Operativo de Calle", "Artesano de la Bruma"],
+    levels: [
+      { n:1,  bm:2, rm:0, hp:18, gains:["Oficio de la Calle (competencia temática)","Recurso Básico (utilidad)","Golpe de Calle (Daño)","Curtido (pasivo)"], note:"Sin metal pero con recursos creativos." },
+      { n:2,  bm:2, rm:0, hp:23, gains:["Contactos de Greyhaven (red de favores 1/sesión)"], note:"Poder social y logístico consistente." },
+      { n:3,  bm:2, rm:0, hp:28, gains:["Subclase: Operativo de Calle o Artesano de la Bruma","Habilidad de subclase"], note:"Combate callejero vs sabotaje/herramientas." },
+      { n:4,  bm:2, rm:0, hp:33, gains:["+2 atributos o 1 talento"], note:"Primera personalización." },
+      { n:5,  bm:3, rm:0, hp:38, gains:["Recurso Improvisado (1/descanso corto)"], note:"Spike de creatividad y versatilidad." },
+      { n:6,  bm:3, rm:0, hp:43, gains:["Yo Conozco a Alguien (1/sesión)","Habilidad de subclase (N6)"], note:"Red social más fuerte." },
+      { n:7,  bm:3, rm:0, hp:48, gains:["Instinto de Superviviente (reacción mejorada)"], note:"Ventaja en escapar y resistir emboscadas." },
+      { n:8,  bm:3, rm:0, hp:53, gains:["+2 atributos o 1 talento"], note:"Segunda optimización del build." },
+      { n:9,  bm:4, rm:0, hp:58, gains:["Maestro del Oficio (técnica icónica)","Habilidad de subclase (N9)"], note:"Consistencia total en su oficio." },
+      { n:10, bm:4, rm:0, hp:63, gains:["Despertar Opcional (habilidad firma o fragmento metálico)","Mejora final de subclase"], note:"Decisión de campaña: seguir mundano o despertar." },
     ]
   },
 ];
@@ -884,7 +920,7 @@ function renderAtlas() {
 
 const SECTION_DESCRIPTIONS = {
   jugador:    "Cómo jugar, estructura del turno, dados, reservas metálicas y referencia de combate.",
-  clases:     "Los 5 arquetipos disponibles con habilidades, progresión nivel a nivel y subclases.",
+  clases:     "Los 8 arquetipos disponibles con habilidades, progresión nivel a nivel y subclases.",
   compendio:  "Armas, armaduras, herramientas, consumibles, viales y objetos de mundo.",
   campana:    "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
 };
