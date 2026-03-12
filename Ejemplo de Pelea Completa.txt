@@ -1,0 +1,476 @@
+================================================================================
+   EJEMPLO DE PELEA COMPLETA — MISTBORN D20: SOMBRAS SOBRE GREYHAVEN
+   Desde la tirada de iniciativa hasta la muerte del enemigo
+================================================================================
+
+CONTEXTO
+--------
+Tres jugadores de nivel 5 persiguen a Destra, una Embaucadora de Zinc que
+traicionó a la crew y robó documentos clave del golpe. La acorralan en un
+taller metalúrgico abandonado: hay cadenas colgando del techo, un horno
+apagado, cajas de metal apiladas y una pasarela elevada con barandilla.
+
+PERSONAJES JUGADORES (nivel 5)
+------------------------------
+  KAELEN — Bruto de Peltre
+    HP: 46/46  |  CA: 15 (armadura media + escudo chico)
+    FUE +3, DES +0, CON +3, INT -1, SAB +1, CAR +0
+    BM: +3  |  RM: 6/6  |  Dado de golpe: d10
+    DC de clase: 8+3+3 = 14
+    Arma: Martillo ancho (1d8 contundente, cuerpo a cuerpo)
+    Habilidades: Encender Peltre, Golpe de Peltre, Aguante Brutal,
+                 Carga de Peltre (N5), Ataque Extra (N5),
+                 Presencia Aplastante (N2), Espec. Rompedor (N3)
+
+  VEX — Tiradora de Acero
+    HP: 39/39  |  CA: 14 (armadura ligera + DES)
+    FUE +0, DES +3, CON +1, INT +1, SAB +1, CAR +0
+    BM: +3  |  RM: 6/6  |  Dado de golpe: d8
+    DC de clase: 8+3+3 = 14
+    Arma: Ballesta de mano (1d6 perforante, distancia) + monedas alománticas
+    Habilidades: Empuje de Acero, Tiro Preciso (N2), Escudo de Monedas (N2),
+                 Cadencia de Fuego (N5), Líneas de Acero (N5),
+                 Espec. Hostigador (N3)
+
+  REN — Sabueso de Bronce
+    HP: 38/38  |  CA: 13 (armadura ligera + DES)
+    FUE +0, DES +1, CON +1, INT +3, SAB +2, CAR +0
+    BM: +3  |  RM: 6/6  |  Dado de golpe: d8
+    DC de clase: 8+3+3 = 14
+    Arma: Daga (1d4 perforante, ligera) + bastón corto (1d6 contundente)
+    Habilidades: Escuchar Pulsos, Foco de Bronce (N2),
+                 Análisis Letal (N2), Lectura Profunda (N5),
+                 Interrogador de Pulsos (N5), Espec. Analista (N3)
+
+ENEMIGO
+-------
+  DESTRA — Embaucadora de Zinc (NPC fuerte, equivalente nivel 5)
+    HP: 55  |  CA: 14 (armadura ligera + DES +2, anillo de humo)
+    FUE +0, DES +2, CON +1, INT +1, SAB +1, CAR +4
+    BM: +3  |  RM: 8  |  DC: 8+3+4 = 15
+    Arma: Daga envenenada (1d4+2 + 1d4 veneno)
+    Habilidades: Irritar/Calmar, Onda Emocional (N5),
+                 Pánico Inducido (N5), Lectura Emocional, Destello de Duda,
+                 Máscara Emocional (N6 — inmune a lectura emocional)
+
+ESTADO INICIAL
+--------------
+  Reloj de Exposición Alomántica: 2 (Investigación)
+  Impulso de cada PJ: 0
+  Ubicaciones:
+    - Kaelen: entrada principal, junto a las cajas de metal
+    - Vex: detrás de la crew, apoyada en el marco de la puerta
+    - Ren: al lado de Kaelen
+    - Destra: centro del taller, junto al horno apagado, 12 metros adelante
+
+================================================================================
+                        TIRADA DE INICIATIVA
+================================================================================
+
+Todos tiran d20 + mod DES:
+
+  Vex:     d20(15) + 3 = 18
+  Destra:  d20(12) + 2 = 14
+  Ren:     d20(11) + 1 = 12
+  Kaelen:  d20(8)  + 0 = 8
+
+ORDEN: Vex (18) → Destra (14) → Ren (12) → Kaelen (8)
+
+================================================================================
+                              RONDA 1
+================================================================================
+
+─── TURNO DE VEX (Tiradora de Acero) ─── RM: 6/6 | HP: 39/39 | Impulso: 0 ───
+
+  Acción Menor: Encender Acero (gratis, activa las líneas azules de metal).
+    → Líneas de Acero (pasivo N5) se activa: Vex ve líneas azules hacia
+      las cadenas del techo, la barandilla de la pasarela, la daga de
+      Destra y un objeto metálico oculto bajo su capa (¿vial?).
+    → Le dice al grupo: "Tiene una daga y algo más bajo la capa".
+
+  Movimiento: Corre 9 metros hacia la izquierda y sube a unas cajas
+    apiladas, ganando altura y media cobertura (+2 CA vs distancia → CA 16).
+
+  Acción: Tiro Preciso contra Destra. No se movió más de la mitad, así que
+    aplica el pasivo (ignora media cobertura O +1d4 daño). Elige +1d4 daño.
+    Tira: d20(14) + DES(+3) + comp(+3) = 20  vs  CA 14 de Destra.
+    ¡IMPACTA!
+    Daño: 1d6(4) + 1d4(3) + DES(3) = 10 daño perforante.
+    Destra: 55 → 45 HP.
+
+  RM gastada esta ronda: 0. Sin chequeo de sobrecarga.
+
+  ★ IMPULSO: Vex gana 1 Impulso por usar el entorno (altura en las cajas).
+    Impulso: 0 → 1.
+
+  Reloj de Exposición: No se usó alomancia visible ofensiva, fue un disparo
+    normal con detección pasiva. Se mantiene en 2.
+
+  [Estado Vex: RM 6/6 | HP 39/39 | Impulso 1 | Posición: cajas elevadas]
+
+─── TURNO DE DESTRA (Embaucadora de Zinc) ─── RM: 8/8 | HP: 45/55 ──────────
+
+  Destra ve que la rodearon y decide romper la moral del grupo.
+
+  Acción Menor: Encender Zinc (gratis, activa percepción emocional).
+    → Lectura Emocional (pasivo N2): detecta la emoción dominante de cada
+      PJ. Kaelen = determinación, Vex = concentración, Ren = cautela.
+      Nota: contra Ren no funciona diferente, él no tiene Máscara.
+      Decide atacar emocionalmente a Ren (el más cauto).
+
+  Acción: PÁNICO INDUCIDO (N5) contra Ren. Cuesta 1 RM.
+    DC: 15 (8 + BM 3 + CAR 4)
+    Ren tira salvación de SAB: d20(9) + SAB(+2) = 11.
+    ¡FALLA!
+    → Ren debe gastar TODO su movimiento huyendo de Destra en línea recta.
+      Sale corriendo 9 metros hacia atrás, hacia la puerta.
+      NO puede usar su turno para acercarse ni analizar.
+    → Además, aliados en la ruta de huida pueden hacer ataque de oportunidad
+      contra Ren (pero son aliados, no lo hacen).
+
+  Movimiento: Destra se mueve 9 metros hacia la pasarela elevada, subiendo
+    las escaleras. Busca cobertura detrás de la barandilla metálica.
+    → Ahora tiene media cobertura: CA 14 → 16 vs ataques a distancia.
+
+  RM gastada esta ronda: 1. Sin sobrecarga.
+  Reloj: +1 por alomancia visible (Pánico Inducido, Ren salió corriendo
+    gritando). Reloj: 2 → 3 (Alerta).
+
+  [Estado Destra: RM 7/8 | HP 45/55 | Posición: pasarela con cobertura]
+
+─── TURNO DE REN (Sabueso de Bronce) ─── RM: 6/6 | HP: 38/38 | Impulso: 0 ───
+
+  ¡Ren está bajo Pánico Inducido! Debe gastar su movimiento huyendo.
+  Ya huyó 9 m en el turno de Destra (el efecto consume el movimiento
+  inmediatamente). Ahora que es su turno, el efecto ya pasó.
+
+  Ren recupera el control. Está a 21 metros de Destra (empezó a 12,
+  retrocedió 9). Demasiado lejos para atacar, pero puede analizar.
+
+  Acción Menor: Encender Bronce (gratis, activa la percepción de pulsos).
+
+  Acción: ESCUCHAR PULSOS (1 RM) contra Destra.
+    Tira: d20(16) + INT(+3) + BM(+3) = 22  vs  DC 13 (distancia media).
+    ¡ÉXITO rotundo!
+    → Ren percibe: pulso de Zinc activo (intensidad alta), y detecta
+      un segundo pulso débil — ¡Destra tiene un vial de reserva!
+    → Le grita a la crew: "¡Está en la pasarela, quemando Zinc fuerte!
+      ¡Tiene un vial de repuesto!"
+
+  Movimiento: Ren avanza 9 metros de vuelta hacia el taller (queda a 12 m
+    de Destra).
+
+  RM gastada: 1. Sin sobrecarga.
+
+  [Estado Ren: RM 5/6 | HP 38/38 | Impulso 0 | Posición: entrada del taller]
+
+─── TURNO DE KAELEN (Bruto de Peltre) ─── RM: 6/6 | HP: 46/46 | Impulso: 0 ──
+
+  Acción Menor: ENCENDER PELTRE (1 RM). Baja a 5/6 RM.
+    → +2 daño cuerpo a cuerpo 1/turno + ventaja en FUE para empujar/romper.
+
+  Movimiento: Kaelen corre 9 metros hacia la base de la pasarela.
+    Queda a unos 3 metros de Destra (abajo mirando arriba).
+
+  Acción: CARGA DE PELTRE (N5, 1 RM) — carga en línea recta subiendo
+    la escalera de la pasarela. Se movió más de 3 m antes del impacto.
+    Tira: d20(17) + FUE(+3) + comp(+3) = 23  vs  CA 14 de Destra.
+    ¡IMPACTA!
+    Daño: 1d8(6) + FUE(3) + Peltre(+2) = 11 daño contundente.
+    → Destra hace salvación de FUE vs DC 14 para no ser empujada y derribada.
+      Tira: d20(7) + FUE(0) = 7. ¡FALLA!
+    → Destra es empujada 1,5 metros contra la barandilla y cae DERRIBADA.
+    Destra: 45 → 34 HP. Estado: Derribada.
+
+  RM gastada esta ronda: 2 (Encender Peltre + Carga de Peltre).
+    → CHEQUEO DE SOBRECARGA: d20(13) + CON(+3) = 16  vs  DC 12+2 = 14.
+    ¡PASA! No gana fatiga.
+
+  ★ IMPULSO: Kaelen gana 1 Impulso por Primera Sangre (primer golpe
+    metálico significativo del combate). Impulso: 0 → 1.
+
+  [Estado Kaelen: RM 4/6 | HP 46/46 | Impulso 1 | Posición: pasarela,
+   junto a Destra | Peltre activo]
+
+═══════════════════ FIN DE RONDA 1 ═══════════════════
+
+  RESUMEN DE RONDA 1:
+  • Destra: 34/55 HP, Derribada, RM 7/8, en la pasarela
+  • Vex: 39/39 HP, RM 6/6, Impulso 1, en las cajas con altura
+  • Ren: 38/38 HP, RM 5/6, Impulso 0, a 12 m del combate
+  • Kaelen: 46/46 HP, RM 4/6, Impulso 1, cuerpo a cuerpo con Destra
+  • Reloj de Exposición: 3 (Alerta)
+
+================================================================================
+                              RONDA 2
+================================================================================
+
+─── TURNO DE VEX (Tiradora) ─── RM: 6/6 | HP: 39/39 | Impulso: 1 ────────────
+
+  Destra está Derribada y Kaelen la tiene trabada. Oportunidad perfecta.
+
+  Acción: CADENCIA DE FUEGO (N5, 2 RM). Elige disparo extra con -2.
+    1/descanso corto — lo vale ahora.
+
+    Disparo 1: d20(12) + DES(3) + comp(3) - 2 = 16  vs  CA 14.
+      ¡IMPACTA! (Destra pierde +2 de media cobertura por estar Derribada)
+      Daño: 1d6(5) + DES(3) = 8 perforante.
+
+    Disparo 2: d20(8) + DES(3) + comp(3) - 2 = 12  vs  CA 14.
+      FALLA (12 < 14).
+
+  Hostigador (N3): Tras impactar, Vex se mueve 1,5 m gratis — se
+    reposiciona a mejor ángulo en las cajas.
+
+  Destra: 34 → 26 HP.
+  RM gastada: 2. → CHEQUEO DE SOBRECARGA: d20(14) + CON(+1) = 15  vs DC 14.
+  ¡PASA! Sin fatiga.
+
+  ★ IMPULSO: Vex gana 1 Impulso por Coordinación de Crew (disparo en combo
+    con el tackle de Kaelen). Impulso: 1 → 2.
+
+  [Estado Vex: RM 4/6 | HP 39/39 | Impulso 2]
+
+─── TURNO DE DESTRA (Embaucadora) ─── RM: 7/8 | HP: 26/55 | Derribada ───────
+
+  Destra está en problemas. Derribada con Kaelen encima. Decide ir nuclear.
+
+  Usa la mitad de su movimiento para levantarse (deja de estar Derribada).
+  Le quedan 4,5 metros de movimiento.
+
+  Acción: ONDA EMOCIONAL (N5, 2 RM) contra Kaelen y Vex (dos objetivos
+    dentro del rango).
+    DC: 15 (SAB save para cada uno).
+
+    Kaelen: d20(6) + SAB(+1) = 7. ¡FALLA!
+      → Kaelen queda afectado: -1d4 a su próxima tirada de ataque.
+
+    Vex: d20(14) + SAB(+1) = 15. ¡JUSTO PASA!
+      → Vex resiste la oleada emocional. Sin efecto.
+
+  Movimiento restante: Destra se mueve 4,5 m por la pasarela, alejándose
+    de Kaelen.
+    → ¡ATAQUE DE OPORTUNIDAD DE KAELEN! (sale del alcance cuerpo a cuerpo)
+      Kaelen ataca: d20(11) + FUE(3) + comp(3) = 17.
+      PERO tiene -1d4 por Onda Emocional: -1d4(3) = 14  vs CA 14.
+      ¡IMPACTA por los pelos!
+      Daño: 1d8(3) + FUE(3) + Peltre(+2) = 8 contundente.
+      Destra: 26 → 18 HP.
+
+  RM gastada esta ronda: 2. → SOBRECARGA: d20(9) + CON(+1) = 10  vs DC 14.
+  ¡FALLA! DESTRA GANA FATIGA 1.
+    → -1 a todas las tiradas físicas y metálicas hasta descanso corto.
+
+  Reloj: +1 (Onda Emocional visible en la pasarela, onda de pánico).
+  Reloj: 3 → 4 (Cacería). Un Sabueso del Canton va a empezar a rastrear.
+    Pero eso es problema para después — ahora hay que terminar la pelea.
+
+  [Estado Destra: RM 5/8 | HP 18/55 | Fatiga 1 | Posición: pasarela, 4.5 m
+   de Kaelen]
+
+─── TURNO DE REN (Sabueso) ─── RM: 5/6 | HP: 38/38 | Impulso: 0 ────────────
+
+  Ren necesita darle a la crew la ventaja definitiva. Usa su análisis.
+
+  Movimiento: Corre 9 metros, queda al pie de la pasarela (a 9 m de Destra,
+    dentro de rango para Lectura Profunda).
+
+  Acción: LECTURA PROFUNDA (N5, 2 RM) contra Destra.
+    Tira: d20(18) + INT(+3) + BM(+3) = 24  vs  DC 16.
+    ¡ÉXITO AMPLIO!
+    → Ren obtiene: CA exacta (14), RM restante (5 de 8), y una debilidad:
+      Destra tiene Fatiga 1, y su próxima técnica de 2+ RM le va a costar
+      sobrecarga casi seguro.
+    → Aliado que ataque antes del turno de Ren gana +1d4 al ataque.
+    → Ren grita: "¡Está a 18 de vida, le quedan 5 reservas pero con fatiga!
+      ¡Un golpe más fuerte y se rompe!"
+
+  Acción Menor: ANÁLISIS LETAL (N2, 1 RM). Como ya analizó a Destra
+    con Lectura Profunda, puede señalar un punto débil al grupo.
+    → Próximo ataque (de Ren o aliado) hace +1d6 daño adicional.
+
+  RM gastada esta ronda: 3 (Lectura Profunda 2 + Análisis Letal 1).
+    → SOBRECARGA: d20(15) + CON(+1) = 16  vs DC 12+3 = 15.
+    ¡PASA! Justo. Sin fatiga.
+
+  ★ IMPULSO: Ren gana 1 Impulso por Coordinación de Crew (info táctica
+    directa para Kaelen y Vex). Impulso: 0 → 1.
+    Y el jugador de Kaelen también gana 1 Impulso por la coordinación
+    (ambos jugadores ganan 1 por el trigger de Coordinación).
+    Kaelen: Impulso 1 → 2.
+
+  [Estado Ren: RM 2/6 | HP 38/38 | Impulso 1]
+
+─── TURNO DE KAELEN (Bruto) ─── RM: 4/6 | HP: 46/46 | Impulso: 2 ────────────
+
+  Kaelen escucha a Ren y decide terminar esto.
+
+  Movimiento: Avanza 4,5 metros por la pasarela hasta quedar cuerpo a
+    cuerpo con Destra.
+
+  Acción: ATAQUE EXTRA (N5) — puede hacer 2 ataques con su acción.
+
+    Ataque 1 (Golpe de Peltre, 1 RM):
+      d20(15) + FUE(3) + comp(3) = 21  vs CA 14. ¡IMPACTA!
+      Daño: 1d8(5) + FUE(3) + Peltre(+2) + 1d4(3) de Lectura Profunda
+            + 1d6(4) de Análisis Letal = 17 daño.
+      (Los bonos de Ren se consumen en el primer impacto)
+
+      → Destra: 18 → 1 HP.
+
+    ★ Destra intenta usar su REACCIÓN:
+      DESTELLO DE DUDA (1 RM) — le aplica -1d4 al segundo ataque de Kaelen.
+      Cuesta 1 RM. Destra baja a 4/8 RM. -1d4 al próximo ataque.
+
+      PERO: como la emoción de Kaelen ya fue afectada por Destra este
+      combate (Onda Emocional en ronda 2), la penalidad sube a -1d6.
+
+    Ataque 2 (ataque normal):
+      d20(13) + FUE(3) + comp(3) = 19 - 1d6(5) Destello = 14
+      14  vs  CA 14. ¡IMPACTA JUSTO!
+
+      Daño: 1d8(7) + FUE(3) + Peltre(+2) = 12 daño.
+
+      Destra: 1 → -11 HP.
+
+  ████████████████████████████████████████████████████████
+  ██                                                    ██
+  ██   DESTRA CAE. HP 0. TIRADAS DE MUERTE APLICAN.    ██
+  ██                                                    ██
+  ████████████████████████████████████████████████████████
+
+  Destra se desploma sobre la barandilla de la pasarela y se desliza al
+  suelo. El brillo del Zinc en sus ojos se apaga.
+
+  Pero el reglamento dice que a 0 HP empieza a hacer tiradas de muerte...
+  ¿O la crew decide rematar?
+
+  Kaelen mira a Vex y a Ren. Ren asiente. Vex mira para otro lado.
+
+  Kaelen le da un último golpe con el martillo. No hay tirada de muerte.
+  Destra muere. Los documentos siguen en su bolsa.
+
+  RM gastada esta ronda: 1 (Golpe de Peltre). Sin sobrecarga (gastó solo 1).
+
+  Gasta 2 Impulso: Movimiento extra. Recoge los documentos y el vial de
+  Destra antes de que nadie más llegue.
+
+  [Estado final Kaelen: RM 3/6 | HP 46/46 | Impulso 0]
+
+================================================================================
+                          FIN DEL COMBATE
+================================================================================
+
+═══════════════════ RESUMEN FINAL ═══════════════════
+
+  DURACIÓN: 2 rondas completas (Destra murió en el turno 2 de Kaelen).
+
+  TABLA DE DAÑO A DESTRA:
+  ┌───────────┬──────────────────────┬────────┬──────────┐
+  │ Ronda     │ Quien                │ Habil. │ Daño     │
+  ├───────────┼──────────────────────┼────────┼──────────┤
+  │ R1        │ Vex                  │ Tiro P │  10      │
+  │ R1        │ Kaelen               │ Carga  │  11      │
+  │ R2        │ Vex                  │ Cadenc │   8      │
+  │ R2        │ Kaelen (OA)          │ Martil │   8      │
+  │ R2        │ Kaelen (Ataque 1)    │ Golpe  │  17 (*)  │
+  │ R2        │ Kaelen (Ataque 2)    │ Normal │  12      │
+  ├───────────┼──────────────────────┼────────┼──────────┤
+  │ TOTAL     │                      │        │  66      │
+  └───────────┴──────────────────────┴────────┴──────────┘
+  (*) Incluye +1d4 Lectura Profunda y +1d6 Análisis Letal de Ren.
+  Destra tenía 55 HP. Recibió 66 → murió a -11.
+
+  TABLA DE RM GASTADAS:
+  ┌───────────┬──────────┬─────────────────────────────────┐
+  │ Personaje │ RM Final │ Gastó en                        │
+  ├───────────┼──────────┼─────────────────────────────────┤
+  │ Kaelen    │  3/6     │ Peltre(1)+Carga(1)+Golpe(1) = 3 │
+  │ Vex       │  4/6     │ Cadencia(2) = 2                 │
+  │ Ren       │  2/6     │ Pulsos(1)+Lect.Prof(2)+Anál(1)=4│
+  │ Destra    │  4/8     │ Pánico(1)+Onda(2)+Destello(1)=4 │
+  └───────────┴──────────┴─────────────────────────────────┘
+
+  SOBRECARGA (se activó 4 veces en todo el combate):
+  • Vex R2 (2 RM): d20+1=15 vs DC 14 → PASA
+  • Destra R2 (2 RM): d20+1=10 vs DC 14 → FALLA → Fatiga 1
+  • Ren R2 (3 RM): d20+1=16 vs DC 15 → PASA (justo)
+  • Kaelen R1 (2 RM): d20+3=16 vs DC 14 → PASA
+
+  FATIGA: Solo Destra ganó Fatiga 1. Le costó -1 en sus tiradas,
+  contribuyendo a que perdiera el combate (no alcanzó a usar más
+  habilidades fuertes sin arriesgar Fatiga 2).
+
+  IMPULSO GENERADO/GASTADO:
+  • Vex: +1 (entorno) +1 (coordinación) = 2 generados, 0 gastados
+  • Kaelen: +1 (primera sangre) +1 (coordinación) = 2 generados, 2 gastados
+  • Ren: +1 (coordinación) = 1 generado, 0 gastados
+  Total: 5 Impulso generados en 2 rondas.
+
+  RELOJ DE EXPOSICIÓN:
+  • Inicio: 2 (Investigación)
+  • +1 (Pánico Inducido R1) → 3 (Alerta)
+  • +1 (Onda Emocional R2) → 4 (Cacería)
+  → CONSECUENCIA: Un Sabueso del Canton va a empezar a rastrear actividad
+    alomántica en la zona. La crew tiene que moverse rápido, usar un
+    Apagador, o sobornar a un Obligador para bajar el Reloj.
+
+================================================================================
+                      LECCIONES DE ESTA PELEA
+================================================================================
+
+1. LA RM ES UN RECURSO FINITO, NO UN MANA INFINITO
+   Kaelen terminó con solo 3/6 RM. Si hubiera habido un segundo encuentro
+   inmediato, habría estado limitado. El DM puede presionar con encuentros
+   encadenados para forzar decisiones de "¿gasto todo ahora o me reservo?"
+
+2. LA SOBRECARGA ES DRAMA, NO SOLO CASTIGO
+   Destra falló su chequeo de sobrecarga y ganó Fatiga 1. Ese -1 a todas
+   sus tiradas la dejó en desventaja el resto de la pelea. Los jugadores
+   pasaron todos sus chequeos — pero uno sacó 16 vs DC 15. Estuvo cerca.
+   La sobrecarga premia la gestión inteligente del recurso.
+
+3. EL SABUESO NO PEGA, PERO DEFINE LA PELEA
+   Ren no hizo un solo punto de daño directo. Pero su Lectura Profunda
+   (+1d4 al aliado) y Análisis Letal (+1d6 al aliado) convirtieron el
+   primer ataque de Kaelen en 17 daño en vez de 10. Esa diferencia
+   mató a Destra en R2 en vez de R3.
+
+4. EL IMPULSO PREMIA LA CREATIVIDAD
+   Los 5 puntos de Impulso se ganaron por: usar el entorno (Vex en cajas),
+   primera sangre (Kaelen), y coordinación (3 veces, por combos entre PJs).
+   Kaelen gastó sus 2 para el movimiento extra final. El Impulso no aparece
+   solo — los jugadores tienen que describir qué hacen y el DM recompensa.
+
+5. EL RELOJ DE EXPOSICIÓN ES LA VERDADERA AMENAZA
+   La pelea duró 2 rondas y el Reloj subió de 2 a 4. Ahora hay un Sabueso
+   del Canton rastreándolos. La pelea se "ganó" mecánicamente, pero el
+   costo narrativo es altísimo. Esto hace que cada combate alomántico
+   tenga peso más allá de los HP.
+
+6. EL EMBAUCADOR ES PELIGROSO AUNQUE TENGA POCOS HP
+   Con 55 HP Destra no era un tanque, pero Pánico Inducido sacó a Ren de
+   toda la Ronda 1 (perdió su acción y movimiento), y Onda Emocional
+   penalizó a Kaelen. Su Destello de Duda casi salvó el último golpe.
+   Un Embaucador inteligente puede ganar sin pegar nunca.
+
+================================================================================
+             NOTAS PARA EL DM (si querés replicar esto)
+================================================================================
+
+• El taller metalúrgico fue elegido a propósito: cadenas, barandilla,
+  cajas de metal = muchos objetos para Empuje/Tirón, altura, cobertura.
+  Un entorno vacío habría sido más aburrido.
+
+• Destra como NPC fuerte tiene más HP (55) y más RM (8) que un PJ nivel 5.
+  Esto compensa que es 1 vs 3. Un NPC moderado (35 HP, 4 RM) habría
+  muerto en Ronda 1.
+
+• La Fatiga es lo que mató a Destra. Fallar la sobrecarga le dio -1 a todo,
+  lo que la dejó sin opciones buenas. Si hubiera pasado ese chequeo, podría
+  haber usado Pánico Inducido de nuevo y extender la pelea a R3.
+
+• El Reloj subió tanto porque Destra usó alomancia emocional: es visible,
+  espectacular, imposible de ignorar. Si la crew hubiera tenido un Apagador
+  con Nube de Cobre, el Reloj no habría subido. Esa es la función del
+  Apagador: proteger al grupo del costo social de la alomancia.
