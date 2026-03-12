@@ -428,6 +428,21 @@ const TABLE_SCHEMAS = [
   { headers: ["Accion", "Que implica", "Tirada sugerida"], cols: 3 },
   { headers: ["Clase", "Rol", "Atributo clave", "RM inicial", "Brilla en..."], cols: 5,
     rowStart: /^(Bruto de Peltre|Tirador de Acero|Atractor de Hierro|Acechador de Estano|Embaucador de Zinc|Apagador de Cobre|Sabueso de Bronce|Especialista Mundano)/ },
+  // Impulso/Fatiga tables (player guide)
+  { headers: ["Impulso gastado", "Efecto"], cols: 2, rowStart: /^[123]$/ },
+  { headers: ["Nivel", "Efecto", "Se limpia con..."], cols: 3, rowStart: /^Fatiga \d+$/ },
+  // Character creation - stats table
+  { headers: ["Estadistica", "Formula"], cols: 2,
+    rowStart: /^(Puntos de Golpe|Clase de Armadura|Reservas Met|Bono de Maestr|Iniciativa|Velocidad)/ },
+  // Skills table
+  { headers: ["Habilidad", "Atributo", "Descripcion"], cols: 3,
+    rowStart: /^(Atletismo|Acrobacias|Juego de manos|Sigilo|Investigacion|Alquimia|Historia|Percepcion|Perspicacia|Supervivencia|Medicina|Persuasion|Intimidacion|Engano|Interpretacion)/ },
+  // Skill proficiencies per class
+  { headers: ["Clase", "Habilidades disponibles (\u0065leg\u00ed 2)"], cols: 2,
+    rowStart: /^(Bruto de Peltre|Tirador de Acero|Atractor de Hierro|Acechador de Estano|Embaucador de Zinc|Apagador de Cobre|Sabueso de Bronce|Especialista Mundano)/ },
+  // DC table (skills page)
+  { headers: ["DC", "Dificultad", "Ejemplo"], cols: 3,
+    rowStart: /^(\d+|Facil|Moderada|Desafiante|Dificil|Muy dificil|Casi imposible|Heroico|Media|Heroica)/ },
 
   // ── Clases (also used via buildClassesContent) ────────────────────────────────
   // Progression table per class: Nivel / Rasgo (rows 1-10)
@@ -471,9 +486,29 @@ const TABLE_SCHEMAS = [
     rowStart: /^(Golpe|Aguante|Furia|Tiro Preciso|Empuje|Cadencia|Salva|Tiron|Esta.o|Reflejos|Prediccion|Irritar|Destello|Lectura|Onda|Nube|Cobertura Mental|Cupula|Escuchar|Mapa de Pulsos|Oficio|Recurso Improvisado|Instinto)/ },
   { headers: ["Situacion", "Que se tira"], cols: 2,
     rowStart: /^(Atacar|Poder metal|Poder utilitario|Da.o|Evitar fatiga)/ },
+  // DM Combat Guide tables (generic system)
+  { headers: ["Tipo de sesion", "Encuentros", "Descansos cortos", "RM objetivo al boss"], cols: 4,
+    rowStart: /^(Exploracion|Standard|Desafiante|Brutal)/ },
+  { headers: ["Clase del PJ", "Reaccion del enemigo inteligente"], cols: 2,
+    rowStart: /^(Bruto de Peltre|Tirador de Acero|Atractor de Hierro|Acechador de Estano|Embaucador de Zinc|Apagador de Cobre|Sabueso de Bronce|Especialista Mundano)/ },
+  { headers: ["Tipo", "Como funciona", "DC sugerida"], cols: 3,
+    rowStart: /^(Huida|Soborno|Intimidacion|Negociacion|Sigilo total|Distraccion|Rendicion)/ },
+  { headers: ["Tipo de trigger", "Ejemplo", "Efecto"], cols: 3,
+    rowStart: /^(Temporal|Umbral de PG|Ambiental|Social|Recurso|Fase de boss)/ },
+  // Enemy stat block template tables
+  { headers: ["Nivel de amenaza", "CA", "PG", "Ataque", "Dano/golpe", "DC habilidades", "Ejemplo"], cols: 7,
+    rowStart: /^(Menor|Moderado|Fuerte|Boss)/ },
+  { headers: ["Arquetipo", "FUE", "DES", "CON", "INT", "SAB", "CAR"], cols: 7,
+    rowStart: /^(Maton|Scout|Alomante|Lider|Alquimista|Bestia)/ },
 
   // ── Compendio ─────────────────────────────────────────────────────────────────
+  // Weapon properties definitions
+  { headers: ["Propiedad", "Efecto"], cols: 2,
+    rowStart: /^(Ligera|Finesa|Arrojadiza|Alcance|Versatil|Dos manos|Pesada|Recarga|Ruidosa)/ },
   { headers: ["Item", "Danio / Efecto", "Costo", "Propiedades y detalles"], cols: 4 },
+  // Vial RM recovery table
+  { headers: ["Tipo de vial", "RM recuperada", "Notas"], cols: 3,
+    rowStart: /^(Dosis individual|Vial basico|Vial mixto|Vial de crew|Vial completo|Dosis pura)/ },
 
   // ── Campaña ───────────────────────────────────────────────────────────────────
   { headers: ["Reloj", "Se llena cuando...", "Efecto al completarse"], cols: 3 },
@@ -482,6 +517,17 @@ const TABLE_SCHEMAS = [
   { headers: ["Situacion", "Ajuste facil", "Ajuste normal", "Ajuste dificil"], cols: 4 },
   { headers: ["Rango", "DC", "Uso tipico"], cols: 3 },
   { headers: ["Nivel de amenaza", "Dano de referencia por golpe", "Comentario"], cols: 3 },
+  // Campaign-specific tables (Iter 3)
+  { headers: ["Sesion", "RM iniciales (nivel 3-5)", "Encuentros esperados", "Descansos disponibles", "RM al boss (objetivo)"], cols: 5,
+    rowStart: /^Sesion \d/ },
+  { headers: ["Ronda", "Prioridad de los traidores", "Trigger de cambio"], cols: 3,
+    rowStart: /^\d\+?$/ },
+  { headers: ["Preparacion del grupo", "Resultado"], cols: 2,
+    rowStart: /^Los PJs/ },
+  { headers: ["PG de Maelor", "Comportamiento", "Dialogo"], cols: 3,
+    rowStart: /^\d+-\d+%$/ },
+  { headers: ["Encuentro", "Modo facil (grupo gastado)", "Modo normal", "Modo duro (grupo fresco)"], cols: 4,
+    rowStart: /^(Matones|Guardias|Traidores|Silen|Valek|Maelor|Inquisidor)/ },
 ];
 
 // Build a DOM table from headers + rows arrays
