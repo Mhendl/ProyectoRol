@@ -482,6 +482,9 @@ const TABLE_SCHEMAS = [
     rowStart: /^(Media cobertura|Cobertura completa|Terreno dificil|Altura|Zona peligrosa)/ },
   { headers: ["Estado", "Efecto corto"], cols: 2,
     rowStart: /^(Derribado|Asustado|Aturdido leve|Sangrado|Fatigado)/ },
+  // Reloj de Exposición Alomántica
+  { headers: ["Nivel", "Estado", "Consecuencia"], cols: 3,
+    rowStart: /^[0-5]$/ },
   { headers: ["Habilidad", "Que tira", "Exito", "Dano / Efecto", "RM"], cols: 5,
     rowStart: /^(Golpe|Aguante|Furia|Tiro Preciso|Empuje|Cadencia|Salva|Tiron|Esta.o|Reflejos|Prediccion|Irritar|Destello|Lectura|Onda|Nube|Cobertura Mental|Cupula|Escuchar|Mapa de Pulsos|Oficio|Recurso Improvisado|Instinto)/ },
   { headers: ["Situacion", "Que se tira"], cols: 2,
