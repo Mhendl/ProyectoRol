@@ -1,5 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   Creador de Personaje — Mistborn D20 (Sombras sobre Greyhaven)
+﻿/* ═══════════════════════════════════════════════════════════════
+   Creador de Personaje — Mistborn D20 (Sombras sobre Urteau)
    ═══════════════════════════════════════════════════════════════ */
 
 // ── Data: 8 Classes ─────────────────────────────────────────────
@@ -169,7 +169,7 @@ const CLASSES = [
     subclasses:["Operativo","Tecnico","Fantasma"],
     abilities:[
       {n:1,name:"Oficio de la Calle"},
-      {n:2,name:"Contactos de Greyhaven"},
+      {n:2,name:"Contactos de Urteau"},
       {n:3,name:"Especializacion"},
       {n:4,name:"Mejora de Atributo / Talento"},
       {n:5,name:"Recurso Improvisado"},
@@ -216,7 +216,7 @@ const ABILITY_DETAILS = {
   "Cazador de Sombras":{costo:"Pasivo",tirada:"Sigilo / Supervivencia (DES/SAB)",alcance:"Seguimiento",efecto:"Ventaja al seguir rastros recientes o evitar emboscadas en zonas urbanas.",notas:"Clase investigadora."},
   "Reflejos de Estaño":{costo:"1 RM, reacción",tirada:"DES save o sin tirada según ataque",alcance:"Cuando sos objetivo",efecto:"Movete 1,5 m o reducí daño de área en 1d8 + DES. Si el ataque era de oportunidad, lo anulás.",notas:"Defensa por reflejos."},
   "Lectura del Entorno":{costo:"Pasivo",tirada:"Investigación/Percepción DC 10-15",alcance:"Exploración",efecto:"Con 1 minuto de observación, obtenés 2-3 verdades del lugar (ruta de patrulla, coberturas, salida, zona peligrosa).",notas:"Excelente para grupos que investigan todo."},
-  "Enfoque Sensorial":{costo:"2 RM",tirada:"CON save DC 12 al final si se fuerza",alcance:"Escena corta",efecto:"Ignorás penalidades de niebla/ruido/oscuridad parcial y no sufrís desventaja por visión reducida común.",notas:"Brilla en Greyhaven y fundición."},
+  "Enfoque Sensorial":{costo:"2 RM",tirada:"CON save DC 12 al final si se fuerza",alcance:"Escena corta",efecto:"Ignorás penalidades de niebla/ruido/oscuridad parcial y no sufrís desventaja por visión reducida común.",notas:"Brilla en Urteau y fundición."},
   "Prediccion de Emboscada":{costo:"1 RM al inicio del combate",tirada:"Sin tirada",alcance:"Inicio de combate",efecto:"Elegí 1 enemigo visible: el primer ataque de cada aliado contra ese objetivo suma +1 al ataque hasta tu próximo turno.",notas:"Buff táctico liviano."},
   "Depredador de Niebla":{costo:"Pasivo con RM ≥1",tirada:"Sin tirada",alcance:"Siempre que quede RM",efecto:"No pueden sorprenderte fácilmente; ventaja en Percepción pasiva contra trampas y emboscadas no mágicas.",notas:"Capstone de scout total."},
 
@@ -249,10 +249,10 @@ const ABILITY_DETAILS = {
 
   // ── Especialista Mundano ──
   "Oficio de la Calle":{costo:"Sin RM",tirada:"Chequeos según oficio",alcance:"Siempre",efecto:"Elegís un oficio (cerrajero, contrabandista, estibador, matón, falsificador, chatarrero, curandero). Ganás competencia temática y 1 rasgo útil.",notas:"Clase para creatividad."},
-  "Contactos de Greyhaven":{costo:"Sin RM",tirada:"Persuasión/Investigación/Carisma",alcance:"Ciudad y downtime",efecto:"Tenés una red de favores. 1 vez por sesión podrías obtener un dato, refugio o presentación creíble a costo razonable.",notas:"Poder social/logístico consistente."},
+  "Contactos de Urteau":{costo:"Sin RM",tirada:"Persuasión/Investigación/Carisma",alcance:"Ciudad y downtime",efecto:"Tenés una red de favores. 1 vez por sesión podrías obtener un dato, refugio o presentación creíble a costo razonable.",notas:"Poder social/logístico consistente."},
   "Recurso Improvisado":{costo:"Sin RM, 1/descanso corto",tirada:"Herramientas o INT/DES check DC 10-16",alcance:"Acción o corto tiempo de preparación",efecto:"Armas improvisadas mejores, traba de puerta, distracción, cable, aceite, gancho, etc. El DM define efecto moderado.",notas:"Pico creativo de la clase."},
   "Yo Conozco a Alguien":{costo:"Sin RM, 1/sesión",tirada:"Sin tirada o CAR check según riesgo",alcance:"Ciudad",efecto:"Invocás un contacto plausible (reparador, estibador, corredor de apuestas, enfermera de barrio). No resuelve todo: abre una ruta.",notas:"Excelente para no trabar sesiones."},
-  "Instinto de Superviviente":{costo:"Pasivo + reacción",tirada:"DES o SAB save mejorado",alcance:"Emboscadas y retiradas",efecto:"Ventaja en checks para escapar, resistir pánico de calle y reaccionar a traiciones/emboscadas.",notas:"Muy temático para Greyhaven."},
+  "Instinto de Superviviente":{costo:"Pasivo + reacción",tirada:"DES o SAB save mejorado",alcance:"Emboscadas y retiradas",efecto:"Ventaja en checks para escapar, resistir pánico de calle y reaccionar a traiciones/emboscadas.",notas:"Muy temático para Urteau."},
   "Maestro del Oficio":{costo:"Pasivo",tirada:"Sin tirada",alcance:"Siempre",efecto:"Tus acciones de oficio cuestan menos tiempo, tus herramientas improvisadas duran más y el DM debería premiar tus planes con ventajas reales.",notas:"Capstone de consistencia total."},
   "Despertar Opcional":{costo:"Decisión de campaña",tirada:"Según opción",alcance:"Nivel 10",efecto:"Elegís: seguir mundano (rasgo grande de oficio), acceso a fragmento controlado (uso muy limitado) o inicio de despertar metálico básico.",notas:"Gancho para segunda temporada."},
 
@@ -466,7 +466,7 @@ function renderStep0(){
     </div>
     <div class="form-group">
       <label>Trasfondo / Historia breve</label>
-      <textarea id="f-bg" placeholder="¿De dónde viene? ¿Qué busca en Greyhaven?">${esc(state.background)}</textarea>
+      <textarea id="f-bg" placeholder="¿De dónde viene? ¿Qué busca en Urteau?">${esc(state.background)}</textarea>
     </div>
   `;
 }

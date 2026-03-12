@@ -1,5 +1,5 @@
 const atlasItems = [
-  { name: "Greyhaven (Ciudad)", src: "img/Ciudad.png" },
+  { name: "Urteau (Ciudad)", src: "img/Ciudad.png" },
   { name: "Taberna", src: "img/Taberna.png" },
   { name: "Almacén", src: "img/Almacen.png" },
   { name: "Fundición", src: "img/Fundicion.png" },
@@ -79,7 +79,7 @@ const CLASS_PROGRESSION = [
       { n:7,  bm:3, rm:7, hp:48, gains:["Evasión de Ceniza (mejor respuesta a áreas)","Nervio Expuesto (ventaja + daño extra al observar)"], note:"Supervivencia + ataque preparado." },
       { n:8,  bm:3, rm:7, hp:53, gains:["+2 atributos o 1 talento"], note:"Segunda vuelta de personalización." },
       { n:9,  bm:4, rm:8, hp:58, gains:["Golpe en la Niebla (técnica icónica)","Sexto Sentido (anti-flanqueo + esquiva 1/combate)","Habilidad de subclase (N9)"], note:"Asesino táctico + supervivencia instintiva." },
-      { n:10, bm:4, rm:8, hp:63, gains:["Fantasma de Greyhaven (habilidad firma)","Mejora final de subclase"], note:"Movilidad + daño + supervivencia top." },
+      { n:10, bm:4, rm:8, hp:63, gains:["Fantasma de Urteau (habilidad firma)","Mejora final de subclase"], note:"Movilidad + daño + supervivencia top." },
     ]
   },
   {
@@ -125,7 +125,7 @@ const CLASS_PROGRESSION = [
     subclasses: ["Operativo de Calle", "Artesano de la Bruma"],
     levels: [
       { n:1,  bm:2, rm:0, hp:18, gains:["Oficio de la Calle (competencia temática)","Recurso Básico (utilidad)","Golpe de Calle (Daño)","Golpe Sucio (1d4 + efecto: cegar/slow/quitar reacción)","Curtido (pasivo)"], note:"Sin metal pero con recursos creativos y combate callejero." },
-      { n:2,  bm:2, rm:0, hp:23, gains:["Contactos de Greyhaven (red de favores 1/sesión)"], note:"Poder social y logístico consistente." },
+      { n:2,  bm:2, rm:0, hp:23, gains:["Contactos de Urteau (red de favores 1/sesión)"], note:"Poder social y logístico consistente." },
       { n:3,  bm:2, rm:0, hp:28, gains:["Subclase: Operativo de Calle o Artesano de la Bruma","Curtido en Ceniza (+1 saves, escala con nivel)","Habilidad de subclase"], note:"Subclase + resiliencia escalable." },
       { n:4,  bm:2, rm:0, hp:33, gains:["+2 atributos o 1 talento"], note:"Primera personalización." },
       { n:5,  bm:3, rm:0, hp:38, gains:["Recurso Improvisado (1/descanso corto)","Trampa Improvisada (2d6 + efecto, preparada)"], note:"Spike de creatividad + ingeniero táctico." },
@@ -173,10 +173,10 @@ function stripPageNumber(text, pageNum) {
 
 // Patterns that are page-level headers or PDF-navigation noise — skip them
 const SKIP_PATTERNS = [
-  /^Sombras sobre Greyhaven\s*[-–]\s*Manual Total/i,
-  /^SOMBRAS SOBRE GREYHAVEN\s*[-–]/i,
+  /^Sombras sobre Urteau\s*[-–]\s*Manual Total/i,
+  /^SOMBRAS SOBRE URTEAU\s*[-–]/i,
   /^MANUAL DEL JUGADOR\s*[-–]/i,
-  /^SOMBRAS SOBRE GREYHAVEN\s*-\s*ANEXO/i,
+  /^SOMBRAS SOBRE URTEAU\s*-\s*ANEXO/i,
   /^P[áa]g(ina)?\.?\s*\d+$/i,
   /^Pagina\s+\d+$/i,
   /^ABRIR$/i,                              // Botones del índice interactivo del PDF
@@ -979,14 +979,25 @@ function renderAtlas() {
 }
 
 const SECTION_DESCRIPTIONS = {
-  jugador:    "Cómo jugar, estructura del turno, dados, reservas metálicas y referencia de combate.",
-  clases:     "Los 8 arquetipos disponibles con habilidades, progresión nivel a nivel y subclases.",
+  jugador:    "Reglas base, estructura del turno, dados, reservas metálicas y referencia de combate.",
+  clases:     "Los 8 arquetipos con habilidades, progresión nivel a nivel y subclases.",
   compendio:  "Armas, armaduras, herramientas, consumibles, viales y objetos de mundo.",
+  combate:    "Sistema de combate completo, Choque Alomántico, ejemplos tácticos.",
+  progresion: "Tablas de progresión 1-10 para las 8 clases con talentos y mejoras.",
   campana:    "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
 };
 
-// Sections shown in the home nav (in order). campana omitted intentionally.
-const HOME_SLUGS = ["jugador", "clases", "compendio"];
+const SECTION_ICONS = {
+  jugador:    "📖",
+  clases:     "⚔️",
+  compendio:  "🗡️",
+  combate:    "🔥",
+  progresion: "📈",
+  campana:    "🗺️",
+};
+
+// Sections shown in the home nav (in order)
+const HOME_SLUGS = ["jugador", "clases", "compendio", "combate", "progresion", "campana"];
 
 function renderHomeRoutes(sections) {
   const target = document.getElementById("routes-grid");
@@ -1002,17 +1013,18 @@ function renderHomeRoutes(sections) {
     const isLocked   = isCampaign;
     const link = routeBySlug[section.slug] || `/${section.slug}/`;
     const desc = SECTION_DESCRIPTIONS[section.slug] || "";
+    const icon = SECTION_ICONS[section.slug] || "📄";
     const num  = String(i + 1).padStart(2, "0");
 
     const card = document.createElement(isLocked ? "div" : "a");
     card.className = "card route-card" + (isLocked ? " route-card--locked" : "");
     if (!isLocked) card.href = link;
     card.innerHTML = `
-      <p class="card-num">${num}</p>
+      <p class="card-num">${icon} ${num}</p>
       ${ isLocked ? '<span class="lock-icon">🔒</span>' : "" }
       <h3>${section.title}</h3>
       <p class="card-desc">${desc}</p>
-      <span class="tag tag-danger">${isCampaign ? "Solo DM" : "Jugador"}</span>
+      <span class="tag ${isCampaign ? 'tag-danger' : ''}">${isCampaign ? "Solo DM" : "Jugador"}</span>
     `;
     if (isLocked) {
       card.addEventListener("click", () => { window.location.href = link; });
@@ -1020,29 +1032,23 @@ function renderHomeRoutes(sections) {
     target.appendChild(card);
   });
 
-  // Character sheet card
-  const sheetCard = document.createElement("a");
-  sheetCard.className = "card route-card";
-  sheetCard.href = "/hoja/";
-  sheetCard.innerHTML = `
-    <p class="card-num">📝</p>
-    <h3>Hoja de Personaje</h3>
-    <p class="card-desc">Hoja rellenable e imprimible. Stats, RM, metales, equipo y habilidades.</p>
-    <span class="tag tag-danger">Jugador</span>
-  `;
-  target.appendChild(sheetCard);
-
-  // Character creator card
-  const creadorCard = document.createElement("a");
-  creadorCard.className = "card route-card";
-  creadorCard.href = "/creador/";
-  creadorCard.innerHTML = `
-    <p class="card-num">⚔️</p>
-    <h3>Creador de Personaje</h3>
-    <p class="card-desc">Wizard paso a paso: clase, atributos, nivel, habilidades y equipo.</p>
-    <span class="tag tag-danger">Jugador</span>
-  `;
-  target.appendChild(creadorCard);
+  // ─── Tool cards (sheet + creator) ─────────────
+  const tools = [
+    { icon: "📝", href: "/hoja/",    title: "Hoja de Personaje", desc: "Hoja rellenable e imprimible. Stats, RM, metales, equipo y habilidades." },
+    { icon: "⚙️", href: "/creador/", title: "Creador de Personaje", desc: "Wizard paso a paso: clase, atributos, nivel, habilidades y equipo." },
+  ];
+  tools.forEach(t => {
+    const card = document.createElement("a");
+    card.className = "card route-card route-card--tool";
+    card.href = t.href;
+    card.innerHTML = `
+      <p class="card-num">${t.icon} HERRAMIENTA</p>
+      <h3>${t.title}</h3>
+      <p class="card-desc">${t.desc}</p>
+      <span class="tag">Herramienta</span>
+    `;
+    target.appendChild(card);
+  });
 }
 
 function renderSectionPage(section) {
@@ -1055,11 +1061,24 @@ function renderSectionPage(section) {
   if (!titleNode || !subtitleNode || !contentNode) return;
 
   const isCampaign = section.audience === "campania";
-  document.title = `${section.title} · Sombras sobre Greyhaven`;
+  const sIcon = SECTION_ICONS[section.slug] || "";
+  document.title = `${section.title} · Sombras sobre Urteau`;
   titleNode.textContent = section.title;
-  subtitleNode.textContent = isCampaign
+  const sDesc = SECTION_DESCRIPTIONS[section.slug] || "";
+  subtitleNode.textContent = sDesc || (isCampaign
     ? "Contenido exclusivo para el Dungeon Master"
-    : "Contenido para jugadores";
+    : "Contenido para jugadores");
+
+  // Animate hero entrance
+  const heroEl = titleNode.closest(".hero");
+  if (heroEl) {
+    heroEl.classList.add("hero--animated");
+    // Insert icon badge
+    const badge = document.createElement("span");
+    badge.className = "hero__icon";
+    badge.textContent = sIcon;
+    heroEl.insertBefore(badge, titleNode);
+  }
 
   if (topbarTitle) topbarTitle.textContent = section.title;
   if (topbarBadge) {
@@ -1265,6 +1284,30 @@ function initEpicSystems() {
   initReadingProgress();
   initScrollReveal();
   initHeroParallax();
+  initMobileTOC();
+}
+
+/* ─── Mobile TOC slide-out ────────────────────────── */
+function initMobileTOC() {
+  const sidebar = document.querySelector(".toc-sidebar");
+  if (!sidebar) return;
+
+  const btn = document.createElement("button");
+  btn.className = "toc-toggle";
+  btn.setAttribute("aria-label", "Tabla de contenidos");
+  btn.textContent = "☰";
+  document.body.appendChild(btn);
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "toc-backdrop";
+  document.body.appendChild(backdrop);
+
+  function open()  { sidebar.classList.add("open"); backdrop.classList.add("visible"); }
+  function close() { sidebar.classList.remove("open"); backdrop.classList.remove("visible"); }
+
+  btn.addEventListener("click", () => sidebar.classList.contains("open") ? close() : open());
+  backdrop.addEventListener("click", close);
+  sidebar.addEventListener("click", (e) => { if (e.target.classList.contains("toc-link")) close(); });
 }
 
 async function start() {
