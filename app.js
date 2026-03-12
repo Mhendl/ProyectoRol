@@ -1136,6 +1136,137 @@ function initBackToTop() {
   });
 }
 
+/* ══════════════════════════════════════════════════════
+   ███  EPIC SYSTEMS  ███
+   ══════════════════════════════════════════════════════ */
+
+/* ─── Particle system (ash + steel sparks) ────────── */
+function initParticles() {
+  const canvas = document.getElementById("particle-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  const particles = [];
+  const ASH_COUNT = 50;
+  const SPARK_COUNT = 6;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  function rand(a, b) { return Math.random() * (b - a) + a; }
+
+  // Seed ash particles
+  for (let i = 0; i < ASH_COUNT; i++) {
+    particles.push({
+      x: rand(0, W), y: rand(0, H),
+      r: rand(0.5, 1.8),
+      dx: rand(-0.15, 0.15),
+      dy: rand(0.2, 0.6),
+      alpha: rand(0.12, 0.35),
+      type: "ash"
+    });
+  }
+  // Steel sparks
+  for (let i = 0; i < SPARK_COUNT; i++) {
+    particles.push({
+      x: rand(0, W), y: rand(0, H),
+      r: rand(0.8, 1.5),
+      dx: rand(-0.3, 0.3),
+      dy: rand(-0.4, -0.1),
+      alpha: rand(0.3, 0.7),
+      life: rand(80, 200),
+      maxLife: 200,
+      type: "spark"
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of particles) {
+      p.x += p.dx;
+      p.y += p.dy;
+
+      if (p.type === "ash") {
+        if (p.y > H + 5) { p.y = -5; p.x = rand(0, W); }
+        if (p.x < -5) p.x = W + 5;
+        if (p.x > W + 5) p.x = -5;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(168,158,140,${p.alpha})`;
+        ctx.fill();
+      } else {
+        p.life--;
+        if (p.life <= 0) {
+          p.x = rand(0, W); p.y = rand(0, H);
+          p.life = rand(80, 200);
+          p.alpha = rand(0.3, 0.7);
+        }
+        const fade = Math.min(p.life / 40, 1);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(123,143,193,${p.alpha * fade})`;
+        ctx.shadowColor = "rgba(123,143,193,0.5)";
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ─── Reading progress bar ────────────────────────── */
+function initReadingProgress() {
+  const bar = document.getElementById("reading-progress");
+  if (!bar) return;
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      bar.style.width = Math.min((scrollTop / docHeight) * 100, 100) + "%";
+    }
+  }, { passive: true });
+}
+
+/* ─── Scroll reveal (IntersectionObserver) ────────── */
+function initScrollReveal() {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => observer.observe(el));
+}
+
+/* ─── Mouse parallax on hero ──────────────────────── */
+function initHeroParallax() {
+  const hero = document.getElementById("hero-parallax");
+  if (!hero) return;
+  document.addEventListener("mousemove", (e) => {
+    const cx = (e.clientX / window.innerWidth  - 0.5) * 2;
+    const cy = (e.clientY / window.innerHeight - 0.5) * 2;
+    hero.style.transform = `translate(${cx * -8}px, ${cy * -6}px)`;
+  }, { passive: true });
+}
+
+/* ─── Init all epic systems ───────────────────────── */
+function initEpicSystems() {
+  initParticles();
+  initReadingProgress();
+  initScrollReveal();
+  initHeroParallax();
+}
+
 async function start() {
   const { sections } = await loadSections();
   window._sections = sections;   // expose for cross-section rendering
@@ -1144,6 +1275,7 @@ async function start() {
   const slug = document.body.dataset.section;
   if (!slug) {
     renderHomeRoutes(sections);
+    initEpicSystems();
     return;
   }
 
@@ -1153,6 +1285,7 @@ async function start() {
   renderSectionPage(section);
   buildTOC(document.getElementById("section-content"));
   initBackToTop();
+  initEpicSystems();
 }
 
 start().catch((error) => {

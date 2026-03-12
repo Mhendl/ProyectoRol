@@ -6,18 +6,32 @@
     <title>Sombras sobre Greyhaven · Archivo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <header class="hero">
-      <p class="kicker">Mistborn D20 · Archivo interactivo</p>
-      <h1>Sombras sobre Greyhaven</h1>
-      <p class="lead">
-        La ceniza cae. La niebla oculta. El metal arde.<br>
-        Compendio digital del sistema y la campaña.
-      </p>
+  <body data-home>
+    <!-- Particle canvas (ash + steel sparks) -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <header class="hero hero--full">
+      <div class="hero__mist-layer"></div>
+      <div class="hero__mist-layer hero__mist-layer--2"></div>
+      <div class="hero__content" id="hero-parallax">
+        <div class="hero__ornament">⬥ ━━━━━━ ⬥ ━━━━━━ ⬥</div>
+        <p class="kicker">Mistborn D20 · Archivo interactivo</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line">Sombras</span>
+          <span class="hero__title-line hero__title-line--accent">sobre</span>
+          <span class="hero__title-line">Greyhaven</span>
+        </h1>
+        <p class="hero__quote">"La ceniza cae. La niebla oculta. El metal arde."</p>
+        <p class="lead">Compendio digital del sistema y la campaña.</p>
+        <div class="hero__ornament hero__ornament--bottom">⬥ ━━━━━━ ⬥ ━━━━━━ ⬥</div>
+        <a href="#main-content" class="hero__scroll" aria-label="Desplazar abajo">
+          <span class="hero__scroll-icon">⌄</span>
+        </a>
+      </div>
     </header>
 
-    <main class="container">
-      <section class="panel">
+    <main class="container" id="main-content">
+      <section class="panel reveal">
         <div class="panel-header">
           <h2>Rutas del libro</h2>
           <span class="subtitle">Seis secciones del PDF disponibles</span>
@@ -25,7 +39,7 @@
         <div id="routes-grid" class="cards" aria-live="polite"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel reveal">
         <div class="panel-header">
           <h2>Mapa de Greyhaven</h2>
           <span class="subtitle">Ciudad industrial bajo la niebla eterna</span>
