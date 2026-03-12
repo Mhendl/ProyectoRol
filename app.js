@@ -199,6 +199,17 @@ function isAllCaps(str) {
   return letters.length >= 3 && letters === letters.toUpperCase();
 }
 
+// Filter out short attribute abbreviations and stat-block lines that
+// pass isAllCaps but are NOT real section headings.
+function isHeadingNoise(line) {
+  const t = line.trim();
+  if (/^[A-ZÁÉÍÓÚÑ]{2,4}(\/[A-ZÁÉÍÓÚÑ]{2,4})?$/.test(t)) return true;
+  if (/^CA\s*\d/.test(t)) return true;
+  if (t.startsWith("[") && t.endsWith("]")) return true;
+  const letters = t.replace(/[^a-zA-ZáéíóúñÁÉÍÓÚÑüÜ]/g, "");
+  return letters.length < 6;
+}
+
 // Short standalone line without sentence-ending punctuation → sub-heading
 function isTitleLike(line) {
   const t = line.trim();
@@ -797,7 +808,7 @@ function buildSectionContent(section, container) {
       continue;
     }
 
-    if (isAllCaps(line)) {
+    if (isAllCaps(line) && !isHeadingNoise(line)) {
       flushBody();
       const h = document.createElement("h2");
       h.className = "sec-heading";
@@ -1083,14 +1094,15 @@ function renderSectionPage(section) {
 function buildTOC(contentNode) {
   const tocNav = document.getElementById("toc-nav");
   if (!tocNav) return;
-  const headings = Array.from(contentNode.querySelectorAll(".sec-heading, .class-name"));
+  const headings = Array.from(contentNode.querySelectorAll(".sec-heading, .class-name, .sec-subheading"));
   if (headings.length === 0) return;
 
   const links = headings.map((heading, i) => {
     heading.id = `sec-${i}`;
+    const isSub = heading.classList.contains("sec-subheading");
     const a = document.createElement("a");
     a.href = `#sec-${i}`;
-    a.className = "toc-link";
+    a.className = isSub ? "toc-link toc-sub" : "toc-link";
     a.textContent = heading.textContent.replace(/^[•\s]+/, "").trim();
     a.dataset.target = `sec-${i}`;
     tocNav.appendChild(a);
