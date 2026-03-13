@@ -1,361 +1,598 @@
 ﻿================================================================================
    EJEMPLO DE PELEA COMPLETA — MISTBORN D20: SOMBRAS SOBRE FELLISE
-   Desde la tirada de iniciativa hasta la muerte del enemigo
+   Asalto al Almacen de Casa Kest (Acto 0) — Nivel 3, multiples fases
 ================================================================================
 
 CONTEXTO
 --------
-Tres jugadores de nivel 5 persiguen a Destra, una Embaucadora de Zinc que
-traicionó a la crew y robó documentos clave del golpe. La acorralan en un
-taller metalúrgico abandonado: hay cadenas colgando del techo, un horno
-apagado, cajas de metal apiladas y una pasarela elevada con barandilla.
+Tres jugadores de nivel 3 ejecutan el golpe introductorio de la campana:
+infiltrar el almacen de Casa Kest en el Distrito Industrial de Fellise para
+robar una carga misteriosa. Es de noche, hay niebla, y el almacen tiene
+guardias pagados. La crew entro por los ventanales altos del segundo piso
+(ruta sigilosa sugerida por Silen).
 
-PERSONAJES JUGADORES (nivel 5)
+El almacen tiene dos plantas: planta baja con estantes de carga y una escalera
+trasera al sotano donde esta el botin real. Planta alta con pasarelas y
+ventanales rotos.
+
+PERSONAJES JUGADORES (nivel 3)
 ------------------------------
-  KAELEN — Bruto de Peltre
-    HP: 46/46  |  CA: 15 (armadura media + escudo chico)
+  KAELEN — Bruto de Peltre (Enfoque: Rompedor)
+    HP: 28/28  |  CA: 15 (armadura media + escudo chico)
     FUE +3, DES +0, CON +3, INT -1, SAB +1, CAR +0
-    BM: +3  |  RM: 6/6  |  Dado de golpe: d10
-    DC de clase: 8+3+3 = 14
-    Arma: Martillo ancho (1d8 contundente, cuerpo a cuerpo)
-    Habilidades: Encender Peltre, Golpe de Peltre, Aguante Brutal,
-                 Carga de Peltre (N5), Ataque Extra (N5),
-                 Presencia Aplastante (N2), Espec. Rompedor (N3)
+    BM: +2  |  RM: 3/3  |  Dado de golpe: d10
+    DC de clase: 8+2+3 = 13
+    Arma: Martillo ancho (1d8+3 contundente, cuerpo a cuerpo)
+    Habilidades: Encender Peltre (1 RM), Golpe de Peltre,
+                 Aguante Brutal (1 RM, reaccion),
+                 Presencia Aplastante (N2, 1 RM),
+                 Espec. Rompedor (N3): +1d6 dano a objetos/cobertura
 
-  VEX — Tiradora de Acero
-    HP: 39/39  |  CA: 14 (armadura ligera + DES)
+  VEX — Tiradora de Acero (Enfoque: Francotirador)
+    HP: 22/22  |  CA: 13 (armadura ligera + DES)
     FUE +0, DES +3, CON +1, INT +1, SAB +1, CAR +0
-    BM: +3  |  RM: 6/6  |  Dado de golpe: d8
-    DC de clase: 8+3+3 = 14
-    Arma: Ballesta de mano (1d6 perforante, distancia) + monedas alománticas
-    Habilidades: Empuje de Acero, Tiro Preciso (N2), Escudo de Monedas (N2),
-                 Cadencia de Fuego (N5), Líneas de Acero (N5),
-                 Espec. Hostigador (N3)
+    BM: +2  |  RM: 3/3  |  Dado de golpe: d8
+    DC de clase: 8+2+3 = 13
+    Arma: Ballesta de mano (1d6+3 perforante, distancia) + monedas
+    Habilidades: Empuje de Acero, Tiro Preciso (N1),
+                 Escudo de Monedas (N2, 1 RM, reaccion),
+                 Espec. Francotirador (N3): primer tiro con ventaja
+                     si no se movio mas de la mitad
 
-  REN — Sabueso de Bronce
-    HP: 38/38  |  CA: 13 (armadura ligera + DES)
+  REN — Sabueso de Bronce (Enfoque: Analista)
+    HP: 21/21  |  CA: 12 (armadura ligera + DES)
     FUE +0, DES +1, CON +1, INT +3, SAB +2, CAR +0
-    BM: +3  |  RM: 6/6  |  Dado de golpe: d8
-    DC de clase: 8+3+3 = 14
-    Arma: Daga (1d4 perforante, ligera) + bastón corto (1d6 contundente)
-    Habilidades: Escuchar Pulsos, Foco de Bronce (N2),
-                 Análisis Letal (N2), Lectura Profunda (N5),
-                 Interrogador de Pulsos (N5), Espec. Analista (N3)
+    BM: +2  |  RM: 3/3  |  Dado de golpe: d8
+    DC de clase: 8+2+3 = 13
+    Arma: Daga (1d4+1 perforante, ligera) + baston corto (1d6 contundente)
+    Habilidades: Escuchar Pulsos (1 RM),
+                 Foco de Bronce (N2): identifica tipo de metal quemado,
+                 Analisis Letal (N2, 1 RM): +1d6 dano al proximo aliado,
+                 Espec. Analista (N3): +1 a INT checks durante combate
 
-ENEMIGO
--------
-  DESTRA — Embaucadora de Zinc (NPC fuerte, equivalente nivel 5)
-    HP: 55  |  CA: 14 (armadura ligera + DES +2, anillo de humo)
-    FUE +0, DES +2, CON +1, INT +1, SAB +1, CAR +4
-    BM: +3  |  RM: 8  |  DC: 8+3+4 = 15
-    Arma: Daga envenenada (1d4+2 + 1d4 veneno)
-    Habilidades: Irritar/Calmar, Onda Emocional (N5),
-                 Pánico Inducido (N5), Lectura Emocional, Destello de Duda,
-                 Máscara Emocional (N6 — inmune a lectura emocional)
+ENEMIGOS DEL ALMACEN
+--------------------
+  GUARDIA DE ALMACEN (x2, patrullan planta baja)
+    HP: 27  |  CA: 13
+    Lanza +4 (1d8+2) o Disparo +4 (1d8+2)
+    Reaccion: Cobertura Improvisada (+2 CA contra 1 ataque).
+    Prefieren pelear a distancia. Si ven alomancia, gritan alerta.
+
+  MATON DE MUELLE (x3, refuerzos de la Fase 2)
+    HP: 22  |  CA: 12
+    Garrote +4 (1d6+2) o Cuchillo +4 (1d4+2)
+    Si ataca con aliado adyacente, +1 al dano. Intentara flanquear.
+    Cobardes: huyen si quedan solos.
+
+  TIRADOR DE BANDA (x1, refuerzo de la Fase 3)
+    HP: 18  |  CA: 13
+    Disparo +5 (1d8+3)
+    En cobertura: primer tiro con ventaja. Huye si queda solo.
+
+ALARMA ALQUIMICA
+----------------
+Hay un hilo de metal fino tendido entre la carga del sotano y un mecanismo
+en la pared. Si los PJs levantan la carga sin desactivar el hilo (Juego de
+manos DC 13 o Investigacion DC 12 para detectarlo), la alarma suena al
+inicio de la Ronda 3. Esto activa la Fase 2.
+
+Un Sabueso con Bronce encendido detecta el hilo automaticamente (percibe
+la resonancia metalica). Un Acechador con Estano lo escucha vibrar.
+Un Tirador puede cortarlo con un disparo preciso (CA 12).
 
 ESTADO INICIAL
 --------------
-  Reloj de Exposición Alomántica: 2 (Investigación)
+  Reloj de Exposicion Alomantica: 0 (Invisible — recien empiezan)
   Impulso de cada PJ: 0
-  Ubicaciones:
-    - Kaelen: entrada principal, junto a las cajas de metal
-    - Vex: detrás de la crew, apoyada en el marco de la puerta
-    - Ren: al lado de Kaelen
-    - Destra: centro del taller, junto al horno apagado, 12 metros adelante
+  Fase actual: FASE 1 — Infiltracion
+
+  Ubicaciones (planta baja):
+    - Guardia 1: patrullando entre los estantes, zona norte
+    - Guardia 2: sentado junto a la escalera del sotano, medio dormido
+    - Kaelen: acaba de bajar por el ventanal al segundo piso (pasarela)
+    - Vex: en el borde del ventanal, posicion elevada
+    - Ren: en la pasarela junto a Kaelen
 
 ================================================================================
-                        TIRADA DE INICIATIVA
+         FASE 1 — INFILTRACION (sigilo, sin combate aun)
+================================================================================
+
+Los PJs estan en la pasarela del segundo piso. Abajo ven la planta principal:
+estantes de 3 m de alto, cajas de metal apiladas, un barril de aceite de
+maquina en la esquina noreste, garfios con cadenas colgando del techo,
+y la escalera al sotano en la esquina sureste.
+
+─── TURNO LIBRE (EXPLORACION, NO HAY INICIATIVA) ───────────────────────────────
+
+  Ren enciende Bronce (1 RM) como accion menor.
+    → Escuchar Pulsos: detecta que NO hay alomantes en el edificio.
+      Los guardias son mundanos. "Todo limpio, no hay brumosos."
+    → Tambien detecta el hilo de la alarma alquimica: "Hay un pulso
+      debil en el sotano — algun mecanismo metalico conectado a la carga."
+    RM: 3 → 2.
+
+  Vex estudia el terreno desde arriba con Lineas de Acero.
+    → Ve lineas azules hacia: las cadenas del techo, las cajas de metal,
+      la lanza del guardia 1, un cuchillo en el cinturon del guardia 2,
+      y algo en el sotano (la carga).
+    → "Dos guardias. El de la escalera tiene un cuchillo, el otro una lanza.
+      Hay cadenas y cajas de metal que puedo usar."
+
+  Los PJs planifican: Kaelen baja a noquear al guardia dormido,
+  Vex cubre desde arriba, Ren guia con info.
+
+─── KAELEN INTENTA NOQUEO SILENCIOSO ──────────────────────────────────────────
+
+  Kaelen baja por la escalera interna (movimiento) y se acerca al Guardia 2.
+  Tira Sigilo (DES + comp): d20(7) + 0 + 2 = 9.
+  El Guardia 2 estaba medio dormido — DM fija DC 8 (facil).
+  ¡PASA por los pelos!
+
+  Kaelen enciende Peltre (1 RM) y golpea al guardia dormido.
+    Ataque con ventaja (objetivo desprevenido):
+    d20(14, 8) = 14 + FUE(3) + comp(2) = 19  vs  CA 13. ¡IMPACTA!
+    Dano: 1d8(6) + FUE(3) + Peltre(+2) = 11 dano.
+    Guardia 2: 27 → 16 HP. No cae, pero esta aturdido 1 ronda.
+
+  El guardia gime. El Guardia 1 (entre los estantes) escucha.
+    Percepcion del Guardia 1: d20(12) + 1 = 13  vs  DC 10 (ruido en almacen).
+    ¡DETECTA ALGO! Grita: "Quien anda ahi?!"
+
+  ★ SE INICIA EL COMBATE — TIRADA DE INICIATIVA ★
+
+================================================================================
+         FASE 1B — COMBATE CON GUARDIAS (2 guardias, contenible)
 ================================================================================
 
 Todos tiran d20 + mod DES:
 
-  Vex:     d20(15) + 3 = 18
-  Destra:  d20(12) + 2 = 14
-  Ren:     d20(11) + 1 = 12
-  Kaelen:  d20(8)  + 0 = 8
+  Vex:       d20(16) + 3 = 19
+  Ren:       d20(13) + 1 = 14
+  Guardia 1: d20(11) + 1 = 12
+  Kaelen:    d20(9)  + 0 = 9
+  Guardia 2: d20(3)  + 1 = 4  (aturdido, tira con desventaja)
 
-ORDEN: Vex (18) → Destra (14) → Ren (12) → Kaelen (8)
+ORDEN: Vex (19) → Ren (14) → Guardia 1 (12) → Kaelen (9) → Guardia 2 (4)
 
 ================================================================================
                               RONDA 1
 ================================================================================
 
-─── TURNO DE VEX (Tiradora de Acero) ─── RM: 6/6 | HP: 39/39 | Impulso: 0 ───
+─── TURNO DE VEX (Tiradora) ─── RM: 3/3 | HP: 22/22 | Impulso: 0 ────────────
 
-  Acción Menor: Encender Acero (gratis, activa las líneas azules de metal).
-    → Líneas de Acero (pasivo N5) se activa: Vex ve líneas azules hacia
-      las cadenas del techo, la barandilla de la pasarela, la daga de
-      Destra y un objeto metálico oculto bajo su capa (¿vial?).
-    → Le dice al grupo: "Tiene una daga y algo más bajo la capa".
+  Vex tiene posicion elevada y no se movio. Activa Francotirador (N3):
+  primer tiro con ventaja.
 
-  Movimiento: Corre 9 metros hacia la izquierda y sube a unas cajas
-    apiladas, ganando altura y media cobertura (+2 CA vs distancia → CA 16).
-
-  Acción: Tiro Preciso contra Destra. No se movió más de la mitad, así que
-    aplica el pasivo (ignora media cobertura O +1d4 daño). Elige +1d4 daño.
-    Tira: d20(14) + DES(+3) + comp(+3) = 20  vs  CA 14 de Destra.
+  Accion: Tiro Preciso contra Guardia 1 (el que grito).
+    Tira con ventaja: d20(17, 9) = 17 + DES(3) + comp(2) = 22  vs CA 13.
     ¡IMPACTA!
-    Daño: 1d6(4) + 1d4(3) + DES(3) = 10 daño perforante.
-    Destra: 55 → 45 HP.
+    Dano: 1d6(5) + DES(3) = 8 perforante.
+    Guardia 1: 27 → 19 HP.
 
-  RM gastada esta ronda: 0. Sin chequeo de sobrecarga.
+  No gasto RM. Sin chequeo de sobrecarga.
 
-  ★ IMPULSO: Vex gana 1 Impulso por usar el entorno (altura en las cajas).
+  ★ IMPULSO: Vex gana 1 Impulso por usar el entorno (posicion elevada).
     Impulso: 0 → 1.
 
-  Reloj de Exposición: No se usó alomancia visible ofensiva, fue un disparo
-    normal con detección pasiva. Se mantiene en 2.
+  Reloj de Exposicion: disparo con ballesta, no alomancia visible. Mantiene 0.
 
-  [Estado Vex: RM 6/6 | HP 39/39 | Impulso 1 | Posición: cajas elevadas]
+  [Estado Vex: RM 3/3 | HP 22/22 | Impulso 1 | Posicion: ventanal alto]
 
-─── TURNO DE DESTRA (Embaucadora de Zinc) ─── RM: 8/8 | HP: 45/55 ──────────
+─── TURNO DE REN (Sabueso) ─── RM: 2/3 | HP: 21/21 | Impulso: 0 ─────────────
 
-  Destra ve que la rodearon y decide romper la moral del grupo.
+  Ren ya uso 1 RM antes del combate (Escuchar Pulsos). Le quedan 2.
+  Esta en la pasarela, a unos 9 m de Guardia 1.
 
-  Acción Menor: Encender Zinc (gratis, activa percepción emocional).
-    → Lectura Emocional (pasivo N2): detecta la emoción dominante de cada
-      PJ. Kaelen = determinación, Vex = concentración, Ren = cautela.
-      Nota: contra Ren no funciona diferente, él no tiene Máscara.
-      Decide atacar emocionalmente a Ren (el más cauto).
+  Accion: ANALISIS LETAL (N2, 1 RM) contra Guardia 1.
+    Ren observa al guardia moverse y senala un punto debil.
+    → El proximo aliado que ataque al Guardia 1 hace +1d6 dano adicional.
+    → Ren grita: "Lado izquierdo, no levanta bien el brazo!"
+    RM: 2 → 1.
 
-  Acción: PÁNICO INDUCIDO (N5) contra Ren. Cuesta 1 RM.
-    DC: 15 (8 + BM 3 + CAR 4)
-    Ren tira salvación de SAB: d20(9) + SAB(+2) = 11.
-    ¡FALLA!
-    → Ren debe gastar TODO su movimiento huyendo de Destra en línea recta.
-      Sale corriendo 9 metros hacia atrás, hacia la puerta.
-      NO puede usar su turno para acercarse ni analizar.
-    → Además, aliados en la ruta de huida pueden hacer ataque de oportunidad
-      contra Ren (pero son aliados, no lo hacen).
+  Movimiento: Ren baja de la pasarela por la escalera (queda en planta baja,
+    detras de unos estantes, a 6 m del Guardia 1).
 
-  Movimiento: Destra se mueve 9 metros hacia la pasarela elevada, subiendo
-    las escaleras. Busca cobertura detrás de la barandilla metálica.
-    → Ahora tiene media cobertura: CA 14 → 16 vs ataques a distancia.
+  Gasto 1 RM esta ronda. Sin sobrecarga (necesita 2+ RM para chequeo).
 
-  RM gastada esta ronda: 1. Sin sobrecarga.
-  Reloj: +1 por alomancia visible (Pánico Inducido, Ren salió corriendo
-    gritando). Reloj: 2 → 3 (Alerta).
+  [Estado Ren: RM 1/3 | HP 21/21 | Impulso 0 | Posicion: detras de estantes]
 
-  [Estado Destra: RM 7/8 | HP 45/55 | Posición: pasarela con cobertura]
+─── TURNO DE GUARDIA 1 ─── HP: 19/27 | CA: 13 ───────────────────────────────
 
-─── TURNO DE REN (Sabueso de Bronce) ─── RM: 6/6 | HP: 38/38 | Impulso: 0 ───
+  El guardia ve a Kaelen abajo y a Vex arriba. Decide usar distancia.
+  Se cubre detras de un estante (media cobertura, +2 CA → CA 15) y dispara.
 
-  ¡Ren está bajo Pánico Inducido! Debe gastar su movimiento huyendo.
-  Ya huyó 9 m en el turno de Destra (el efecto consume el movimiento
-  inmediatamente). Ahora que es su turno, el efecto ya pasó.
+  Accion: Disparo contra Vex (la que le pego).
+    d20(11) + 4 = 15  vs  CA 13 de Vex. ¡IMPACTA!
+    Dano: 1d8(6) + 2 = 8 perforante.
+    Vex: 22 → 14 HP.
 
-  Ren recupera el control. Está a 21 metros de Destra (empezó a 12,
-  retrocedió 9). Demasiado lejos para atacar, pero puede analizar.
+  El guardia grita: "INTRUSOS! Dos arriba, uno abajo!"
+  → Esto es importante: si la alarma alquimica suena despues,
+    los refuerzos vendran MAS rapido.
 
-  Acción Menor: Encender Bronce (gratis, activa la percepción de pulsos).
+─── TURNO DE KAELEN (Bruto) ─── RM: 2/3 | HP: 28/28 | Impulso: 0 ────────────
 
-  Acción: ESCUCHAR PULSOS (1 RM) contra Destra.
-    Tira: d20(16) + INT(+3) + BM(+3) = 22  vs  DC 13 (distancia media).
-    ¡ÉXITO rotundo!
-    → Ren percibe: pulso de Zinc activo (intensidad alta), y detecta
-      un segundo pulso débil — ¡Destra tiene un vial de reserva!
-    → Le grita a la crew: "¡Está en la pasarela, quemando Zinc fuerte!
-      ¡Tiene un vial de repuesto!"
+  Peltre ya esta encendido (lo activo para el noqueo).
+  El Guardia 2 esta aturdido a sus pies, el Guardia 1 a 9 m con cobertura.
 
-  Movimiento: Ren avanza 9 metros de vuelta hacia el taller (queda a 12 m
-    de Destra).
+  Accion: Rematar al Guardia 2 (aturdido, desventaja en salvaciones).
+    Ataque: d20(12) + FUE(3) + comp(2) = 17  vs  CA 13. ¡IMPACTA!
+    Dano: 1d8(7) + FUE(3) + Peltre(+2) = 12 contundente.
+    Guardia 2: 16 → 4 HP. No cae pero esta destruido.
 
-  RM gastada: 1. Sin sobrecarga.
-
-  [Estado Ren: RM 5/6 | HP 38/38 | Impulso 0 | Posición: entrada del taller]
-
-─── TURNO DE KAELEN (Bruto de Peltre) ─── RM: 6/6 | HP: 46/46 | Impulso: 0 ──
-
-  Acción Menor: ENCENDER PELTRE (1 RM). Baja a 5/6 RM.
-    → +2 daño cuerpo a cuerpo 1/turno + ventaja en FUE para empujar/romper.
-
-  Movimiento: Kaelen corre 9 metros hacia la base de la pasarela.
-    Queda a unos 3 metros de Destra (abajo mirando arriba).
-
-  Acción: CARGA DE PELTRE (N5, 1 RM) — carga en línea recta subiendo
-    la escalera de la pasarela. Se movió más de 3 m antes del impacto.
-    Tira: d20(17) + FUE(+3) + comp(+3) = 23  vs  CA 14 de Destra.
-    ¡IMPACTA!
-    Daño: 1d8(6) + FUE(3) + Peltre(+2) = 11 daño contundente.
-    → Destra hace salvación de FUE vs DC 14 para no ser empujada y derribada.
-      Tira: d20(7) + FUE(0) = 7. ¡FALLA!
-    → Destra es empujada 1,5 metros contra la barandilla y cae DERRIBADA.
-    Destra: 45 → 34 HP. Estado: Derribada.
-
-  RM gastada esta ronda: 2 (Encender Peltre + Carga de Peltre).
-    → CHEQUEO DE SOBRECARGA: d20(13) + CON(+3) = 16  vs  DC 12+2 = 14.
-    ¡PASA! No gana fatiga.
+  Accion Menor: Presencia Aplastante (N2, 1 RM) contra Guardia 2.
+    El Guardia 2 debe tirar SAB save vs DC 13: d20(5) + 0 = 5. ¡FALLA!
+    → No puede atacar a Kaelen por 1 turno. Esta paralizado de miedo.
+    RM: 2 → 1.
 
   ★ IMPULSO: Kaelen gana 1 Impulso por Primera Sangre (primer golpe
-    metálico significativo del combate). Impulso: 0 → 1.
+    metalico significativo). Impulso: 0 → 1.
 
-  [Estado Kaelen: RM 4/6 | HP 46/46 | Impulso 1 | Posición: pasarela,
-   junto a Destra | Peltre activo]
+  Reloj de Exposicion: Kaelen uso Peltre (dano cuerpo a cuerpo con fuerza
+    sobrehumana) pero no hay testigos civiles, solo guardias. +0.
+
+  [Estado Kaelen: RM 1/3 | HP 28/28 | Impulso 1 | Peltre activo]
+
+─── TURNO DE GUARDIA 2 ─── HP: 4/27 | Aturdido + Presencia Aplastante ────────
+
+  No puede atacar a Kaelen (Presencia Aplastante). Aterrorizado.
+  Intenta huir: se levanta y corre hacia la puerta principal.
+
+  → ATAQUE DE OPORTUNIDAD DE KAELEN:
+    d20(15) + FUE(3) + comp(2) = 20  vs  CA 13. ¡IMPACTA!
+    Dano: 1d8(4) + FUE(3) + Peltre(2) = 9.
+    Guardia 2: 4 → 0 HP. Cae inconsciente. Fuera de combate.
+
+  → Kaelen lo noquea limpio. El guardia se desploma sin hacer ruido.
 
 ═══════════════════ FIN DE RONDA 1 ═══════════════════
 
   RESUMEN DE RONDA 1:
-  • Destra: 34/55 HP, Derribada, RM 7/8, en la pasarela
-  • Vex: 39/39 HP, RM 6/6, Impulso 1, en las cajas con altura
-  • Ren: 38/38 HP, RM 5/6, Impulso 0, a 12 m del combate
-  • Kaelen: 46/46 HP, RM 4/6, Impulso 1, cuerpo a cuerpo con Destra
-  • Reloj de Exposición: 3 (Alerta)
+  • Guardia 2: 0 HP — FUERA DE COMBATE
+  • Guardia 1: 19/27 HP, en cobertura, grito alerta
+  • Vex: 14/22 HP, arriba, Impulso 1
+  • Ren: 21/21 HP, RM 1/3, Impulso 0
+  • Kaelen: 28/28 HP, RM 1/3, Impulso 1, Peltre activo
+  • Reloj de Exposicion: 0
 
 ================================================================================
                               RONDA 2
 ================================================================================
 
-─── TURNO DE VEX (Tiradora) ─── RM: 6/6 | HP: 39/39 | Impulso: 1 ────────────
+─── TURNO DE VEX (Tiradora) ─── RM: 3/3 | HP: 14/22 | Impulso: 1 ────────────
 
-  Destra está Derribada y Kaelen la tiene trabada. Oportunidad perfecta.
+  El guardia 1 tiene cobertura (+2 CA = 15). Vex necesita superarla.
 
-  Acción: CADENCIA DE FUEGO (N5, 2 RM). Elige disparo extra con -2.
-    1/descanso corto — lo vale ahora.
+  Accion: Empuje de Acero contra el estante donde se cubre el Guardia 1.
+    Gasta 1 RM. Empuja las cajas de metal del estante SOBRE el guardia.
+    El guardia tira DES save DC 13: d20(8) + 1 = 9. ¡FALLA!
+    Dano: 2d6(4, 5) = 9 contundente (cajas cayendo).
+    Guardia 1: 19 → 10 HP. Pierde su cobertura (estante derrumbado).
+    → El area se convierte en terreno dificil (cajas desparramadas).
 
-    Disparo 1: d20(12) + DES(3) + comp(3) - 2 = 16  vs  CA 14.
-      ¡IMPACTA! (Destra pierde +2 de media cobertura por estar Derribada)
-      Daño: 1d6(5) + DES(3) = 8 perforante.
+  RM: 3 → 2.
 
-    Disparo 2: d20(8) + DES(3) + comp(3) - 2 = 12  vs  CA 14.
-      FALLA (12 < 14).
+  ★ IMPULSO: Vex gana 1 por Coordinacion de Crew (Ren analizo, Vex ejecuto
+    usando la info + entorno). Impulso: 1 → 2.
 
-  Hostigador (N3): Tras impactar, Vex se mueve 1,5 m gratis — se
-    reposiciona a mejor ángulo en las cajas.
+  Reloj: +1 por alomancia visible (empujar metal sin tocar es OBVIO).
+  Reloj: 0 → 1 (Rumores).
 
-  Destra: 34 → 26 HP.
-  RM gastada: 2. → CHEQUEO DE SOBRECARGA: d20(14) + CON(+1) = 15  vs DC 14.
-  ¡PASA! Sin fatiga.
+  [Estado Vex: RM 2/3 | HP 14/22 | Impulso 2]
 
-  ★ IMPULSO: Vex gana 1 Impulso por Coordinación de Crew (disparo en combo
-    con el tackle de Kaelen). Impulso: 1 → 2.
+─── TURNO DE REN (Sabueso) ─── RM: 1/3 | HP: 21/21 | Impulso: 0 ─────────────
 
-  [Estado Vex: RM 4/6 | HP 39/39 | Impulso 2]
+  El Guardia 1 esta herido, sin cobertura, y marcado por Analisis Letal.
+  Ren decide usar su ultima RM sabiamente.
 
-─── TURNO DE DESTRA (Embaucadora) ─── RM: 7/8 | HP: 26/55 | Derribada ───────
+  Movimiento: avanza 4.5 m para quedar a distancia de daga del Guardia 1.
 
-  Destra está en problemas. Derribada con Kaelen encima. Decide ir nuclear.
+  Accion: Ataque con daga al Guardia 1 (marcado por Analisis Letal).
+    d20(14) + DES(1) + comp(2) = 17  vs  CA 13. ¡IMPACTA!
+    Dano: 1d4(3) + DES(1) + 1d6(5) Analisis Letal = 9 perforante.
+    Guardia 1: 10 → 1 HP.
 
-  Usa la mitad de su movimiento para levantarse (deja de estar Derribada).
-  Le quedan 4,5 metros de movimiento.
+  ★ IMPULSO: Ren gana 1 por usar su propio analisis para asestar el golpe.
+    Impulso: 0 → 1.
 
-  Acción: ONDA EMOCIONAL (N5, 2 RM) contra Kaelen y Vex (dos objetivos
-    dentro del rango).
-    DC: 15 (SAB save para cada uno).
+  [Estado Ren: RM 1/3 | HP 21/21 | Impulso 1]
 
-    Kaelen: d20(6) + SAB(+1) = 7. ¡FALLA!
-      → Kaelen queda afectado: -1d4 a su próxima tirada de ataque.
+─── TURNO DE GUARDIA 1 ─── HP: 1/27 | Sin cobertura, rodeado ─────────────────
 
-    Vex: d20(14) + SAB(+1) = 15. ¡JUSTO PASA!
-      → Vex resiste la oleada emocional. Sin efecto.
+  El guardia esta destruido. 1 HP, sin cobertura, uno atras y otro al lado.
+  Tira la lanza y levanta las manos: "ME RINDO! No me pagan lo suficiente
+  para esto!"
 
-  Movimiento restante: Destra se mueve 4,5 m por la pasarela, alejándose
-    de Kaelen.
-    → ¡ATAQUE DE OPORTUNIDAD DE KAELEN! (sale del alcance cuerpo a cuerpo)
-      Kaelen ataca: d20(11) + FUE(3) + comp(3) = 17.
-      PERO tiene -1d4 por Onda Emocional: -1d4(3) = 14  vs CA 14.
-      ¡IMPACTA por los pelos!
-      Daño: 1d8(3) + FUE(3) + Peltre(+2) = 8 contundente.
-      Destra: 26 → 18 HP.
+  → El DM decide: rendicion. El guardia se arrodilla.
+    Los PJs pueden atarlo. Si lo dejan ir, huye al canal.
+    Si lo dejan ir SIN atarlo, puede alertar a alguien afuera
+    (complicacion para mas adelante, a discrecion del DM).
 
-  RM gastada esta ronda: 2. → SOBRECARGA: d20(9) + CON(+1) = 10  vs DC 14.
-  ¡FALLA! DESTRA GANA FATIGA 1.
-    → -1 a todas las tiradas físicas y metálicas hasta descanso corto.
+  Kaelen lo ata con una cadena suelta. Guardia 1: neutralizado.
 
-  Reloj: +1 (Onda Emocional visible en la pasarela, onda de pánico).
-  Reloj: 3 → 4 (Cacería). Un Sabueso del Canton va a empezar a rastrear.
-    Pero eso es problema para después — ahora hay que terminar la pelea.
+═══════════════════ FIN DE RONDA 2 — FIN DE FASE 1B ═══════════════════
 
-  [Estado Destra: RM 5/8 | HP 18/55 | Fatiga 1 | Posición: pasarela, 4.5 m
-   de Kaelen]
+  RESUMEN:
+  • Guardia 1: 1 HP, atado, neutralizado
+  • Guardia 2: 0 HP, inconsciente
+  • La planta baja esta limpia. El camino al sotano esta libre.
+  • Reloj de Exposicion: 1 (Rumores)
+  • La crew bajo al sotano a buscar la carga...
 
-─── TURNO DE REN (Sabueso) ─── RM: 5/6 | HP: 38/38 | Impulso: 0 ────────────
+================================================================================
+         FASE 2 — LA ALARMA (refuerzos, presion de tiempo)
+================================================================================
 
-  Ren necesita darle a la crew la ventaja definitiva. Usa su análisis.
+Los PJs bajan al sotano. Encuentran cajas marcadas con el sello de Casa Kest
+(Investigacion DC 12 — Ren pasa automaticamente con su Analista +1).
+Dentro: lingotes de un metal desconocido que brilla violeta en la oscuridad.
+Pesa mas de lo que deberia. Es el Kestium, pero los PJs no lo saben aun.
 
-  Movimiento: Corre 9 metros, queda al pie de la pasarela (a 9 m de Destra,
-    dentro de rango para Lectura Profunda).
+Kaelen levanta la caja mas grande... y el hilo de alarma alquimica se tensa.
 
-  Acción: LECTURA PROFUNDA (N5, 2 RM) contra Destra.
-    Tira: d20(18) + INT(+3) + BM(+3) = 24  vs  DC 16.
-    ¡ÉXITO AMPLIO!
-    → Ren obtiene: CA exacta (14), RM restante (5 de 8), y una debilidad:
-      Destra tiene Fatiga 1, y su próxima técnica de 2+ RM le va a costar
-      sobrecarga casi seguro.
-    → Aliado que ataque antes del turno de Ren gana +1d4 al ataque.
-    → Ren grita: "¡Está a 18 de vida, le quedan 5 reservas pero con fatiga!
-      ¡Un golpe más fuerte y se rompe!"
+  → Ren ya habia detectado el mecanismo con Bronce, pero la crew se olvido
+    de desactivarlo en la emocion del combate. ERROR DE LOS JUGADORES.
+    (Nota DM: esto es narrativamente perfecto. El exito parcial los
+    confio, y ahora pagan el costo.)
 
-  Acción Menor: ANÁLISIS LETAL (N2, 1 RM). Como ya analizó a Destra
-    con Lectura Profunda, puede señalar un punto débil al grupo.
-    → Próximo ataque (de Ren o aliado) hace +1d6 daño adicional.
+  ★ ALARMA ACTIVADA ★
+  Un tintineo metalico resuena por todo el almacen. Afuera, una campana
+  secundaria vibra. Alguien va a venir.
 
-  RM gastada esta ronda: 3 (Lectura Profunda 2 + Análisis Letal 1).
-    → SOBRECARGA: d20(15) + CON(+1) = 16  vs DC 12+3 = 15.
-    ¡PASA! Justo. Sin fatiga.
+  DM: "Tienen entre 2 y 3 rondas antes de que lleguen refuerzos.
+  Pueden cargar TODO (lento, 2 rondas para subir las cajas) o agarrar
+  lo esencial y correr (1 ronda)."
 
-  ★ IMPULSO: Ren gana 1 Impulso por Coordinación de Crew (info táctica
-    directa para Kaelen y Vex). Impulso: 0 → 1.
-    Y el jugador de Kaelen también gana 1 Impulso por la coordinación
-    (ambos jugadores ganan 1 por el trigger de Coordinación).
-    Kaelen: Impulso 1 → 2.
+  Los PJs deciden: agarran 2 cajas (la mitad del botin) y corren.
+  Kaelen carga una caja, Ren la otra. Vex cubre la retirada.
 
-  [Estado Ren: RM 2/6 | HP 38/38 | Impulso 1]
+─── RONDA DE TRANSICION (sin iniciativa — narrado por el DM) ─────────────────
 
-─── TURNO DE KAELEN (Bruto) ─── RM: 4/6 | HP: 46/46 | Impulso: 2 ────────────
+  Los PJs suben del sotano con la carga. Llegan a la planta baja.
+  Vex mira por el ventanal y ve movimiento afuera.
 
-  Kaelen escucha a Ren y decide terminar esto.
+  Vex: "Tres tipos con garrotes viniendo por la puerta principal.
+  Uno tiene un farol. Vienen rapido."
 
-  Movimiento: Avanza 4,5 metros por la pasarela hasta quedar cuerpo a
-    cuerpo con Destra.
+  ★ 3 MATONES DE MUELLE entran por la puerta principal.
+  La crew esta en el centro del almacen con la carga.
+  La salida es la puerta trasera (hacia el callejon del canal)
+  o los ventanales altos (por donde entraron).
 
-  Acción: ATAQUE EXTRA (N5) — puede hacer 2 ataques con su acción.
+  DM: "No tienen que pelear. Pueden correr por la puerta trasera.
+  Pero si los matones los ven con la carga, los van a perseguir."
 
-    Ataque 1 (Golpe de Peltre, 1 RM):
-      d20(15) + FUE(3) + comp(3) = 21  vs CA 14. ¡IMPACTA!
-      Daño: 1d8(5) + FUE(3) + Peltre(+2) + 1d4(3) de Lectura Profunda
-            + 1d6(4) de Análisis Letal = 17 daño.
-      (Los bonos de Ren se consumen en el primer impacto)
+  DECISION DE LA CREW: Vex propone cubrir la salida mientras Kaelen
+  y Ren escapan con la carga. Pelean 1-2 rondas y huyen.
 
-      → Destra: 18 → 1 HP.
+  ★ NUEVA INICIATIVA ★
 
-    ★ Destra intenta usar su REACCIÓN:
-      DESTELLO DE DUDA (1 RM) — le aplica -1d4 al segundo ataque de Kaelen.
-      Cuesta 1 RM. Destra baja a 4/8 RM. -1d4 al próximo ataque.
+  Vex:     d20(18) + 3 = 21
+  Maton A: d20(10) + 0 = 10
+  Maton B: d20(7)  + 0 = 7
+  Maton C: d20(14) + 0 = 14
+  Kaelen:  d20(5)  + 0 = 5  (cargando una caja pesada)
+  Ren:     d20(11) + 1 = 12  (cargando una caja)
 
-      PERO: como la emoción de Kaelen ya fue afectada por Destra este
-      combate (Onda Emocional en ronda 2), la penalidad sube a -1d6.
+  ORDEN: Vex (21) → Maton C (14) → Ren (12) → Maton A (10) → Maton B (7)
+         → Kaelen (5)
 
-    Ataque 2 (ataque normal):
-      d20(13) + FUE(3) + comp(3) = 19 - 1d6(5) Destello = 14
-      14  vs  CA 14. ¡IMPACTA JUSTO!
+================================================================================
+                     RONDA 3 (Fase 2 — Huida con pelea)
+================================================================================
 
-      Daño: 1d8(7) + FUE(3) + Peltre(+2) = 12 daño.
+─── TURNO DE VEX (Tiradora) ─── RM: 2/3 | HP: 14/22 | Impulso: 2 ────────────
 
-      Destra: 1 → -11 HP.
+  Vex sigue en posicion elevada. Los 3 matones acaban de entrar por
+  la puerta principal, a 12 m. Necesita frenarlos.
 
-  ████████████████████████████████████████████████████████
-  ██                                                    ██
-  ██   DESTRA CAE. HP 0. TIRADAS DE MUERTE APLICAN.    ██
-  ██                                                    ██
-  ████████████████████████████████████████████████████████
+  Accion: Empuje de Acero contra el barril de aceite de maquina
+    (esquina noreste, entre los matones y la carga). Lo empuja para
+    volcarlo en la ruta de los matones.
+    1 RM. El barril rueda y se rompe contra las cajas.
+    → Crea terreno dificil (aceite en 3x3 m) frente a la puerta.
+    → Los matones necesitan el doble de movimiento para cruzar.
+    RM: 2 → 1.
 
-  Destra se desploma sobre la barandilla de la pasarela y se desliza al
-  suelo. El brillo del Zinc en sus ojos se apaga.
+  Movimiento: Vex baja de un salto del ventanal (DES DC 10: d20(15)+3=18,
+    exito) y aterriza cerca de la puerta trasera.
 
-  Pero el reglamento dice que a 0 HP empieza a hacer tiradas de muerte...
-  ¿O la crew decide rematar?
+  Reloj: +1 por alomancia visible (empujo un barril de metal).
+  Reloj: 1 → 2 (Investigacion).
 
-  Kaelen mira a Vex y a Ren. Ren asiente. Vex mira para otro lado.
+  ★ IMPULSO: Vex gasta 2 Impulso para efecto cinematografico:
+    al caer, empuja una moneda contra la lampara de aceite colgante.
+    La lampara cae sobre el charco de aceite... pero NO se prende (todavia).
+    El DM dice: "La lampara esta volcada en el aceite. Si alguien la rompe
+    o lanza una chispa, todo eso se prende fuego."
+    Impulso: 2 → 0.
 
-  Kaelen le da un último golpe con el martillo. No hay tirada de muerte.
-  Destra muere. Los documentos siguen en su bolsa.
+  [Estado Vex: RM 1/3 | HP 14/22 | Impulso 0]
 
-  RM gastada esta ronda: 1 (Golpe de Peltre). Sin sobrecarga (gastó solo 1).
+─── TURNO DE MATON C ─── HP: 22/22 ───────────────────────────────────────────
 
-  Gasta 2 Impulso: Movimiento extra. Recoge los documentos y el vial de
-  Destra antes de que nadie más llegue.
+  Ve el aceite en el piso. Intenta rodearlo por la izquierda.
+  Movimiento: 9 m, pero rodear el aceite le cuesta todo su movimiento.
+  No llega a atacar a nadie. Se queda al borde del aceite, maldiciendo.
 
-  [Estado final Kaelen: RM 3/6 | HP 46/46 | Impulso 0]
+─── TURNO DE REN (Sabueso) ─── RM: 1/3 | HP: 21/21 | Impulso: 1 ─────────────
+
+  Ren esta cargando una caja. Se mueve hacia la puerta trasera.
+  Movimiento: 6 m (penalizado por la carga). Llega a la puerta trasera.
+
+  Accion: Abrir la puerta trasera. Da al callejon que conecta con el canal.
+  Esta oscuro. Niebla espesa.
+  → Ren grita: "Puerta abierta! Salgan!"
+
+  Accion Menor: tira la caja en el callejon (la deja lista para recoger
+  al correr).
+
+  [Estado Ren: RM 1/3 | HP 21/21 | Impulso 1]
+
+─── TURNO DE MATON A ─── HP: 22/22 ───────────────────────────────────────────
+
+  Va directo por el centro. Pisa el aceite (terreno dificil).
+  Movimiento: solo avanza 4.5 m (mitad por terreno dificil).
+  No llega a nadie. Se resbala pero se mantiene de pie.
+
+─── TURNO DE MATON B ─── HP: 22/22 ───────────────────────────────────────────
+
+  Sigue a Maton C por la izquierda. Llega a unos estantes y ve a Kaelen
+  cargando una caja. Tiene linea para correr.
+  Movimiento: 9 m. Llega a 3 m de Kaelen.
+  Accion: Garrote contra Kaelen.
+    d20(9) + 4 = 13  vs  CA 15 de Kaelen. FALLA (13 < 15).
+    El garrote rebota contra la caja que Kaelen lleva como escudo
+    improvisado.
+
+─── TURNO DE KAELEN (Bruto) ─── RM: 1/3 | HP: 28/28 | Impulso: 1 ────────────
+
+  Kaelen tiene la caja y un maton encima. Decide priorizar: escapar.
+  Peltre sigue activo.
+
+  Accion: Golpea al Maton B con la caja de Kestium como arma improvisada.
+    d20(13) + FUE(3) + comp(2) = 18  vs  CA 12. ¡IMPACTA!
+    Dano: 1d8(5) + FUE(3) + Peltre(2) = 10 contundente (cajoneado).
+    Maton B: 22 → 12 HP. Sale volando 1.5 m hacia atras.
+
+  Movimiento: Kaelen corre 6 m (penalizado por caja) hacia la puerta trasera.
+  Llega al callejon.
+
+  ★ IMPULSO: Kaelen gana 1 por Riesgo Narrativo (peleo con la carga en vez
+    de tirarla). Impulso: 1 → 2.
+
+  [Estado Kaelen: RM 1/3 | HP 28/28 | Impulso 2]
+
+═══════════════════ FIN DE RONDA 3 ═══════════════════
+
+  RESUMEN DE RONDA 3:
+  • Crew: las 2 cajas estan en el callejon. Ren y Kaelen afuera.
+    Vex cerca de la puerta trasera.
+  • Matones: Maton A atrapado en aceite, Maton B herido (12 HP),
+    Maton C al borde del aceite. Ninguno llego a la puerta trasera.
+  • Reloj: 2 (Investigacion)
+
+================================================================================
+         FASE 3 — PERSECUCION Y COBERTURA (consecuencias de la alarma)
+================================================================================
+
+Los matones corren hacia la puerta trasera. Pero antes...
+
+DM: "Escuchan pasos en el tejado. Alguien mas llego — un tipo con ballesta
+se asoma desde la cornisa del edificio de enfrente. Mira el callejon."
+
+★ TIRADOR DE BANDA aparece en el tejado, con cobertura. CA 15 (13 + 2
+  cobertura). Primer tiro con ventaja (estaba esperando).
+
+No hay nueva iniciativa — se mantiene el orden. Pero el Tirador actua
+justo despues de Vex (insertado en el orden con iniciativa 20).
+
+================================================================================
+                     RONDA 4 (Fase 3 — Persecucion en el callejon)
+================================================================================
+
+─── TURNO DE VEX (Tiradora) ─── RM: 1/3 | HP: 14/22 | Impulso: 0 ────────────
+
+  Vex ve al Tirador en el tejado. Problema: el Tirador tiene cobertura y
+  posicion elevada, igual que ella tenia antes.
+
+  Accion: Empuje de Acero — empuja una moneda contra la lampara volcada
+    en el charco de aceite adentro del almacen. CHISPA.
+
+    El aceite se PRENDE. Fuego en un area de 3x3 m dentro del almacen.
+    1d6 fuego/turno a quien este en la zona.
+    Maton A esta EN el aceite: recibe 1d6(4) = 4 fuego inmediatamente.
+    Maton A: 22 → 18 HP. Y ahora tiene fuego entre el y la puerta trasera.
+
+  RM: 1 → 0. Vex quedo sin reservas metalicas.
+
+  Movimiento: Vex sale por la puerta trasera al callejon. Cierra la puerta
+    detras de ella (la puerta es de madera — los matones la pueden derribar
+    pero les cuesta 1 ronda).
+
+  Reloj: +1 por alomancia visible + fuego obvio.
+  Reloj: 2 → 3 (Alerta). Esto es malo. Patrullas van a buscar.
+
+  [Estado Vex: RM 0/3 | HP 14/22 | Impulso 0 | SIN RESERVAS]
+
+─── TURNO DE TIRADOR DE BANDA ─── HP: 18/18 | Tejado ────────────────────────
+
+  Tiene ventaja en el primer tiro (emboscada desde cobertura).
+  Apunta a Kaelen (el que carga la caja, blanco grande).
+    d20(15, 11) = 15 + 5 = 20  vs  CA 15. ¡IMPACTA!
+    Dano: 1d8(7) + 3 = 10 perforante.
+    Kaelen: 28 → 18 HP. La flecha le da en el hombro.
+
+  Kaelen gruñe pero no suelta la caja.
+
+─── TURNO DE REN (Sabueso) ─── RM: 1/3 | HP: 21/21 | Impulso: 1 ─────────────
+
+  Ren tiene 1 RM. La crew necesita salir del callejon AHORA.
+  El Tirador en el tejado es el mayor peligro.
+
+  Accion: ANALISIS LETAL (1 RM) contra el Tirador de Banda.
+    → El proximo aliado que ataque al Tirador hace +1d6.
+    → Ren grita a Vex: "Tejado, segundo ladrillo desde la esquina,
+      ahi no tiene cobertura!"
+    RM: 1 → 0. Ren tambien quedo sin reservas.
+
+  Movimiento: Ren recoge su caja y corre 6 m por el callejon hacia el canal.
+
+  [Estado Ren: RM 0/3 | HP 21/21 | Impulso 1 | SIN RESERVAS]
+
+─── TURNO DE MATON A ─── HP: 18/22 | EN FUEGO ────────────────────────────────
+
+  El aceite arde a su alrededor. Otro turno en la zona = otro 1d6 fuego.
+  Prioridad: SALIR DEL FUEGO. Corre hacia la puerta principal (la opuesta).
+  Maton A abandona la persecucion. Sale del edificio por el frente.
+
+─── TURNO DE MATON B ─── HP: 12/22 ───────────────────────────────────────────
+
+  Intenta abrir la puerta trasera (la que Vex cerro).
+  FUE DC 10: d20(14) + 1 = 15. La derriba de una patada.
+  Se queda en la puerta, ve el callejon oscuro con niebla.
+  No ve a nadie (Acechadores con Estano harian maravillas aca).
+  Duda. No tiene luz.
+
+─── TURNO DE MATON C ─── HP: 22/22 ───────────────────────────────────────────
+
+  Rodea el fuego y llega a la puerta trasera abierta. Ve a Maton B dudando.
+  Maton C: "Vamos, estan ahi!"
+  Se asoman al callejon pero los PJs ya estan a 15 m en la niebla.
+
+─── TURNO DE KAELEN (Bruto) ─── RM: 1/3 | HP: 18/28 | Impulso: 2 ────────────
+
+  Kaelen corre por el callejon con la caja. El Tirador puede dispararle
+  de nuevo. Decide hacer algo al respecto.
+
+  Gasta 2 Impulso: efecto cinematografico — Kaelen tira la caja al aire,
+    arranca un trozo de cadena del muro del callejon (3 m de cadena oxidada),
+    la hace girar como boleadora y la lanza al tejado apuntando al Tirador.
+    Ataque improvisado: d20(11) + FUE(3) + comp(2) = 16  vs  CA 15.
+    ¡IMPACTA! + 1d6(4) de Analisis Letal de Ren = total.
+    Dano: 1d6(3) + FUE(3) + 4 Analisis = 10 contundente.
+    Tirador: 18 → 8 HP. El impacto lo tira hacia atras, pierde la linea
+    de tiro por el resto de la ronda.
+
+  Kaelen atrapa la caja antes de que caiga (DES DC 10: d20(8)+0=8... FALLA.
+    La caja cae al piso. Ren la agarra al pasar: "La tengo! CORRAN!")
+
+  Impulso: 2 → 0.
+
+  [Estado Kaelen: RM 1/3 | HP 18/28 | Impulso 0]
+
+═══════════════════ FIN DE RONDA 4 ═══════════════════
+
+  Los matones salen al callejon pero no ven a nadie en la niebla.
+  El Tirador esta herido y sin linea de tiro.
+  Los PJs corren por el callejon hacia el canal.
+
+  DM: "Corren tres cuadras por callejones hasta llegar al canal.
+  La niebla los cubre. Escuchan gritos atras pero se alejan.
+  Cuando llegan al borde del agua, ven la barcaza de Darven esperando.
+  Silen les extiende la mano desde la proa. Suben. Se van."
+
+  ★ COMBATE TERMINADO — LOS PJs ESCAPARON CON LA CARGA ★
 
 ================================================================================
                           FIN DEL COMBATE
@@ -363,114 +600,404 @@ ORDEN: Vex (18) → Destra (14) → Ren (12) → Kaelen (8)
 
 ═══════════════════ RESUMEN FINAL ═══════════════════
 
-  DURACIÓN: 2 rondas completas (Destra murió en el turno 2 de Kaelen).
+  DURACION: 4 rondas de combate + 1 ronda de sigilo (Fase 1).
+  FASES: 3 fases distintas (Infiltracion → Alarma/Refuerzos → Persecucion).
+  ENEMIGOS ENFRENTADOS: 2 guardias + 3 matones + 1 tirador = 6 total.
 
-  TABLA DE DAÑO A DESTRA:
-  ┌───────────┬──────────────────────┬────────┬──────────┐
-  │ Ronda     │ Quien                │ Habil. │ Daño     │
-  ├───────────┼──────────────────────┼────────┼──────────┤
-  │ R1        │ Vex                  │ Tiro P │  10      │
-  │ R1        │ Kaelen               │ Carga  │  11      │
-  │ R2        │ Vex                  │ Cadenc │   8      │
-  │ R2        │ Kaelen (OA)          │ Martil │   8      │
-  │ R2        │ Kaelen (Ataque 1)    │ Golpe  │  17 (*)  │
-  │ R2        │ Kaelen (Ataque 2)    │ Normal │  12      │
-  ├───────────┼──────────────────────┼────────┼──────────┤
-  │ TOTAL     │                      │        │  66      │
-  └───────────┴──────────────────────┴────────┴──────────┘
-  (*) Incluye +1d4 Lectura Profunda y +1d6 Análisis Letal de Ren.
-  Destra tenía 55 HP. Recibió 66 → murió a -11.
+  TABLA DE DANO INFLIGIDO POR LOS PJs:
+  ┌───────────┬──────────────────────┬────────────────┬──────────┐
+  │ Ronda     │ Quien                │ Habilidad      │ Dano     │
+  ├───────────┼──────────────────────┼────────────────┼──────────┤
+  │ Pre-R1    │ Kaelen               │ Noqueo+Peltre  │  11      │
+  │ R1        │ Vex                  │ Tiro (ventaja) │   8      │
+  │ R1        │ Kaelen               │ Martillo+Peltre│  12      │
+  │ R1        │ Kaelen (AO)          │ Oportunidad    │   9      │
+  │ R2        │ Vex                  │ Empuje cajas   │   9      │
+  │ R2        │ Ren                  │ Daga+Analisis  │   9      │
+  │ R3        │ Kaelen               │ Caja improvis. │  10      │
+  │ R4        │ Vex                  │ Fuego (aceite) │   4      │
+  │ R4        │ Kaelen               │ Cadena+Analis. │  10      │
+  ├───────────┼──────────────────────┼────────────────┼──────────┤
+  │ TOTAL     │                      │                │  82      │
+  └───────────┴──────────────────────┴────────────────┴──────────┘
 
   TABLA DE RM GASTADAS:
-  ┌───────────┬──────────┬─────────────────────────────────┐
-  │ Personaje │ RM Final │ Gastó en                        │
-  ├───────────┼──────────┼─────────────────────────────────┤
-  │ Kaelen    │  3/6     │ Peltre(1)+Carga(1)+Golpe(1) = 3 │
-  │ Vex       │  4/6     │ Cadencia(2) = 2                 │
-  │ Ren       │  2/6     │ Pulsos(1)+Lect.Prof(2)+Anál(1)=4│
-  │ Destra    │  4/8     │ Pánico(1)+Onda(2)+Destello(1)=4 │
-  └───────────┴──────────┴─────────────────────────────────┘
+  ┌───────────┬──────────┬──────────────────────────────────────────┐
+  │ Personaje │ RM Final │ Gasto detallado                          │
+  ├───────────┼──────────┼──────────────────────────────────────────┤
+  │ Kaelen    │  1/3     │ Peltre(1)+Presencia(1) = 2               │
+  │ Vex       │  0/3     │ Empuje cajas(1)+Empuje barril(1)+Fuego(1)│
+  │ Ren       │  0/3     │ Pulsos(1)+Analisis x2(2) = 3             │
+  └───────────┴──────────┴──────────────────────────────────────────┘
+  → Nota: con 3 RM a nivel 3, TODOS terminaron secos o casi.
+    Sin Viales de reserva ni descanso corto, un segundo encuentro
+    inmediato los dejaria peleando sin poderes.
 
-  SOBRECARGA (se activó 4 veces en todo el combate):
-  • Vex R2 (2 RM): d20+1=15 vs DC 14 → PASA
-  • Destra R2 (2 RM): d20+1=10 vs DC 14 → FALLA → Fatiga 1
-  • Ren R2 (3 RM): d20+1=16 vs DC 15 → PASA (justo)
-  • Kaelen R1 (2 RM): d20+3=16 vs DC 14 → PASA
+  SOBRECARGA: No se activo. Ningun PJ gasto 2+ RM en una sola ronda.
+  A nivel 3 con solo 3 RM, la sobrecarga es rara — simplemente no
+  tienen suficientes reservas para arriesgarse. A nivel 5+ con 5 RM,
+  empezaria a ser un factor constante.
 
-  FATIGA: Solo Destra ganó Fatiga 1. Le costó -1 en sus tiradas,
-  contribuyendo a que perdiera el combate (no alcanzó a usar más
-  habilidades fuertes sin arriesgar Fatiga 2).
+  FATIGA: Nadie gano fatiga. Pelea limpia pero ajustada.
 
   IMPULSO GENERADO/GASTADO:
-  • Vex: +1 (entorno) +1 (coordinación) = 2 generados, 0 gastados
-  • Kaelen: +1 (primera sangre) +1 (coordinación) = 2 generados, 2 gastados
-  • Ren: +1 (coordinación) = 1 generado, 0 gastados
-  Total: 5 Impulso generados en 2 rondas.
+  • Vex: +1 (entorno) +1 (coordinacion) = 2 generados, 2 gastados (fuego)
+  • Kaelen: +1 (primera sangre) +1 (riesgo) = 2 generados, 2 gastados (cadena)
+  • Ren: +1 (coordinacion) = 1 generado, 0 gastados
+  Total: 5 Impulso generados en 4 rondas.
 
-  RELOJ DE EXPOSICIÓN:
-  • Inicio: 2 (Investigación)
-  • +1 (Pánico Inducido R1) → 3 (Alerta)
-  • +1 (Onda Emocional R2) → 4 (Cacería)
-  → CONSECUENCIA: Un Sabueso del Canton va a empezar a rastrear actividad
-    alomántica en la zona. La crew tiene que moverse rápido, usar un
-    Apagador, o sobornar a un Obligador para bajar el Reloj.
+  RELOJ DE EXPOSICION:
+  • Inicio: 0 (Invisible)
+  • R2: +1 (Empuje de Acero visible) → 1 (Rumores)
+  • R4: +1 (mas alomancia + fuego) → 2 (Investigacion)
+  • Post-combate: +1 (fuego en almacen visible desde lejos) → 3 (Alerta)
+  → CONSECUENCIA: El fuego en el almacen se va a ver desde el barrio.
+    Un Obligador va a empezar a preguntar que paso. La crew necesita
+    un Apagador de Cobre para el proximo golpe, o cambiar de barrio,
+    o sobornar al Obligador local (20+ coronas).
+    Esto NO es un Inquisidor. Es un Obligador haciendo preguntas.
+    Todavia es manejable. Pero si repiten esto, el Reloj sube a 4
+    (Caceria) y ahi si viene un Sabueso profesional.
 
 ================================================================================
                       LECCIONES DE ESTA PELEA
 ================================================================================
 
-1. LA RM ES UN RECURSO FINITO, NO UN MANA INFINITO
-   Kaelen terminó con solo 3/6 RM. Si hubiera habido un segundo encuentro
-   inmediato, habría estado limitado. El DM puede presionar con encuentros
-   encadenados para forzar decisiones de "¿gasto todo ahora o me reservo?"
+1. LAS FASES CAMBIAN EL RITMO — NO ES "PEGAR HASTA QUE MUERAN"
+   La pelea paso de sigilo → combate cerrado → escape con carga → persecucion.
+   Los PJs nunca se quedaron quietos pegando. Tenian objetivos cambiantes:
+   primero noquear guardias, despues agarrar la carga, despues correr.
+   Esto es clave: cada ronda se sentia diferente.
 
-2. LA SOBRECARGA ES DRAMA, NO SOLO CASTIGO
-   Destra falló su chequeo de sobrecarga y ganó Fatiga 1. Ese -1 a todas
-   sus tiradas la dejó en desventaja el resto de la pelea. Los jugadores
-   pasaron todos sus chequeos — pero uno sacó 16 vs DC 15. Estuvo cerca.
-   La sobrecarga premia la gestión inteligente del recurso.
+2. LA ALARMA ES EL VERDADERO ENEMIGO
+   Los PJs sabian del hilo (Ren lo detecto) pero no lo desactivaron.
+   Eso les costo 3 matones y un tirador de refuerzo. El error tuvo
+   consecuencias mecanicas claras: mas enemigos, mas rondas, mas
+   gasto de RM, mas Reloj de Exposicion.
 
-3. EL SABUESO NO PEGA, PERO DEFINE LA PELEA
-   Ren no hizo un solo punto de daño directo. Pero su Lectura Profunda
-   (+1d4 al aliado) y Análisis Letal (+1d6 al aliado) convirtieron el
-   primer ataque de Kaelen en 17 daño en vez de 10. Esa diferencia
-   mató a Destra en R2 en vez de R3.
+3. 3 RM A NIVEL 3 ES MUY POCO — Y ESO ESTA BIEN
+   Los PJs terminaron SECOS. Vex 0/3, Ren 0/3, Kaelen 1/3. Esto
+   significa que si Darven les pide hacer otro trabajo esa misma noche,
+   van a tener que decir que no o arriesgarse sin poderes. Esa tension
+   de recurso es el corazon del sistema.
 
-4. EL IMPULSO PREMIA LA CREATIVIDAD
-   Los 5 puntos de Impulso se ganaron por: usar el entorno (Vex en cajas),
-   primera sangre (Kaelen), y coordinación (3 veces, por combos entre PJs).
-   Kaelen gastó sus 2 para el movimiento extra final. El Impulso no aparece
-   solo — los jugadores tienen que describir qué hacen y el DM recompensa.
+4. EL ENTORNO FUE TAN IMPORTANTE COMO LOS PODERES
+   El barril de aceite, las cajas que cayeron, la lampara, la cadena del muro,
+   la puerta trasera, la niebla del callejon — los PJs usaron TODO.
+   En un mapa vacio habrian tenido que pegar y rezar. El entorno les dio
+   opciones creativas y motivos para ganar Impulso.
 
-5. EL RELOJ DE EXPOSICIÓN ES LA VERDADERA AMENAZA
-   La pelea duró 2 rondas y el Reloj subió de 2 a 4. Ahora hay un Sabueso
-   del Canton rastreándolos. La pelea se "ganó" mecánicamente, pero el
-   costo narrativo es altísimo. Esto hace que cada combate alomántico
-   tenga peso más allá de los HP.
+5. EL RELOJ SUBIO A 3 SIN QUE APAREZCA NINGUN INQUISIDOR
+   A nivel 3, el Reloj de Exposicion mide consecuencias SOCIALES, no
+   combate letal. Reloj 3 = un Obligador preguntando, patrullas atentas,
+   descansos arriesgados. NO significa "viene un Inquisidor a matarlos".
+   Eso es Reloj 5, y llegar ahi deberia tomar toda la campana.
+   El Reloj es una amenaza creciente, no una sentencia inmediata.
 
-6. EL EMBAUCADOR ES PELIGROSO AUNQUE TENGA POCOS HP
-   Con 55 HP Destra no era un tanque, pero Pánico Inducido sacó a Ren de
-   toda la Ronda 1 (perdió su acción y movimiento), y Onda Emocional
-   penalizó a Kaelen. Su Destello de Duda casi salvó el último golpe.
-   Un Embaucador inteligente puede ganar sin pegar nunca.
+6. LOS MATONES SON PELIGROSOS EN GRUPO, NO SOLOS
+   3 matones juntos amenazan. 1 maton solo no hace nada. Por eso
+   separar enemigos (fuego, aceite, puertas cerradas) es una tactica
+   valida y poderosa. Los PJs dividieron a los matones en 3 partes
+   del almacen y escaparon por donde habia menos.
+
+7. EL SABUESO SIGUE SIN PEGAR — Y SIGUE SIENDO VITAL
+   Ren fue la razon por la que 2 ataques hicieron +1d6 extra. Sin el,
+   la crew habria tardado 1-2 rondas mas. Tambien detecto la alarma
+   (aunque no la desactivaron), confirmo que no habia alomantes, y
+   dio info del Tirador de Banda. Soporte puro, altamente efectivo.
 
 ================================================================================
-             NOTAS PARA EL DM (si querés replicar esto)
+             NOTAS PARA EL DM (como escalar este encuentro)
 ================================================================================
 
-• El taller metalúrgico fue elegido a propósito: cadenas, barandilla,
-  cajas de metal = muchos objetos para Empuje/Tirón, altura, cobertura.
-  Un entorno vacío habría sido más aburrido.
+• GRUPO DE 3 PJs (como el ejemplo): 2 guardias, luego 3 matones, luego 1
+  tirador. Modo normal. Suficiente presion sin ser letal.
 
-• Destra como NPC fuerte tiene más HP (55) y más RM (8) que un PJ nivel 5.
-  Esto compensa que es 1 vs 3. Un NPC moderado (35 HP, 4 RM) habría
-  muerto en Ronda 1.
+• GRUPO DE 4-5 PJs: 3 guardias (1 mas en el segundo piso), luego 4 matones
+  + 1 tirador que llega con ellos (no en el tejado), luego 1 guardia
+  veterano que aparece en el callejon cortando la retirada.
 
-• La Fatiga es lo que mató a Destra. Fallar la sobrecarga le dio -1 a todo,
-  lo que la dejó sin opciones buenas. Si hubiera pasado ese chequeo, podría
-  haber usado Pánico Inducido de nuevo y extender la pelea a R3.
+• GRUPO DE 6 PJs: 3 guardias + 1 perro de guardia (CA 12, HP 15, mordida
+  +4, 1d6+2, ventaja en Percepcion). 5 matones. 1 tirador. 1 veterano.
 
-• El Reloj subió tanto porque Destra usó alomancia emocional: es visible,
-  espectacular, imposible de ignorar. Si la crew hubiera tenido un Apagador
-  con Nube de Cobre, el Reloj no habría subido. Esa es la función del
-  Apagador: proteger al grupo del costo social de la alomancia.
+• NIVEL 2 EN VEZ DE 3: los PJs no tienen Especializacion. Reducir HP de
+  guardias a 22, los matones a 18. La pelea deberia ser 1 ronda mas facil
+  en Fase 1 pero igual de tensa en Fase 2-3.
+
+• NIVEL 5: los PJs tienen 5 RM y habilidades fuertes (Cadencia, Lectura
+  Profunda, Carga de Peltre). Subir guardias a 3, agregar 1 veterano en
+  Fase 2, y el Tirador de Banda tiene un companero. El fuego del aceite
+  puede bloquear UNA salida en vez de ser ventaja.
+
+• SI TIENEN APAGADOR: el Reloj NO sube cuando usa alomancia bajo la Nube.
+  Esto cambia todo. La crew puede pelear con alomancia abierta sin
+  consecuencia social. Pero el Apagador gasta RM manteniendo la Nube,
+  asi que aporta menos en combate directo.
+
+• SI TIENEN ACECHADOR: detecta a los guardias antes de entrar. Sabe
+  exactamente donde estan, si estan dormidos, y cuantos son. La Fase 1
+  de sigilo es MUCHO mas facil. Pero gasta RM en Estano.
+
+• SI LOS PJs DESACTIVAN LA ALARMA: no hay Fase 2 ni Fase 3. Salen con
+  la carga sin que nadie mas venga. El combate termina en Ronda 2.
+  Recompensalos: menos Reloj, mas tiempo para explorar el sotano,
+  y descubren 1 caja extra de Kestium.
+
+================================================================================
+          MAPAS DE BATALLA — SECCIONES QUE NECESITAS
+================================================================================
+
+Cada zona esta listada con tamaño sugerido, elementos interactivos clave,
+y en que acto/encuentro se usa. Usa cuadriculas de 1.5 m (5 ft) por casilla.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 1: TABERNA LA QUILLA OXIDADA (Acto 0 — Escena social + posible pelea)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 12 x 9 m (8 x 6 casillas)
+  Uso: introduccion, reunion con Darven, pelea de bar opcional
+
+  Elementos:
+  • Barra de madera (cobertura media, 6 m de largo)
+  • Mesas redondas (x4) — se pueden volcar para cobertura (+2 CA, FUE DC 10)
+  • Escalera al segundo piso (zona VIP de la taberna, no se usa en combate)
+  • Puerta trasera al callejon
+  • Lampara de aceite colgante (derribarla = fuego en 1.5 m)
+  • Barriles de cerveza detras de la barra (romperlos = terreno dificil liquido)
+  • Ventanas con tablones flojos (DES DC 12 para salir por una)
+
+  Notas: probablemente no haya combate aca, pero si un jugador provoca
+  a alguien o si los matones del muelle los siguen, funciona como mapa.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 2: ALMACEN DE CASA KEST — PLANTA BAJA (Acto 0 — Combate principal)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 18 x 12 m (12 x 8 casillas)
+  Uso: Fases 1, 1B y 2 del ejemplo de combate
+
+  Elementos:
+  • Estantes de carga (x6): 3 m alto, cobertura completa. Escalables
+    (DES DC 11). Derribar: FUE DC 14 → terreno dificil 3x1.5 m + 2d6 dano.
+  • Cajas de metal apiladas: cobertura media. Un Bruto puede patear una
+    como arma improvisada (1d8+FUE).
+  • Garfios y cadenas (techo): un Atractor se balancea, un Tirador ancla.
+  • Barril de aceite (esquina NE): volcarlo = terreno dificil 3x3 m.
+    Prenderlo = 1d6 fuego/turno.
+  • Lampara de aceite colgante (centro-norte): derribarla = chispa potencial.
+  • Pasarela del segundo piso (borde norte y este): posicion elevada,
+    accesible por escalera interna o ventanales.
+  • Ventanales altos (pared norte): entrada/salida alternativa.
+    DES DC 10 para saltar.
+  • Escalera al sotano (esquina SE): acceso al botin.
+  • Puerta principal (pared sur): entrada de los matones de refuerzo.
+  • Puerta trasera (pared este): salida al callejon. Puerta de madera.
+  • Columnas de piedra (x4): cobertura completa.
+
+  Notas DM: marcar la posicion del hilo de alarma en el sotano.
+  Los PJs deberian poder verlo si buscan (o si el Sabueso lo detecta).
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 3: CALLEJON Y CANAL (Acto 0 — Fase 3, persecucion/escape)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 24 x 4.5 m (16 x 3 casillas) — largo y estrecho
+  Uso: huida tras la alarma, Tirador en el tejado, llegada al canal
+
+  Elementos:
+  • Paredes altas a ambos lados (no escalables sin ayuda alomantica)
+  • Basura y escombros (x2 zonas): terreno dificil puntual
+  • Cadena oxidada en la pared: arrancable como arma improvisada
+  • Tejado del edificio opuesto: posicion del Tirador de Banda.
+    Solo atacable a distancia o con Empuje de Acero.
+  • Puerta trasera del almacen (inicio del callejon)
+  • Desembocadura al canal (final del callejon): donde espera la barcaza
+  • Niebla espesa: vision reducida a mas de 9 m. Favorece a quien huye.
+
+  Notas: este mapa es lineal a proposito. La tension viene de correr
+  hacia la salida mientras el Tirador dispara desde arriba.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 4: DEPOSITO DE LA CALLE MORADA (Acto 1 — Traicion)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 15 x 12 m (10 x 8 casillas)
+  Uso: la traicion de los aliados, pelea con Rask y traidores
+
+  Elementos:
+  • Columnas de piedra (x4): cobertura completa. Emboscadas.
+  • Barriles de madera (x6): cobertura media. HP 10 para romperlos.
+  • Mesa grande central: volcarla = cobertura media para 2 (FUE DC 10).
+  • Escalera al altillo (esquina NO): posicion elevada, sin cobertura.
+    Ventaja a distancia desde arriba, pero expuesto.
+  • Lampara de aceite (centro): si se rompe, fuego se expande.
+    A ronda 3 de fuego: todo el deposito arde (2 rondas para salir).
+  • Puerta principal (sur)
+  • Puerta trasera (norte): Rask la usa para escapar en Ronda 3.
+  • Armas ocultas bajo manta (esquina SE): los traidores las agarran.
+    (Percepcion DC 12 para ver anticipadamente.)
+  • Bolsa de plata sospechosa detras de columna (Percepcion DC 14):
+    pista de que los traidores cobraron por adelantado.
+
+  Triggers del mapa:
+  → Ronda 3: Rask intenta huir por la puerta trasera con la carga.
+  → Si la lampara se rompe: cuenta atras de 2 rondas para evacuar.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 5: TALLER DE TORREN (Acto 2 — Investigacion, posible combate)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 9 x 6 m (6 x 4 casillas) — chico, claustrofobico
+  Uso: encuentro con el experto en metales, posible pelea si lo presionan
+
+  Elementos:
+  • Mesa de trabajo grande (centro): instrumentos, crisoles, balanzas.
+    Si se vuelca: terreno dificil de cristales.
+  • Estantes de metales (pared norte): muestras etiquetadas.
+  • Puerta reforzada (entrada): CA 18, 30 PG. No se abre facil desde afuera.
+  • Ventana trasera (pared este): escape rapido al patio interno.
+  • Acido alquimico (x2 frascos): 2d6 acido, alcance 3 m. Torren los usa
+    como ultima defensa.
+
+  Notas: probablemente no haya combate aca. Pero si los PJs lo amenazan,
+  Torren tira un frasco de acido y huye por la ventana. El taller es tan
+  chico que una pelea es caotica y destructiva — esa es la gracia.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 6: MUELLES Y CANAL — ZONA DE SILEN (Acto 2 — Encuentro)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 18 x 9 m (12 x 6 casillas)
+  Uso: encuentro con Silen, posible persecucion o combate
+
+  Elementos:
+  • Muelle de madera (borde sur): tablones inestables en algunas zonas
+    (DES DC 12 o caes al agua, 1 ronda para salir, empapado).
+  • Botes amarrados (x2): se pueden soltar o usar como cobertura.
+  • Pilas de cajas de pesca: cobertura media.
+  • Farola con cadenas: puede usarse para balancearse o derribar.
+  • Agua del canal (borde sur completo): caer = terreno peligroso.
+    Nadar: DES/FUE DC 12. Corriente lenta pero agua helada.
+  • Callejon de acceso (borde norte): la entrada al muelle.
+  • Puente de madera (extremo este): cruza el canal. Silen puede huir
+    por aca si lo dejan.
+
+  Notas: Silen NO quiere pelear. Quiere hablar. Pero si los PJs atacan,
+  intenta huir por el puente o por un bote. El mapa debe tener multiples
+  rutas de escape para Silen.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 7: FUNDICION DE CASA KEST — PLANTA PRINCIPAL (Acto 3 — Infiltracion)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 24 x 15 m (16 x 10 casillas) — grande, industrial
+  Uso: infiltracion, mini-objetivos, peleas con guardias de Kest
+
+  Elementos:
+  • Hornos industriales (x3): columnas de fuego de 2 m. A 1.5 m sin
+    proteccion = 1d6 fuego/turno. Crean cortinas de calor (+2 CA contra
+    ataques a distancia a traves del horno).
+  • Cadenas de produccion (techo): movimiento extra para Atractor (6 m
+    bonus action). Cortarlas (CA 12, 15 PG) = cascada, 3d6 dano.
+  • Pasarelas de metal (conectan niveles): angostas, 1 persona.
+    Derribarlas: FUE DC 16, quien este encima cae 2d6.
+  • Valvulas de vapor (x3): liberan vapor periodicamente.
+    Estar en zona = 1d4 fuego + vision reducida.
+  • Herramientas de trabajo: armas improvisadas (martillo pesado 1d8+FUE,
+    tenazas 1d6+FUE).
+  • Cajas de mineral: cobertura media. Derribar = 2d6 contundente.
+  • Oficina del capataz (esquina NO): cerrada. Investigacion DC 13 para
+    encontrar plano del subsuelo.
+  • Puerta al subsuelo (centro-este): requiere llave/sello/codigo.
+
+  Guardias en este mapa:
+  → 2-3 Guardias de almacen patrullando
+  → Si la alarma de Kest se activa: llegan 2 matones adicionales
+  → El capataz Hendel esta en su oficina (no-combatiente)
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 8: SUBSUELO DE LA FUNDICION (Acto 3 — Mini-jefe: Valek)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 18 x 12 m (12 x 8 casillas) — laberintico
+  Uso: combate con Valek, puzzles de tuberias, compuertas
+
+  Elementos:
+  • Corredores metalicos: 3 m de ancho. Ecos constantes.
+  • Compuertas de metal (x4): Valek cierra 1/ronda como accion de guarida.
+    Un Bruto fuerza (FUE DC 16). Un Atractor mantiene abierta (FUE vs DC 14).
+  • Tuberias de vapor (3 niveles de presion): purga correcta
+    (ALTO → MEDIO → BAJO) abre acceso. Purga incorrecta = 2d6 fuego en 3x3 m.
+  • Pasarelas sobre el vacio: conectan salas sobre caida de 6 m (3d6 dano).
+    Se pueden volcar (FUE DC 14) para crear rampas o tirar enemigos.
+  • Iluminacion roja: vision reducida a mas de 9 m. Acechador la ignora.
+  • Conductos de ventilacion: DES DC 14 para meterse. Conectan salas.
+  • Charcos de aceite industrial: terreno dificil. Prenderlos = 1d6/turno
+    por 3 rondas.
+  • Cruce central (sala de Valek): convergencia de 4 pasillos.
+    Valek controla todas las compuertas desde aca.
+
+  Fases del combate:
+  → Fase 1 (PG 45): cuerpo a cuerpo, cierra 1 compuerta/ronda, vapor.
+  → Fase 2 (PG 45→0): apaga luces. Pelea en oscuridad con ventaja.
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 9: LABORATORIO DE MAELOR (Acto 3 — Boss final)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: 15 m diametro, circular (10 casillas de diametro)
+  Uso: boss fight con Maelor, puzzle de nodos, climax
+
+  Elementos:
+  • Aparato central: estructura con cables y luz violeta. Maelor conectado.
+  • Nodos del aparato (x4): distribuidos en el perimetro a las 12, 3, 6 y 9
+    en punto. Cada uno alimenta a Maelor. Desactivar en orden:
+    Debil → Media → Fuerte → Silenciosa. Error = 2d8 dano area.
+  • Mesas de laboratorio (x3): cobertura media. Instrumentos cortantes
+    como armas improvisadas (1d4+DES).
+  • Jaulas (x4, en las paredes): algunas vacias, algunas con sujetos
+    desorientados. Abrirlas = caos, bloquean lineas de tiro.
+  • Cables del aparato (x4): CA 10, 5 PG. Cortarlos = -1 ataque Maelor.
+  • Tanques de Kestium liquido (x2): CA 10, 10 PG. Si se rompen:
+    charco peligroso (1d6 necrotico + CON DC 13 o nauseas 1 ronda).
+  • Puerta principal (sur): por donde entran los PJs.
+  • Puerta lateral (este): por donde entra Kaerin. Oculta.
+
+  Fases del combate:
+  → Fase 1 (PG 70): Maelor conectado, metodico.
+  → Fase 2 (PG 80): sobrecarga, pulsos de area cada 2 turnos.
+  → Fase 3 (PG 60, opcional): escombros + fuego + desesperacion.
+
+  Notas: marcar los nodos con numeros 1-4. Los PJs necesitan descubrir
+  el orden (Bronce DC 14 o Estano DC 15). Un Mundano puede encontrar
+  el interruptor de emergencia en la base central (INT DC 14).
+
+──────────────────────────────────────────────────────────────────────────────
+MAPA 10: HUIDA DE LA FUNDICION (Acto 3 — Escape del Inquisidor)
+──────────────────────────────────────────────────────────────────────────────
+  Tamaño: reutiliza Mapas 8 y 7 en reversa
+  Uso: secuencia de escape, 3 rondas de chequeos grupales
+
+  Elementos adicionales (post-destruccion):
+  • Escombros: terreno dificil en zonas donde el laboratorio exploto.
+  • Compuertas dañadas: algunas bloqueadas, otras abiertas.
+    Un Atractor puede cerrar las que estan abiertas DETRAS del grupo.
+  • Pilares agrietados: un Bruto derriba uno (FUE DC 14) para
+    bloquear un pasillo y ganar 1 ronda contra el Inquisidor.
+  • Pasarelas inestables: cruzar requiere DES DC 12 o caer.
+
+  Mecanica: 3 rondas de escape. Checks grupales DC 12 (DES/FUE/INT).
+  El Inquisidor avanza 1 zona por ronda. Si los PJs fallan 2+ checks,
+  el Inquisidor los alcanza y hace 1 ataque de demostracion.
+  NO es una pelea. Es una persecucion con cuenta regresiva.
+
+================================================================================
+          RESUMEN DE MAPAS (checklist rapida)
+================================================================================
+
+  #   Nombre                      Acto   Tamaño        Combate?
+  1   Taberna La Quilla Oxidada   0      12x9 m        Raro
+  2   Almacen Kest (planta baja)  0      18x12 m       SI (principal)
+  3   Callejon y Canal            0      24x4.5 m      SI (persecucion)
+  4   Deposito Calle Morada       1      15x12 m       SI (traicion)
+  5   Taller de Torren            2      9x6 m         Raro
+  6   Muelles / Canal de Silen    2      18x9 m        Posible
+  7   Fundicion Kest (planta)     3      24x15 m       SI (guardias)
+  8   Subsuelo (Valek)            3      18x12 m       SI (mini-jefe)
+  9   Laboratorio (Maelor)        3      15 m circ.    SI (boss)
+  10  Huida (reutiliza 8+7)       3      (existente)   Persecucion
+
+  Total de mapas unicos a crear: 9 (el 10 reutiliza los anteriores).
+  Prioridad: Mapas 2, 4, 7, 8 y 9 son OBLIGATORIOS (combate seguro).
+  Mapas 1, 3, 5 y 6 son opcionales pero mejoran mucho la experiencia.
