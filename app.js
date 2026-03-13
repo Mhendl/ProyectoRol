@@ -1020,7 +1020,8 @@ function renderHomeRoutes(sections) {
     card.className = "card route-card" + (isLocked ? " route-card--locked" : "");
     if (!isLocked) card.href = link;
     card.innerHTML = `
-      <p class="card-num">${icon} ${num}</p>
+      <span class="card-icon">${icon}</span>
+      <p class="card-num">Sección ${num}</p>
       ${ isLocked ? '<span class="lock-icon">🔒</span>' : "" }
       <h3>${section.title}</h3>
       <p class="card-desc">${desc}</p>
@@ -1042,10 +1043,11 @@ function renderHomeRoutes(sections) {
     card.className = "card route-card route-card--tool";
     card.href = t.href;
     card.innerHTML = `
-      <p class="card-num">${t.icon} HERRAMIENTA</p>
+      <span class="card-icon">${t.icon}</span>
+      <p class="card-num">Herramienta</p>
       <h3>${t.title}</h3>
       <p class="card-desc">${t.desc}</p>
-      <span class="tag">Herramienta</span>
+      <span class="tag">Util</span>
     `;
     target.appendChild(card);
   });
