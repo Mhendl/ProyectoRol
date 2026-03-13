@@ -39,8 +39,8 @@
     <div id="pw-gate" class="pw-gate">
       <div class="pw-box">
         <p class="pw-icon">🔒</p>
-        <h2>Acceso restringido</h2>
-        <p class="pw-hint">Esta sección es solo para el Dungeon Master.</p>
+        <h2 id="pw-title">Acceso restringido</h2>
+        <p class="pw-hint" id="pw-hint">Esta sección es solo para el Dungeon Master.</p>
         <input id="pw-input" type="password" placeholder="Contraseña" class="pw-input" autocomplete="off" />
         <button id="pw-btn" class="pw-btn">Entrar</button>
         <p id="pw-error" class="pw-error" hidden>Contraseña incorrecta.</p>
@@ -52,6 +52,17 @@
         const KEY  = "campana_unlocked";
         const gate = document.getElementById("pw-gate");
         if (sessionStorage.getItem(KEY) === "1") { gate.remove(); return; }
+
+        // i18n for the password gate
+        var lang = localStorage.getItem("mistborn-lang") || "es";
+        if (lang === "en") {
+          document.getElementById("pw-title").textContent = "Restricted Access";
+          document.getElementById("pw-hint").textContent = "This section is for the Dungeon Master only.";
+          document.getElementById("pw-input").placeholder = "Password";
+          document.getElementById("pw-btn").textContent = "Enter";
+          document.getElementById("pw-error").textContent = "Incorrect password.";
+        }
+
         document.body.style.overflow = "hidden";
         document.getElementById("pw-btn").addEventListener("click", check);
         document.getElementById("pw-input").addEventListener("keydown", e => { if (e.key === "Enter") check(); });

@@ -147,6 +147,40 @@ body::after {
   border-color: rgba(155,74,65,.32);
 }
 
+/* ─── Language toggle ─────────────────────────────── */
+.lang-toggle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.22rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid rgba(123,143,163,.25);
+  background: rgba(123,143,163,.08);
+  color: var(--steel);
+  cursor: pointer;
+  transition: background 200ms, border-color 200ms, color 200ms, transform 150ms;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.lang-toggle:hover {
+  background: rgba(123,143,163,.18);
+  border-color: var(--steel);
+  color: #d0dce8;
+  transform: translateY(-1px);
+}
+/* When in hero (home page) */
+.hero__content .lang-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.9rem;
+  background: rgba(10,9,8,.6);
+  backdrop-filter: blur(6px);
+  border-color: rgba(123,143,163,.3);
+}
+
 /* ══════════════════════════════════════════════════════
    ███  EPIC HERO — FULL VIEWPORT  ███
    ══════════════════════════════════════════════════════ */

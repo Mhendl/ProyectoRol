@@ -1,11 +1,16 @@
+import { initLang, getLang, setLang, t, sectionTitle, sectionsPath } from "./i18n.js";
+
+// Initialise language from localStorage before anything renders
+initLang();
+
 const atlasItems = [
-  { name: "Fellise (Ciudad)", src: "img/Ciudad.png" },
-  { name: "Taberna", src: "img/Taberna.png" },
-  { name: "Almacén", src: "img/Almacen.png" },
-  { name: "Fundición", src: "img/Fundicion.png" },
-  { name: "Cloacas", src: "img/Kandra.png" },
-  { name: "Laboratorio", src: "img/Laboratorio.png" },
-  { name: "Subsuelo", src: "img/1subsuelo.png" }
+  { nameKey: "atlasCity",        src: "img/Ciudad.png" },
+  { nameKey: "atlasTavern",      src: "img/Taberna.png" },
+  { nameKey: "atlasWarehouse",   src: "img/Almacen.png" },
+  { nameKey: "atlasSmelter",     src: "img/Fundicion.png" },
+  { nameKey: "atlasSewers",      src: "img/Kandra.png" },
+  { nameKey: "atlasLab",         src: "img/Laboratorio.png" },
+  { nameKey: "atlasUnderground", src: "img/1subsuelo.png" },
 ];
 
 // ── Progresión detallada por clase (datos estáticos) ──────────────────────────
@@ -950,12 +955,11 @@ function buildClassProgressionCards(container) {
 }
 
 async function loadSections() {
-  // Derive base URL from where app.js is loaded — works on localhost, GitHub Pages, Netlify, etc.
   const scriptSrc = document.querySelector('script[src*="app.js"]')?.src || "";
   const base = scriptSrc ? scriptSrc.replace(/\/app\.js.*$/, "") : "";
-  const response = await fetch(base + "/content/sections.json");
+  const response = await fetch(base + sectionsPath());
   if (!response.ok) {
-    throw new Error("No se pudo cargar el contenido de secciones");
+    throw new Error(getLang() === "en" ? "Failed to load section content" : "No se pudo cargar el contenido de secciones");
   }
   return response.json();
 }
@@ -971,21 +975,24 @@ function renderAtlas() {
     const card = document.createElement("figure");
     card.className = "atlas-item";
     card.innerHTML = `
-      <img src="${item.src}" alt="Mapa ${item.name}" loading="lazy" />
-      <span>${item.name}</span>
+      <img src="${item.src}" alt="${t(item.nameKey)}" loading="lazy" />
+      <span>${t(item.nameKey)}</span>
     `;
     target.appendChild(card);
   });
 }
 
-const SECTION_DESCRIPTIONS = {
-  jugador:    "Reglas base, estructura del turno, dados, reservas metálicas y referencia de combate.",
-  clases:     "Los 8 arquetipos con habilidades, progresión nivel a nivel y subclases.",
-  compendio:  "Armas, armaduras, herramientas, consumibles, viales y objetos de mundo.",
-  combate:    "Sistema de combate completo, Choque Alomántico, ejemplos tácticos.",
-  progresion: "Tablas de progresión 1-10 para las 8 clases con talentos y mejoras.",
-  campana:    "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
-};
+function getSectionDesc(slug) {
+  const map = {
+    jugador:    "descJugador",
+    clases:     "descClases",
+    compendio:  "descCompendio",
+    combate:    "descCombate",
+    progresion: "descProgresion",
+    campana:    "descCampana",
+  };
+  return t(map[slug] || "descJugador");
+}
 
 const SECTION_ICONS = {
   jugador:    "📖",
@@ -1012,20 +1019,21 @@ function renderHomeRoutes(sections) {
     const isCampaign = section.audience === "campania";
     const isLocked   = isCampaign;
     const link = routeBySlug[section.slug] || `/${section.slug}/`;
-    const desc = SECTION_DESCRIPTIONS[section.slug] || "";
+    const desc = getSectionDesc(section.slug);
     const icon = SECTION_ICONS[section.slug] || "📄";
     const num  = String(i + 1).padStart(2, "0");
+    const displayTitle = sectionTitle(section.slug) || section.title;
 
     const card = document.createElement(isLocked ? "div" : "a");
     card.className = "card route-card" + (isLocked ? " route-card--locked" : "");
     if (!isLocked) card.href = link;
     card.innerHTML = `
       <span class="card-icon">${icon}</span>
-      <p class="card-num">Sección ${num}</p>
+      <p class="card-num">${t("sectionPrefix")} ${num}</p>
       ${ isLocked ? '<span class="lock-icon">🔒</span>' : "" }
-      <h3>${section.title}</h3>
+      <h3>${displayTitle}</h3>
       <p class="card-desc">${desc}</p>
-      <span class="tag ${isCampaign ? 'tag-danger' : ''}">${isCampaign ? "Solo DM" : "Jugador"}</span>
+      <span class="tag ${isCampaign ? 'tag-danger' : ''}">${isCampaign ? t("tagDM") : t("tagPlayer")}</span>
     `;
     if (isLocked) {
       card.addEventListener("click", () => { window.location.href = link; });
@@ -1035,19 +1043,19 @@ function renderHomeRoutes(sections) {
 
   // ─── Tool cards (sheet + creator) ─────────────
   const tools = [
-    { icon: "📝", href: "/hoja/",    title: "Hoja de Personaje", desc: "Hoja rellenable e imprimible. Stats, RM, metales, equipo y habilidades." },
-    { icon: "⚙️", href: "/creador/", title: "Creador de Personaje", desc: "Wizard paso a paso: clase, atributos, nivel, habilidades y equipo." },
+    { icon: "📝", href: "/hoja/",    titleKey: "toolSheet",   descKey: "toolSheetDesc" },
+    { icon: "⚙️", href: "/creador/", titleKey: "toolCreator", descKey: "toolCreatorDesc" },
   ];
-  tools.forEach(t => {
+  tools.forEach(tool => {
     const card = document.createElement("a");
     card.className = "card route-card route-card--tool";
-    card.href = t.href;
+    card.href = tool.href;
     card.innerHTML = `
-      <span class="card-icon">${t.icon}</span>
-      <p class="card-num">Herramienta</p>
-      <h3>${t.title}</h3>
-      <p class="card-desc">${t.desc}</p>
-      <span class="tag">Util</span>
+      <span class="card-icon">${tool.icon}</span>
+      <p class="card-num">${t("toolLabel")}</p>
+      <h3>${t(tool.titleKey)}</h3>
+      <p class="card-desc">${t(tool.descKey)}</p>
+      <span class="tag">${t("tagTool")}</span>
     `;
     target.appendChild(card);
   });
@@ -1064,12 +1072,13 @@ function renderSectionPage(section) {
 
   const isCampaign = section.audience === "campania";
   const sIcon = SECTION_ICONS[section.slug] || "";
-  document.title = `${section.title} · Sombras sobre Fellise`;
-  titleNode.textContent = section.title;
-  const sDesc = SECTION_DESCRIPTIONS[section.slug] || "";
+  const displayTitle = sectionTitle(section.slug) || section.title;
+  document.title = `${displayTitle} · ${t("titleSuffix")}`;
+  titleNode.textContent = displayTitle;
+  const sDesc = getSectionDesc(section.slug);
   subtitleNode.textContent = sDesc || (isCampaign
-    ? "Contenido exclusivo para el Dungeon Master"
-    : "Contenido para jugadores");
+    ? t("audienceDM")
+    : t("audiencePlayer"));
 
   // Animate hero entrance
   const heroEl = titleNode.closest(".hero");
@@ -1082,9 +1091,9 @@ function renderSectionPage(section) {
     heroEl.insertBefore(badge, titleNode);
   }
 
-  if (topbarTitle) topbarTitle.textContent = section.title;
+  if (topbarTitle) topbarTitle.textContent = displayTitle;
   if (topbarBadge) {
-    topbarBadge.textContent = isCampaign ? "DM" : "Jugador";
+    topbarBadge.textContent = isCampaign ? t("badgeDM") : t("badgePlayer");
     if (isCampaign) topbarBadge.classList.add("danger");
   }
 
@@ -1296,7 +1305,7 @@ function initMobileTOC() {
 
   const btn = document.createElement("button");
   btn.className = "toc-toggle";
-  btn.setAttribute("aria-label", "Tabla de contenidos");
+  btn.setAttribute("aria-label", t("tocToggleLabel"));
   btn.textContent = "☰";
   document.body.appendChild(btn);
 
@@ -1312,9 +1321,84 @@ function initMobileTOC() {
   sidebar.addEventListener("click", (e) => { if (e.target.classList.contains("toc-link")) close(); });
 }
 
+/* ─── Apply i18n to static HTML elements ──────────── */
+function applyStaticI18n() {
+  // Home page elements
+  const kicker = document.querySelector(".kicker");
+  const quote  = document.querySelector(".hero__quote");
+  const lead   = document.querySelector(".lead");
+  const footer = document.querySelector(".footer");
+
+  if (document.body.dataset.home !== undefined) {
+    // Home page
+    document.title = t("siteTitle");
+    if (kicker) kicker.textContent = t("kicker");
+    if (quote)  quote.textContent = t("heroQuote");
+    if (lead)   lead.textContent = t("lead");
+
+    // Panel headers
+    const panels = document.querySelectorAll(".panel-header");
+    const panelMap = [
+      { h2: "panelCompendio", sub: "panelCompSub" },
+      { h2: "panelMap",       sub: "panelMapSub" },
+      { h2: "panelAtlas",     sub: "panelAtlasSub" },
+    ];
+    panels.forEach((p, i) => {
+      if (panelMap[i]) {
+        const h2 = p.querySelector("h2");
+        const sub = p.querySelector(".subtitle");
+        if (h2)  h2.textContent = t(panelMap[i].h2);
+        if (sub) sub.textContent = t(panelMap[i].sub);
+      }
+    });
+  } else {
+    // Section page static text
+    if (kicker) kicker.textContent = t("sectionKicker");
+    const backLink = document.querySelector(".topbar-home");
+    if (backLink) backLink.textContent = t("backIndex");
+    const tocLabel = document.querySelector(".toc-label");
+    if (tocLabel) tocLabel.textContent = t("tocLabel");
+    const backBtn = document.getElementById("back-top");
+    if (backBtn) backBtn.setAttribute("aria-label", t("backTop"));
+  }
+
+  if (footer) footer.textContent = t("footer");
+
+  // Map link titles/alt
+  const mapLink = document.querySelector(".city-map-wrap a");
+  if (mapLink) mapLink.title = t("viewMap");
+  const mapImg = document.querySelector(".city-map-img");
+  if (mapImg) mapImg.alt = t("mapAlt");
+}
+
+/* ─── Language toggle creation ────────────────────── */
+function createLangToggle() {
+  const toggle = document.createElement("button");
+  toggle.className = "lang-toggle";
+  toggle.setAttribute("aria-label", "Switch language");
+  toggle.textContent = getLang() === "es" ? "EN" : "ES";
+  toggle.addEventListener("click", () => {
+    const next = getLang() === "es" ? "en" : "es";
+    setLang(next);
+    window.location.reload();
+  });
+
+  // Insert in topbar if exists, else in hero
+  const topbar = document.querySelector(".topbar");
+  if (topbar) {
+    topbar.appendChild(toggle);
+  } else {
+    const hero = document.querySelector(".hero__content") || document.querySelector(".hero");
+    if (hero) hero.appendChild(toggle);
+  }
+}
+
 async function start() {
+  applyStaticI18n();
+  createLangToggle();
+
   const { sections } = await loadSections();
-  window._sections = sections;   // expose for cross-section rendering
+  window._sections = sections;
   if (document.getElementById("atlas-grid")) renderAtlas();
 
   const slug = document.body.dataset.section;
