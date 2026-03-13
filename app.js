@@ -537,6 +537,10 @@ const TABLE_SCHEMAS = [
   { headers: ["Rango", "DC", "Uso tipico"], cols: 3 },
   { headers: ["Nivel de amenaza", "Dano de referencia por golpe", "Comentario"], cols: 3 },
   // Campaign-specific tables (Iter 3)
+  { headers: ["Sesion", "Acto", "Escenas clave", "Enemigos", "Boss", "Reloj principal"], cols: 6,
+    rowStart: /^\d$/ },
+  { headers: ["Clase", "Rol en la historia", "Prioridad narrativa"], cols: 3,
+    rowStart: /^(Bruto de Peltre|Tirador de Acero|Atractor de Hierro|Acechador de Estano|Embaucador de Zinc|Apagador de Cobre|Sabueso de Bronce|Especialista Mundano)/ },
   { headers: ["Sesion", "RM iniciales (nivel 3-5)", "Encuentros esperados", "Descansos disponibles", "RM al boss (objetivo)"], cols: 5,
     rowStart: /^Sesion \d/ },
   { headers: ["Ronda", "Prioridad de los traidores", "Trigger de cambio"], cols: 3,
