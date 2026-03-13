@@ -3,7 +3,7 @@ from pathlib import Path
 from pypdf import PdfReader
 
 PDF_JUGADOR = Path(r"e:\Descargas\MistbornD20_Guia_Juego_y_Jugador_Tincho.pdf")
-PDF_CAMPANA = Path(r"e:\Descargas\Sombras_sobre_Urteau_CAMPANA_DM_Mapas_Tincho.pdf")
+PDF_CAMPANA = Path(r"e:\Descargas\Sombras_sobre_Fellise_CAMPANA_DM_Mapas_Tincho.pdf")
 
 reader_j = PdfReader(str(PDF_JUGADOR))   # 56 páginas — contenido jugador
 reader_c = PdfReader(str(PDF_CAMPANA))   # 38 páginas — campaña DM
@@ -52,7 +52,7 @@ sections = [
     },
     {
         "slug": "campana",
-        "title": "Campaña DM — Sombras sobre Urteau",
+        "title": "Campaña DM — Sombras sobre Fellise",
         "description": "Guión completo del DM: actos, NPCs, puzzles, diálogos y escalado.",
         "start": 19, "end": 29,
         "audience": "campania",

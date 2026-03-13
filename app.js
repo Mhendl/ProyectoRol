@@ -1,5 +1,5 @@
 const atlasItems = [
-  { name: "Urteau (Ciudad)", src: "img/Ciudad.png" },
+  { name: "Fellise (Ciudad)", src: "img/Ciudad.png" },
   { name: "Taberna", src: "img/Taberna.png" },
   { name: "Almacén", src: "img/Almacen.png" },
   { name: "Fundición", src: "img/Fundicion.png" },
@@ -79,7 +79,7 @@ const CLASS_PROGRESSION = [
       { n:7,  bm:3, rm:7, hp:48, gains:["Evasión de Ceniza (mejor respuesta a áreas)","Nervio Expuesto (ventaja + daño extra al observar)"], note:"Supervivencia + ataque preparado." },
       { n:8,  bm:3, rm:7, hp:53, gains:["+2 atributos o 1 talento"], note:"Segunda vuelta de personalización." },
       { n:9,  bm:4, rm:8, hp:58, gains:["Golpe en la Niebla (técnica icónica)","Sexto Sentido (anti-flanqueo + esquiva 1/combate)","Habilidad de subclase (N9)"], note:"Asesino táctico + supervivencia instintiva." },
-      { n:10, bm:4, rm:8, hp:63, gains:["Fantasma de Urteau (habilidad firma)","Mejora final de subclase"], note:"Movilidad + daño + supervivencia top." },
+      { n:10, bm:4, rm:8, hp:63, gains:["Fantasma de Fellise (habilidad firma)","Mejora final de subclase"], note:"Movilidad + daño + supervivencia top." },
     ]
   },
   {
@@ -125,7 +125,7 @@ const CLASS_PROGRESSION = [
     subclasses: ["Operativo de Calle", "Artesano de la Bruma"],
     levels: [
       { n:1,  bm:2, rm:0, hp:18, gains:["Oficio de la Calle (competencia temática)","Recurso Básico (utilidad)","Golpe de Calle (Daño)","Golpe Sucio (1d4 + efecto: cegar/slow/quitar reacción)","Curtido (pasivo)"], note:"Sin metal pero con recursos creativos y combate callejero." },
-      { n:2,  bm:2, rm:0, hp:23, gains:["Contactos de Urteau (red de favores 1/sesión)"], note:"Poder social y logístico consistente." },
+      { n:2,  bm:2, rm:0, hp:23, gains:["Contactos de Fellise (red de favores 1/sesión)"], note:"Poder social y logístico consistente." },
       { n:3,  bm:2, rm:0, hp:28, gains:["Subclase: Operativo de Calle o Artesano de la Bruma","Curtido en Ceniza (+1 saves, escala con nivel)","Habilidad de subclase"], note:"Subclase + resiliencia escalable." },
       { n:4,  bm:2, rm:0, hp:33, gains:["+2 atributos o 1 talento"], note:"Primera personalización." },
       { n:5,  bm:3, rm:0, hp:38, gains:["Recurso Improvisado (1/descanso corto)","Trampa Improvisada (2d6 + efecto, preparada)"], note:"Spike de creatividad + ingeniero táctico." },
@@ -173,10 +173,10 @@ function stripPageNumber(text, pageNum) {
 
 // Patterns that are page-level headers or PDF-navigation noise — skip them
 const SKIP_PATTERNS = [
-  /^Sombras sobre Urteau\s*[-–]\s*Manual Total/i,
-  /^SOMBRAS SOBRE URTEAU\s*[-–]/i,
+  /^Sombras sobre Fellise\s*[-–]\s*Manual Total/i,
+  /^SOMBRAS SOBRE FELLISE\s*[-–]/i,
   /^MANUAL DEL JUGADOR\s*[-–]/i,
-  /^SOMBRAS SOBRE URTEAU\s*-\s*ANEXO/i,
+  /^SOMBRAS SOBRE FELLISE\s*-\s*ANEXO/i,
   /^P[áa]g(ina)?\.?\s*\d+$/i,
   /^Pagina\s+\d+$/i,
   /^ABRIR$/i,                              // Botones del índice interactivo del PDF
@@ -1064,7 +1064,7 @@ function renderSectionPage(section) {
 
   const isCampaign = section.audience === "campania";
   const sIcon = SECTION_ICONS[section.slug] || "";
-  document.title = `${section.title} · Sombras sobre Urteau`;
+  document.title = `${section.title} · Sombras sobre Fellise`;
   titleNode.textContent = section.title;
   const sDesc = SECTION_DESCRIPTIONS[section.slug] || "";
   subtitleNode.textContent = sDesc || (isCampaign
