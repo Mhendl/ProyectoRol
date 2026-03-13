@@ -43,7 +43,7 @@ const UI = {
     toolLabel:       "Herramienta",
 
     // ── Section descriptions ──
-    descJugador:     "Reglas base, estructura del turno, dados, reservas metálicas y referencia de combate.",
+    descJugador:     "Introducción al mundo, reglas base, dados, reservas metálicas y referencia de combate.",
     descClases:      "Los 8 arquetipos con habilidades, progresión nivel a nivel y subclases.",
     descCompendio:   "Armas, armaduras, herramientas, consumibles, viales y objetos de mundo.",
     descCombate:     "Sistema de combate completo, Choque Alomántico, ejemplos tácticos.",
@@ -117,7 +117,7 @@ const UI = {
     toolLabel:       "Tool",
 
     // ── Section descriptions ──
-    descJugador:     "Core rules, turn structure, dice, metallic reserves & combat reference.",
+    descJugador:     "World introduction, core rules, dice, metallic reserves & combat reference.",
     descClases:      "All 8 archetypes with abilities, level-by-level progression & subclasses.",
     descCompendio:   "Weapons, armor, tools, consumables, vials & world items.",
     descCombate:     "Full combat system, Allomantic Clash, tactical examples.",
