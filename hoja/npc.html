@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fichas de NPC — Mistborn D20</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-sheet: #1c1c1e;
+      --bg-section: #252528;
+      --bg-input: rgba(255,255,255,0.04);
+      --border: #c9a84c;
+      --border-dim: #5a5040;
+      --border-faint: #3a362e;
+      --gold: #c9a84c;
+      --gold-bright: #e8d48b;
+      --text: #e0d6c2;
+      --text-dim: #9a8e78;
+      --text-label: #b8a882;
+      --accent-red: #c9584c;
+      --accent-blue: #4c8ec9;
+      --accent-green: #5a9a5c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4 portrait; margin: 8mm; }
+    @media print {
+      body { background: #000 !important; }
+      .no-print { display: none !important; }
+      .sheet { box-shadow: none !important; page-break-after: always; }
+      .npc-card { break-inside: avoid; }
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #0d0d0f;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .toolbar {
+      display: flex; gap: 12px;
+      position: fixed; top: 16px; right: 16px; z-index: 100;
+    }
+    .toolbar button {
+      font-family: 'Cinzel', serif; font-size: 0.8rem;
+      padding: 8px 18px; border: 1px solid var(--gold);
+      background: #111113; color: var(--gold);
+      border-radius: 6px; cursor: pointer; letter-spacing: 0.04em;
+    }
+    .toolbar button:hover { background: var(--gold); color: #111113; }
+
+    .sheet {
+      width: 210mm; min-height: 297mm;
+      background: var(--bg-sheet);
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      padding: 10mm 10mm;
+      box-shadow: 0 0 40px rgba(201,168,76,0.08), 0 4px 20px rgba(0,0,0,0.6);
+      position: relative; overflow: hidden;
+    }
+    .sheet::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 10% 5%, rgba(201,168,76,0.05) 0%, transparent 40%),
+                  radial-gradient(ellipse at 90% 95%, rgba(201,168,76,0.03) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .sheet-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--gold-bright);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--gold);
+      margin-bottom: 10px;
+    }
+    .sheet-title small {
+      display: block; font-size: 0.55em;
+      letter-spacing: 0.06em; color: var(--text-dim);
+      font-weight: 400; margin-top: 2px;
+    }
+    .page-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--gold); text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 10px 0 8px;
+      border-bottom: 1px solid var(--border-faint);
+      padding-bottom: 3px;
+    }
+
+    /* ── NPC Card ── */
+    .npc-card {
+      border: 1.5px solid var(--border-dim);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      background: var(--bg-section);
+      position: relative;
+    }
+    .npc-card.major { border-color: var(--gold); }
+    .npc-card.enemy { border-left: 3px solid var(--accent-red); }
+    .npc-card.ally  { border-left: 3px solid var(--accent-green); }
+    .npc-card.info  { border-left: 3px solid var(--accent-blue); }
+
+    .npc-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .npc-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--gold-bright);
+      letter-spacing: 0.04em;
+    }
+    .npc-role {
+      font-size: 0.65rem; font-style: italic;
+      color: var(--text-dim);
+    }
+
+    .npc-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 2px 12px;
+      font-size: 0.72rem;
+      margin: 4px 0;
+      padding: 4px 6px;
+      background: rgba(201,168,76,0.04);
+      border-radius: 3px;
+      border: 1px solid var(--border-faint);
+    }
+    .npc-stats .stat { display: flex; gap: 4px; }
+    .npc-stats .stat-key {
+      font-weight: 700; color: var(--gold);
+      min-width: 36px;
+    }
+
+    .npc-section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--gold); margin-top: 4px;
+    }
+    .npc-text {
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: var(--text);
+      margin: 1px 0 3px;
+    }
+    .npc-text em { color: var(--text-dim); }
+    .npc-quote {
+      font-size: 0.72rem; font-style: italic;
+      color: var(--gold-bright);
+      padding-left: 8px;
+      border-left: 2px solid var(--gold);
+      margin: 2px 0 4px;
+    }
+
+    .npc-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 12px;
+    }
+
+    /* ── Stat block table ── */
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.68rem;
+      margin: 6px 0;
+    }
+    .stat-table th {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem; text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding: 2px 4px; text-align: left;
+    }
+    .stat-table td {
+      border-bottom: 1px solid var(--border-faint);
+      padding: 3px 4px;
+      vertical-align: top;
+    }
+    .stat-table tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button onclick="window.print()">🖨️ Imprimir / PDF</button>
+  <button onclick="location.href='/hoja/'">← Hoja PJ</button>
+  <button onclick="location.href='/'">← Inicio</button>
+</div>
+
+<!-- ═══════════════ PAGE 1 — NPCs principales ═══════════════ -->
+<div class="sheet" id="page1">
+  <div class="sheet-title">
+    Fichas de NPC — Guía del Director
+    <small>Sombras sobre Fellise · Mistborn D20</small>
+  </div>
+
+  <div class="page-subtitle">NPCs principales — Aliados de la Crew</div>
+
+  <!-- DARVEN -->
+  <div class="npc-card major ally">
+    <div class="npc-header">
+      <span class="npc-name">Darven</span>
+      <span class="npc-role">Líder de la crew · Mentor</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">CA</span> 13</div>
+      <div class="stat"><span class="stat-key">PG</span> 25</div>
+      <div class="stat"><span class="stat-key">Vel</span> 9 m</div>
+      <div class="stat"><span class="stat-key">Ataques</span> Daga +4 (1d4+2) · Puños +3 (1d4+1)</div>
+      <div class="stat"><span class="stat-key">Rasgo</span> Reacción: cubrir aliado (mitad daño a aliado adyacente). No huye.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Voz grave, pausada. Líder pragmático que protege a los suyos a cualquier costo. No tolera excusas pero valora la honestidad. Tiene una relación compleja con Silen: sospechaba algo raro pero la lealtad lo cegó.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Motivación</div>
+        <div class="npc-text">Mantener viva a su gente. No busca riqueza — busca supervivencia y dignidad para skaa.</div>
+        <div class="npc-section-label">Secreto</div>
+        <div class="npc-text">Sabía que algo no cuadraba con Silen. Le dio una moneda perforada como prueba de lealtad — una que un kandra no sabría explicar.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"No me traigas excusas, tráeme opciones."</div>
+    <div class="npc-quote">"Si caigo, ustedes siguen. Eso no se negocia."</div>
+    <div class="npc-section-label">Combate</div>
+    <div class="npc-text">Solo pelea en Acto 1 (defensa del almacén). Prioriza cubrir aliados. Su muerte o supervivencia depende de las decisiones de los PJ. Si muere, es un momento dramático que define el tono del resto de la campaña.</div>
+  </div>
+
+  <!-- SILEN -->
+  <div class="npc-card major enemy">
+    <div class="npc-header">
+      <span class="npc-name">Silen</span>
+      <span class="npc-role">Kandra · Segundo al mando (traidor)</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">CA</span> 15</div>
+      <div class="stat"><span class="stat-key">PG</span> 55</div>
+      <div class="stat"><span class="stat-key">Ataques</span> Golpes +6 (1d8+4) · Agarre +6 (DC 14 FUE)</div>
+      <div class="stat"><span class="stat-key">Rasgo</span> Bonus action: ventaja en Engaño o Sigilo. No intenta matar.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Calmo, calculador. Habla con precisión quirúrgica. Gesto delator: se ajusta el guante derecho con dos tirones cortos. Genuinamente se encariñó con la crew — esa es su tragedia.</div>
+        <div class="npc-section-label">Motivación</div>
+        <div class="npc-text">Cumplir su Contrato con Maelor/Casa Kest. El kandra obedece el Contrato por encima de todo, pero su afecto por la crew es real.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Detección</div>
+        <div class="npc-text">No se detecta por aspecto, sino por <em>firmas narrativas</em>: el gesto del guante, no poder explicar la moneda perforada de Darven, pequeñas inconsistencias en recuerdos compartidos.</div>
+        <div class="npc-section-label">Objeto clave</div>
+        <div class="npc-text">Moneda perforada que le dio Darven. No sabe su significado.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"Primero mirar, después tocar."</div>
+    <div class="npc-quote">"No elegí esto. Pero lo hice, y no voy a pedir disculpas."</div>
+    <div class="npc-section-label">Combate</div>
+    <div class="npc-text">No intenta matar PJs. Usa Agarres para inmovilizar: DC 14 FUE. Si es confrontado directamente huye o negocia. Puede ofrecer info sobre Maelor a cambio de libertad.</div>
+  </div>
+
+  <!-- KAERIN -->
+  <div class="npc-card major ally">
+    <div class="npc-header">
+      <span class="npc-name">Kaerin</span>
+      <span class="npc-role">Aliado ambiguo · Alomante desconocido</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">Iniciativa</span> No tira — actúa en momentos narrativos</div>
+      <div class="stat"><span class="stat-key">Ataques</span> Ataque a Maelor: 3d8 automático</div>
+      <div class="stat"><span class="stat-key">Rasgo</span> Absorbe 1 golpe letal a PJ. Se retira al detectar Inquisidor.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Preciso, piedra emocional. Habla poco. Tiene su propia agenda contra Casa Kest — no es aliado de los PJ, solo comparten un enemigo. Nunca confirma qué metal quema (sugerido: Peltre o Acero).</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Cuándo aparece</div>
+        <div class="npc-text">Se introduce brevemente en Acto 2 (Canal Viejo). Interviene en Acto 3 durante Fase 2-3 de Maelor: absorbe 1 golpe letal, ataca Maelor por 3d8 automático, se retira cuando llega el Inquisidor.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"No vine por ustedes."</div>
+    <div class="npc-quote">"Kest va a caer. Pero no esta noche."</div>
+    <div class="npc-section-label">Notas de dirección</div>
+    <div class="npc-text">No dar demasiada info. Es un gancho para futuras aventuras. Los PJ no deberían poder controlarlo ni predecirlo.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PAGE 2 — Antagonistas ═══════════════ -->
+<div class="sheet" id="page2">
+  <div class="sheet-title">
+    Fichas de NPC — Antagonistas
+    <small>Sombras sobre Fellise · Mistborn D20</small>
+  </div>
+
+  <!-- MAELOR -->
+  <div class="npc-card major enemy">
+    <div class="npc-header">
+      <span class="npc-name">Maelor Kest</span>
+      <span class="npc-role">Antagonista principal · Nacido de la Bruma secreto</span>
+    </div>
+    <div class="npc-section-label">Personalidad</div>
+    <div class="npc-text">Noble hijo de Casa Kest. Voz educada pero que se quiebra bajo presión. Desesperado por probar su valor ante Lord Straff Kest. No es malvado — es un hijo atrapado en un sistema que lo devora. Sus experimentos con Kestium despertaron poderes de Nacido de la Bruma que no controla.</div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Motivación</div>
+        <div class="npc-text">Demostrar a su padre que merece heredar Casa Kest. El Kestium es su atajo. Cada fracaso lo empuja más al extremo.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Debilidad crítica</div>
+        <div class="npc-text">Solo domina 2-3 metales bien (Acero, Peltre, Zinc). No sabe volar. Se fatiga rápido quemando múltiples metales. Nube de Cobre = colapso total.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Revelación progresiva</div>
+    <div class="npc-text">
+      <strong>Acto 2 (Muelles):</strong> Solo muestra Acero. Los PJ asumen que es un Lanzamonedas.<br/>
+      <strong>Acto 3 Fase 1:</strong> Usa aparato técnico, sin alomancia propia.<br/>
+      <strong>Acto 3 Fase 2:</strong> Quema Peltre + Acero. Los PJ sospechan.<br/>
+      <strong>Acto 3 Fase 3:</strong> Quema TODO. Es un Nacido de la Bruma. Pero colapsa.
+    </div>
+
+    <div class="npc-section-label">Stats por fase</div>
+    <table class="stat-table">
+      <thead>
+        <tr><th>Fase</th><th>CA / PG</th><th>Ataques</th><th>Rasgo especial</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Muelles (A2)</strong></td>
+          <td>CA 15, PG 40</td>
+          <td>Espada +6 (1d8+3)</td>
+          <td>A ≤20 PG: Empuje de Acero, lluvia monedas (DES DC 14, 2d6), huye</td>
+        </tr>
+        <tr>
+          <td><strong>Fase 1 — Aparato</strong></td>
+          <td>CA 16, PG 70 (niv3: 50)</td>
+          <td>Descarga +7 (1d8+4 + 1d6 Kestium)</td>
+          <td>1 legendaria/turno. No usa alomancia propia. A 0 PG → Fase 2</td>
+        </tr>
+        <tr>
+          <td><strong>Fase 2 — Peltre+Acero</strong></td>
+          <td>CA 17, PG 80 (niv3: 60)</td>
+          <td>CaC +8 (2d6+4), Acero +7 (1d8+3, 12 m, empuja DC 14)</td>
+          <td>Pulso cada 2 turnos (DC 15 DES, 2d8). 2+ nodos off = pierde legendarias</td>
+        </tr>
+        <tr>
+          <td><strong>Fase 3 — Nacido Bruma</strong></td>
+          <td>CA 15, PG 60 (niv3: 40)</td>
+          <td>Acero lluvia DC 13, Peltre +8 2d8+4, Zinc miedo DC 14, Hierro DC 14</td>
+          <td>Colapsa: T3-4 pierde Peltre/Estaño, T5+ solo Acero débil. Cobre = fin</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"Mi padre tenía razón: solo el poder se respeta en este mundo."</div>
+    <div class="npc-quote">"¿Creen que pueden detener a un Nacido de la Bruma?" <em>(voz quebrándose)</em></div>
+  </div>
+
+  <!-- VALEK -->
+  <div class="npc-card major enemy">
+    <div class="npc-header">
+      <span class="npc-name">Valek</span>
+      <span class="npc-role">Capataz de la fundición · Mini-jefe</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">CA</span> 16</div>
+      <div class="stat"><span class="stat-key">PG</span> 90</div>
+      <div class="stat"><span class="stat-key">Ataques</span> Martillo industrial +6 (2d6+4)</div>
+      <div class="stat"><span class="stat-key">Lair</span> 1/ronda: cerrar compuerta · liberar vapor · apagar luz</div>
+      <div class="stat"><span class="stat-key">Rasgo</span> A mitad PG: apaga todas las luces, ventaja en oscuridad.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Voz corta, militar. Orgullo profesional, no lealtad a Kest. Su peligro viene del ENTORNO (vapor, compuertas, oscuridad), no de stats brutos. No pelea por ideología — pelea porque es su trabajo.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Negociación</div>
+        <div class="npc-text">PUEDE ser negociado. Si los PJ le muestran que Kest lo va a traicionar, o si lo acorralan sin salida, se rinde. No es fanático.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"No voy a agradecerles. Solo voy a irme."</div>
+    <div class="npc-quote">"Esta fundición es mía. No suya, no de Kest. Mía."</div>
+    <div class="npc-section-label">Combate</div>
+    <div class="npc-text">Usa el entorno agresivamente: cierra compuertas para separar al grupo, libera vapor para área de daño, apaga luces para ventaja. A mitad PG apaga TODAS las luces y pelea en oscuridad. Es un encuentro de entorno, no un saco de PG.</div>
+  </div>
+
+  <!-- INQUISIDOR -->
+  <div class="npc-card major enemy">
+    <div class="npc-header">
+      <span class="npc-name">Inquisidor de Acero</span>
+      <span class="npc-role">Amenaza imbatible · Señal de huir</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">CA</span> 20</div>
+      <div class="stat"><span class="stat-key">PG</span> 150 (regenera 10/turno)</div>
+      <div class="stat"><span class="stat-key">Inmune</span> Miedo, charme</div>
+      <div class="stat"><span class="stat-key">Ataques</span> +12 (4d8+6), empuje 3 m</div>
+    </div>
+    <div class="npc-section-label">Personalidad</div>
+    <div class="npc-text">No habla. Respira con un sonido metálico. No tiene personalidad — es una fuerza de la naturaleza. Su aparición señala: "la campaña terminó, es hora de huir."</div>
+    <div class="npc-section-label">Notas de dirección</div>
+    <div class="npc-text"><strong>NO es para pelear.</strong> Es imbatible a nivel 3-5. Su función es generar la carrera final hacia Luthadel y cerrar Sombras sobre Fellise. Si los PJ insisten en pelear, el primer golpe de 4d8+6 debería dejar claro que no tienen oportunidad.</div>
+  </div>
+
+  <!-- RASK -->
+  <div class="npc-card enemy">
+    <div class="npc-header">
+      <span class="npc-name">Rask</span>
+      <span class="npc-role">Traidor veterano · Mini-jefe Acto 1</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">CA</span> 14</div>
+      <div class="stat"><span class="stat-key">PG</span> 38</div>
+      <div class="stat"><span class="stat-key">Ataques</span> Espada +5 (1d8+3), puede hacer 2 ataques</div>
+      <div class="stat"><span class="stat-key">Rasgo</span> Acción bonus: repliegue a cobertura preparada.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Inteligente, usa cobertura y posiciones preparadas. No pelea limpio. Si lo acorralan, ofrece información a cambio de su vida.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que sabe</div>
+        <div class="npc-text">"Les digo quién me contrató si me dejan ir." Sabe que alguien de Casa Kest lo contrató vía intermediario. NO sabe lo de Silen.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PAGE 3 — NPCs de información ═══════════════ -->
+<div class="sheet" id="page3">
+  <div class="sheet-title">
+    Fichas de NPC — Contactos e Informantes
+    <small>Sombras sobre Fellise · Mistborn D20</small>
+  </div>
+
+  <!-- TORREN -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Torren</span>
+      <span class="npc-role">Ex-Obligador alquimista · Informante clave</span>
+    </div>
+    <div class="npc-stats">
+      <div class="stat"><span class="stat-key">Combate</span> Frascos de ácido (2d6) como autodefensa. No es combatiente.</div>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Viejo, paranoico, brillante. Vive escondido detrás de una lavandería. Fue él mismo sujeto de prueba (tiene cicatrices de experimentos). Se ganó la paranoia con razón.</div>
+        <div class="npc-section-label">Motivación</div>
+        <div class="npc-text">Sobrevivir y que alguien destruya lo que él ayudó a crear. No quiere redención — quiere que pare.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Todo sobre Kestium: análisis de la aleación, efectos en el cuerpo, ubicación del laboratorio en la fundición. Sabe que los experimentos buscan crear Nacidos de la Bruma artificiales pero cree que no funciona (está equivocado).</div>
+        <div class="npc-section-label">Acceso</div>
+        <div class="npc-text">Contacto de Darven. La crew sabe dónde encontrarlo. Solo habla con referencias verificadas.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frases clave</div>
+    <div class="npc-quote">"No deberían haber venido. Pero ya que están acá... cierren la puerta."</div>
+  </div>
+
+  <!-- BREN -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Bren</span>
+      <span class="npc-role">Tabernero del Yunque Torcido</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Ex-estibador, 3 dedos faltantes. No hace preguntas. Hombre de pocas palabras y lealtades claras: protege a los skaa que entran a su taberna.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Ventanas de turnos de guardia en los muelles. Info de clase Mundano — rumores de calle, quién se mueve de noche. No sabe nada de alomancia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GORDO TAMAS -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Gordo Tamas</span>
+      <span class="npc-role">Estibador · Testigo</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Trabajador de muelles gordo y ruidoso. No le importa nada excepto su paga. Oportuno, no malicioso.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Vio a Silen abordar un bote al Canal Viejo. Cuesta: <strong>10 boxings</strong> o un favor. "No me viste, yo no te vi. ¿Trato?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIRA LA SORDA -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Mira la Sorda</span>
+      <span class="npc-role">Lectora de labios · Contacto de Darven</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Observadora silenciosa. Lee labios a distancia. Confianza ganada por años de trabajo con Darven.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Vio "alguien como Silen pero raro" negociando con un intermediario Kest.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frase clave</div>
+    <div class="npc-quote">"Se movía distinto. Como si no estuviera cómodo en su propia piel."</div>
+    <div class="npc-text"><em>→ Pista de que Silen es un kandra. Solo tiene sentido en retrospectiva.</em></div>
+  </div>
+
+  <!-- HENDEL -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Hendel</span>
+      <span class="npc-role">Capataz del turno de noche · Fundición</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Mundano, cansado, no es leal a Kest — es leal a su sueldo. No es héroe ni villano. Solo quiere terminar su turno y volver a casa.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Sabe que algo pasa en el subsuelo de la fundición pero no quiere meterse. Puede ser persuadido o sobornado para mirar a otro lado.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frase clave</div>
+    <div class="npc-quote">"No bajes al subsuelo. Lo que hacen ahí abajo no es fundición."</div>
+  </div>
+
+  <!-- MAREN -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Maren</span>
+      <span class="npc-role">Obrera de fundición · Aliada potencial</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Solo se acerca a Mundanos ("¿Sos de los nuestros?"). Desconfía de alomantes. Valiente pero práctica. Sabe que los que bajan al subsuelo no vuelven iguales.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Info que provee</div>
+        <div class="npc-text">Tiene llave de repuesto. Conoce ubicación de sensores. Sabe rutas subterráneas de la fundición. Recurso invaluable para infiltración.</div>
+      </div>
+    </div>
+    <div class="npc-section-label">Frase clave</div>
+    <div class="npc-quote">"¿Sos de los nuestros? Los que bajan no vuelven iguales."</div>
+  </div>
+
+  <!-- NELA -->
+  <div class="npc-card info">
+    <div class="npc-header">
+      <span class="npc-name">Nela</span>
+      <span class="npc-role">Curandera skaa</span>
+    </div>
+    <div class="npc-2col">
+      <div>
+        <div class="npc-section-label">Personalidad</div>
+        <div class="npc-text">Práctica y directa. Cura sin preguntar de qué bando sos. Conoce hierbas medicinales del mercado negro. Puede convertirse en punto de descanso seguro si los PJ le consiguen suministros.</div>
+      </div>
+      <div>
+        <div class="npc-section-label">Función mecánica</div>
+        <div class="npc-text">Escena enchufable en Acto 2. Ofrece curación a cambio de hierbas del mercado negro. Si los PJ le ayudan, se convierte en un <em>safe rest point</em> para la crew.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ PAGE 4 — Enemigos genéricos ═══════════════ -->
+<div class="sheet" id="page4">
+  <div class="sheet-title">
+    Referencia Rápida — Enemigos Genéricos
+    <small>Sombras sobre Fellise · Mistborn D20</small>
+  </div>
+
+  <div class="page-subtitle">Stat blocks de enemigos comunes</div>
+
+  <table class="stat-table">
+    <thead>
+      <tr><th>Enemigo</th><th>CA / PG</th><th>Ataques</th><th>Rasgo</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Matón de muelle</strong></td>
+        <td>CA 12, PG 22, Vel 9 m</td>
+        <td>Garrote +4 (1d6+2) o Cuchillo +4 (1d4+2)</td>
+        <td>+1 daño si aliado adyacente. Flanquea.</td>
+      </tr>
+      <tr>
+        <td><strong>Guardia de almacén</strong></td>
+        <td>CA 13, PG 27</td>
+        <td>Lanza +4 (1d8+2) o Disparo +4 (1d8+2)</td>
+        <td>Reacción: +2 CA vs 1 ataque. Prefiere distancia.</td>
+      </tr>
+      <tr>
+        <td><strong>Tirador de banda</strong></td>
+        <td>CA 13, PG 18</td>
+        <td>Disparo +5 (1d8+3)</td>
+        <td>Ventaja en primer tiro desde cobertura. Huye si queda solo.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-subtitle">Comportamiento IA por tipo de enemigo</div>
+
+  <div class="npc-card enemy">
+    <div class="npc-header">
+      <span class="npc-name">Matón de muelle</span>
+      <span class="npc-role">Enemigo básico de grupo</span>
+    </div>
+    <div class="npc-text">Ataca al más cercano. Intenta flanquear con aliados para el +1 daño. Se rinde si queda solo y herido. No usa tácticas complejas. Ideal para encuentros con 3-4 matones.</div>
+  </div>
+
+  <div class="npc-card enemy">
+    <div class="npc-header">
+      <span class="npc-name">Guardia de almacén</span>
+      <span class="npc-role">Enemigo defensivo a distancia</span>
+    </div>
+    <div class="npc-text">Prefiere distancia: usa Lanza si están lejos, Disparo si están a distancia total. Usa Reacción (+2 CA) contra el primer ataque cuerpo a cuerpo que reciba. Protege un punto fijo. No persigue.</div>
+  </div>
+
+  <div class="npc-card enemy">
+    <div class="npc-header">
+      <span class="npc-name">Tirador de banda</span>
+      <span class="npc-role">Enemigo de cristal · Francotirador</span>
+    </div>
+    <div class="npc-text">Primer tiro siempre con ventaja si tiene cobertura. Mucho daño, pocos PG (18). Huye inmediatamente si pierde cobertura o queda solo. Target prioritario para los PJ.</div>
+  </div>
+
+  <div class="page-subtitle">Tabla de escalado de dificultad</div>
+  <table class="stat-table">
+    <thead>
+      <tr><th>Encuentro</th><th>Fácil</th><th>Normal</th><th>Difícil</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Muelles (A1-A2)</strong></td>
+        <td>2 matones</td>
+        <td>3 matones + 1 tirador</td>
+        <td>4 matones + 2 tiradores</td>
+      </tr>
+      <tr>
+        <td><strong>Almacén (A1)</strong></td>
+        <td>2 guardias</td>
+        <td>3 guardias + 1 tirador</td>
+        <td>4 guardias + Rask</td>
+      </tr>
+      <tr>
+        <td><strong>Fundición (A2)</strong></td>
+        <td>2 guardias + Valek (PG 70)</td>
+        <td>3 guardias + Valek</td>
+        <td>4 guardias + Valek + 1 tirador</td>
+      </tr>
+      <tr>
+        <td><strong>Maelor Muelles</strong></td>
+        <td>Maelor solo (PG 30)</td>
+        <td>Maelor (PG 40)</td>
+        <td>Maelor (PG 40) + 2 matones</td>
+      </tr>
+      <tr>
+        <td><strong>Maelor Final (A3)</strong></td>
+        <td>PG reducidos (niv 3)</td>
+        <td>PG estándar</td>
+        <td>PG estándar + más legendarias</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-subtitle">Referencia rápida de DCs</div>
+  <table class="stat-table">
+    <thead>
+      <tr><th>Dificultad</th><th>DC</th><th>Ejemplo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fácil</td><td>10</td><td>Trepar muro con agarres, detectar guardia distraído</td></tr>
+      <tr><td>Moderado</td><td>13</td><td>Abrir cerradura simple, engañar guardia, rastrear huellas</td></tr>
+      <tr><td>Difícil</td><td>15</td><td>Desactivar sensor, convencer a Hendel, escalar muro liso</td></tr>
+      <tr><td>Muy difícil</td><td>18</td><td>Detectar a Silen como kandra, hackear aparato de Maelor</td></tr>
+      <tr><td>Casi imposible</td><td>20+</td><td>Resistir Inquisidor, sobrevivir colapso de fundición</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-subtitle">Condiciones de victoria alternativas</div>
+  <div class="npc-card">
+    <div class="npc-text">
+      <strong>Vs. Rask:</strong> Se rinde si lo acorralan → ofrece info sobre quién lo contrató.<br/>
+      <strong>Vs. Valek:</strong> Negociable. Mostrar traición de Kest o acorralarlo → se va.<br/>
+      <strong>Vs. Silen:</strong> No intenta matar. Confrontación → puede ofrecer info sobre Maelor a cambio de libertad.<br/>
+      <strong>Vs. Maelor F3:</strong> Nube de Cobre = colapso total. Destruir 2+ nodos = pierde legendarias. Esperar 5 turnos = se debilita solo.<br/>
+      <strong>Vs. Inquisidor:</strong> NO se pelea. Se huye. Toda la escena es una carrera de escape.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

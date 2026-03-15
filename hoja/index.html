@@ -375,7 +375,7 @@
     /* ── Fatigue track ──────────────────────────────────── */
     .fatigue-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 3px;
       text-align: center;
     }
@@ -391,6 +391,11 @@
       font-weight: 700;
       font-size: 0.55rem;
       color: var(--text-label);
+    }
+    .fatigue-cell .fat-desc {
+      font-size: 0.45rem;
+      color: var(--text-dim);
+      margin-top: 1px;
     }
 
     /* ── Equipment & Notes ──────────────────────────────── */
@@ -473,6 +478,7 @@
 <!-- Toolbar -->
 <div class="toolbar no-print">
   <button onclick="window.print()">🖨️ Imprimir / PDF</button>
+  <button onclick="location.href='/hoja/npc.html'">🗡️ NPCs</button>
   <button onclick="location.href='/'">← Volver</button>
 </div>
 
@@ -558,17 +564,17 @@
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Atletismo <small>(FUE)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Engaño <small>(CAR)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Historia <small>(INT)</small></div>
-          <div class="skill-row"><input type="checkbox" /><input type="text" /> Intimidación <small>(CAR)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Intimidación <small>(CAR/FUE)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Investigación <small>(INT)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Juego de manos <small>(DES)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Medicina <small>(SAB)</small></div>
-          <div class="skill-row"><input type="checkbox" /><input type="text" /> Naturaleza <small>(INT)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Alquimia <small>(INT)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Percepción <small>(SAB)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Perspicacia <small>(SAB)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Persuasión <small>(CAR)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Sigilo <small>(DES)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Supervivencia <small>(SAB)</small></div>
-          <div class="skill-row"><input type="checkbox" /><input type="text" /> Trato con animales <small>(SAB)</small></div>
+          <div class="skill-row"><input type="checkbox" /><input type="text" /> Interpretación <small>(CAR)</small></div>
           <div class="skill-row"><input type="checkbox" /><input type="text" /> Herrería/Oficio <small>(var)</small></div>
         </div>
       </div>
@@ -664,11 +670,9 @@
       <div class="section-box">
         <h3>Fatiga</h3>
         <div class="fatigue-grid">
-          <div class="fatigue-cell"><div class="fat-level">1</div><input type="checkbox" /></div>
-          <div class="fatigue-cell"><div class="fat-level">2</div><input type="checkbox" /></div>
-          <div class="fatigue-cell"><div class="fat-level">3</div><input type="checkbox" /></div>
-          <div class="fatigue-cell"><div class="fat-level">4</div><input type="checkbox" /></div>
-          <div class="fatigue-cell"><div class="fat-level">5</div><input type="checkbox" /></div>
+          <div class="fatigue-cell"><div class="fat-level">1</div><input type="checkbox" /><div class="fat-desc">Desventaja sig. tirada</div></div>
+          <div class="fatigue-cell"><div class="fat-level">2</div><input type="checkbox" /><div class="fat-desc">−2 a todas las tiradas</div></div>
+          <div class="fatigue-cell"><div class="fat-level">3</div><input type="checkbox" /><div class="fat-desc">No puede gastar RM</div></div>
         </div>
       </div>
     </div>

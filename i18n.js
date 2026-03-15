@@ -56,6 +56,8 @@ const UI = {
     // ── Tools ──
     toolSheet:       "Hoja de Personaje",
     toolSheetDesc:   "Hoja rellenable e imprimible. Stats, RM, metales, equipo y habilidades.",
+    toolNPC:         "Fichas de NPC",
+    toolNPCDesc:     "Fichas imprimibles de todos los NPCs de la campa\u00f1a para el Director.",
     toolCreator:     "Creador de Personaje",
     toolCreatorDesc: "Wizard paso a paso: clase, atributos, nivel, habilidades y equipo.",
 
@@ -130,6 +132,8 @@ const UI = {
     // ── Tools ──
     toolSheet:       "Character Sheet",
     toolSheetDesc:   "Fillable & printable sheet. Stats, MR, metals, gear & abilities.",
+    toolNPC:         "NPC Reference Sheets",
+    toolNPCDesc:     "Printable NPC cards for all campaign characters — GM reference.",
     toolCreator:     "Character Creator",
     toolCreatorDesc: "Step-by-step wizard: class, attributes, level, abilities & gear.",
 
