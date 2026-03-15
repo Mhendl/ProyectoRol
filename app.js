@@ -1048,7 +1048,6 @@ function renderHomeRoutes(sections) {
   // ─── Tool cards (sheet + creator) ─────────────
   const tools = [
     { icon: "📝", href: "/hoja/",    titleKey: "toolSheet",   descKey: "toolSheetDesc" },
-    { icon: "🗡️", href: "/hoja/npc.html", titleKey: "toolNPC",   descKey: "toolNPCDesc" },
     { icon: "⚙️", href: "/creador/", titleKey: "toolCreator", descKey: "toolCreatorDesc" },
   ];
   tools.forEach(tool => {
